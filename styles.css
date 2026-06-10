@@ -339,12 +339,16 @@ h3 {
 
 .price-panel {
   position: relative;
+  display: block;
   overflow: hidden;
   border-radius: 8px;
   background: #102033;
   color: #fff;
   box-shadow: var(--shadow);
   padding: 42px;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .price-panel::after {
@@ -356,6 +360,17 @@ h3 {
   border: 26px solid rgba(22, 163, 154, 0.32);
   border-radius: 50%;
   content: "";
+}
+
+.price-panel:hover,
+.price-panel:focus-visible {
+  transform: translateY(-3px);
+  box-shadow: 0 30px 80px rgba(16, 32, 51, 0.2);
+}
+
+.price-panel:focus-visible {
+  outline: 3px solid rgba(20, 99, 255, 0.36);
+  outline-offset: 4px;
 }
 
 .price-label,
