@@ -14,6 +14,9 @@ const slides = [
     theme: "theme-risk",
     color: "#111827",
     accent: "#64748b",
+    bgA: "#e6eef2",
+    bgB: "#c9d6df",
+    bgC: "#eef4f6",
   },
   {
     name: "Вопрос денег",
@@ -26,6 +29,9 @@ const slides = [
     theme: "theme-loss",
     color: "#3f1d5f",
     accent: "#8b5cf6",
+    bgA: "#f1e9ff",
+    bgB: "#d7c5f2",
+    bgC: "#f7efff",
   },
   {
     name: "Долги семьи",
@@ -38,6 +44,9 @@ const slides = [
     theme: "theme-debt",
     color: "#8f2f2f",
     accent: "#f97316",
+    bgA: "#fff0e5",
+    bgB: "#f4c4ad",
+    bgC: "#fbe8e4",
   },
   {
     name: "Готовность заранее",
@@ -50,6 +59,9 @@ const slides = [
     theme: "theme-ready",
     color: "#0f4f7a",
     accent: "#38bdf8",
+    bgA: "#e2f3ff",
+    bgB: "#b8ddf3",
+    bgC: "#eef9ff",
   },
   {
     name: "Решение Freedom Health",
@@ -64,6 +76,9 @@ const slides = [
     theme: "theme-solution",
     color: "#1375a8",
     accent: "#22d3ee",
+    bgA: "#e0f7fb",
+    bgB: "#b4edf5",
+    bgC: "#f0fbfd",
   },
   {
     name: "Доступная защита",
@@ -76,6 +91,9 @@ const slides = [
     theme: "theme-price",
     color: "#0d9488",
     accent: "#5eead4",
+    bgA: "#dffbf4",
+    bgB: "#aeeadd",
+    bgC: "#f2fffb",
   },
   {
     name: "Процветание Вашей семьи",
@@ -97,6 +115,9 @@ const slides = [
     theme: "theme-final",
     color: "#16a34a",
     accent: "#86efac",
+    bgA: "#dcfce7",
+    bgB: "#b8f4c9",
+    bgC: "#f4fff7",
     final: true,
   },
 ];
@@ -186,7 +207,7 @@ function createSection(slide, index) {
       class="story-section ${slide.theme}"
       id="section-${index + 1}"
       data-index="${index}"
-      style="--blue: ${slide.color}; --teal: ${slide.accent};"
+      style="--blue: ${slide.color}; --teal: ${slide.accent}; --bg-a: ${slide.bgA}; --bg-b: ${slide.bgB}; --bg-c: ${slide.bgC};"
     >
       <div class="section-inner">
         <aside class="visual-panel" aria-hidden="true">
