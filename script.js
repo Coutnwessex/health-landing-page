@@ -3,8 +3,7 @@ const subscribeUrl =
 
 const slides = [
   {
-    name: "Крючок",
-    task: "Задача: сразу показать, что речь не просто о болезни, а о финансовом риске.",
+    name: "Финансовый риск",
     title:
       "Диагноз может изменить не только здоровье. Он может изменить финансовую жизнь семьи.",
     text:
@@ -15,8 +14,7 @@ const slides = [
     theme: "theme-risk",
   },
   {
-    name: "Проблема после диагноза",
-    task: "Задача: показать неприятную, но реальную развилку.",
+    name: "Вопрос денег",
     title: "После диагноза начинается второй вопрос: где срочно взять деньги?",
     text:
       "Когда расходы становятся большими, у семьи обычно остается несколько вариантов. Продажа своих главных приобретений машины, квартиры или бизнеса. То, ради чего люди тяжело работали годами, и хотели передать своим детям может оказаться под угрозой из-за одного внезапного диагноза.",
@@ -26,8 +24,7 @@ const slides = [
     theme: "theme-loss",
   },
   {
-    name: "Плохие варианты",
-    task: "Задача: эмоционально и рационально показать цену неподготовленности.",
+    name: "Долги семьи",
     title: "Кредиты, берут на себя все члены семьи, ради спасения одного.",
     text:
       "Теперь все члены семь в долгах, а другие родственники не всегда могут помочь крупной суммой.",
@@ -37,8 +34,7 @@ const slides = [
     theme: "theme-debt",
   },
   {
-    name: "Поворот истории",
-    task: "Задача: перевести пользователя от страха к идее управления риском.",
+    name: "Готовность заранее",
     title: "Критическую болезнь нельзя запланировать. Но финансовую готовность - можно.",
     text:
       "Freedom Health нужен не потому, что вы ждете болезнь. Он нужен, чтобы заранее превратить крупный финансовый риск в совсем небольшой регулярный платеж в обмен на уверенность.",
@@ -48,8 +44,7 @@ const slides = [
     theme: "theme-ready",
   },
   {
-    name: "Решение",
-    task: "Задача: объяснить продукт простым языком.",
+    name: "Решение Freedom Health",
     title: "Freedom Health - защита на случай критической болезни",
     text:
       "Вы оформляете договор и платите регулярный взнос. Если приходит тяжелая болезнь, Freedom рассматривает документы и выплачивает сумму для лечения в лучших клиниках Казахстан, Турции, Израиля, Южной Кореи, Испании и других стран.",
@@ -61,8 +56,7 @@ const slides = [
     theme: "theme-solution",
   },
   {
-    name: "Уникальная доступность",
-    task: "Задача: вывести главный оффер.",
+    name: "Доступная защита",
     title: "От $25 в месяц - чтобы не искать крупную сумму в самый тяжелый момент",
     text:
       "$25 в месяц - это не цена лечения. Это цена сохранит для Вас и Ваей семьи все, что Вы заработали тяжелым трудом и избавит членов семьи от новых кредитов.",
@@ -72,8 +66,7 @@ const slides = [
     theme: "theme-price",
   },
   {
-    name: "Финальное предложение",
-    task: "Задача: собрать все в понятное действие.",
+    name: "Процветание Вашей семьи",
     title: "Ваша семья не должна терять, а должна процветать",
     text:
       "Freedom Health помогает заранее подготовиться к большим расходам при критической болезни. Исключить риск нельзя, но можно им управлять.",
@@ -94,12 +87,15 @@ const slides = [
   },
 ];
 
-let currentIndex = 0;
+const initialSlide = Number.parseInt(new URLSearchParams(window.location.search).get("slide"), 10);
+let currentIndex =
+  Number.isInteger(initialSlide) && initialSlide >= 1 && initialSlide <= slides.length
+    ? initialSlide - 1
+    : 0;
 let isAnimating = false;
 
 const app = document.querySelector(".story-app");
 const storyCopy = document.getElementById("storyCopy");
-const storyTask = document.getElementById("storyTask");
 const storyTitle = document.getElementById("storyTitle");
 const storyText = document.getElementById("storyText");
 const microText = document.getElementById("microText");
@@ -179,7 +175,6 @@ function goToSlide(index) {
 function renderSlide() {
   const slide = slides[currentIndex];
   app.className = `story-app ${slide.theme}`;
-  storyTask.textContent = slide.task;
   storyTitle.textContent = slide.title;
   storyText.textContent = slide.text;
   visualImage.style.backgroundImage = `url("${slide.image}")`;
