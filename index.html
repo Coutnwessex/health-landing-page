@@ -3,288 +3,84 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Freedom Health | Saqta Market</title>
+    <title>Freedom Health | Интерактивная история</title>
     <meta
       name="description"
-      content="Freedom Health помогает заранее подготовиться к крупным расходам при критической болезни. Оформление через Saqta Market."
+      content="Интерактивная история о том, как Freedom Health помогает управлять финансовым риском критической болезни."
     />
     <link rel="preconnect" href="https://images.unsplash.com" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <header class="site-header">
-      <a class="brand" href="#top" aria-label="Saqta Market">
-        <span class="brand-mark">Q</span>
-        <span>Saqta Market</span>
-      </a>
-      <nav class="header-nav" aria-label="Основная навигация">
-        <a href="#why">Зачем</a>
-        <a href="#how">Как работает</a>
-        <a href="#faq">FAQ</a>
-      </nav>
-      <a class="header-action" href="https://ffin.life/ru/individuals/freedom-health/subscribe-health?source=OHPR">Оформить</a>
-    </header>
+    <main class="story-app" aria-live="polite">
+      <div class="ambient ambient-one"></div>
+      <div class="ambient ambient-two"></div>
 
-    <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-bg" role="img" aria-label="Семья дома в спокойной обстановке"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-          <p class="eyebrow">Freedom Health</p>
-          <h1 id="hero-title">Критическая болезнь не должна становиться финансовой катастрофой</h1>
-          <p class="hero-copy">
-            Управляйте риском заранее: вместо кредита, срочных сборов в Instagram и просьб к
-            родственникам можно оформить защиту от <strong>$25 в месяц</strong>.
+      <header class="story-header">
+        <a class="brand" href="#" data-start aria-label="Saqta Market">
+          <span class="brand-mark">Q</span>
+          <span>Saqta Market</span>
+        </a>
+        <div class="header-center">
+          <span id="stepLabel">Блок 1 из 7</span>
+          <div class="progress-track" aria-label="Прогресс истории">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+        </div>
+        <a
+          class="header-cta"
+          href="https://ffin.life/ru/individuals/freedom-health/subscribe-health?source=OHPR"
+        >
+          Оформить
+        </a>
+      </header>
+
+      <section class="story-shell" id="storyShell">
+        <aside class="visual-panel" aria-hidden="true">
+          <div class="visual-image" id="visualImage"></div>
+          <div class="visual-shade"></div>
+          <div class="visual-card">
+            <span id="visualNumber">01</span>
+            <p id="visualCaption">Крючок</p>
+          </div>
+        </aside>
+
+        <section class="content-panel">
+          <div class="story-copy" id="storyCopy">
+            <p class="kicker" id="storyTask">
+              Задача: сразу показать, что речь не просто о болезни, а о финансовом риске.
+            </p>
+            <h1 id="storyTitle">
+              Диагноз может изменить не только здоровье. Он может изменить финансовую жизнь семьи.
+            </h1>
+            <p class="story-text" id="storyText">
+              Критическая болезнь часто приходит не по расписанию. В этот момент семье нужны не только врачи
+              и время, но и деньги: на лечение, обследования, поездки, восстановление и обычную жизнь рядом с
+              лечением.
+            </p>
+            <p class="micro-text hidden" id="microText"></p>
+            <ul class="benefit-list hidden" id="benefitList"></ul>
+          </div>
+
+          <div class="story-actions">
+            <button class="ghost-button" type="button" id="backButton" disabled>
+              Назад
+            </button>
+            <button class="primary-button" type="button" id="nextButton">
+              <span>Что происходит дальше?</span>
+              <span class="button-arrow">→</span>
+            </button>
+          </div>
+
+          <p class="legal-note" id="legalNote">
+            Условия, лимиты и исключения определяются договором страхования.
           </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="https://ffin.life/ru/individuals/freedom-health/subscribe-health?source=OHPR">
-              <i data-lucide="shield-check"></i>
-              Оформить защиту
-            </a>
-            <a class="button button-secondary" href="#terms">
-              <i data-lucide="file-text"></i>
-              Посмотреть условия
-            </a>
-          </div>
-          <div class="hero-facts" aria-label="Ключевые факты">
-            <span>от $25 в месяц</span>
-            <span>на случай критических заболеваний</span>
-            <span>по условиям договора</span>
-          </div>
-        </div>
+        </section>
       </section>
 
-      <section class="section intro-band" id="why">
-        <div class="container two-column">
-          <div>
-            <p class="section-kicker">Главная мысль</p>
-            <h2>Freedom Health — это не про ожидание болезни. Это про финансовую готовность семьи.</h2>
-          </div>
-          <div class="lead-text">
-            <p>
-              Когда лечение требует крупных расходов, время и спокойствие становятся такими же важными,
-              как деньги. Freedom Health помогает заранее создать понятный финансовый план на случай
-              критической болезни.
-            </p>
-            <p>
-              Saqta Market помогает разобраться в продукте и перейти к оформлению. Страховая выплата,
-              лимиты и исключения определяются договором страхования.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section class="section problem-section">
-        <div class="container">
-          <div class="section-heading">
-            <p class="section-kicker">Что обычно происходит без плана</p>
-            <h2>Большие медицинские расходы редко приходят вовремя</h2>
-          </div>
-          <div class="option-grid">
-            <article class="option-card muted">
-              <i data-lucide="credit-card"></i>
-              <h3>Кредит</h3>
-              <p>Деньги появляются быстро, но вместе с процентами, графиком платежей и новой нагрузкой на семью.</p>
-            </article>
-            <article class="option-card muted">
-              <i data-lucide="megaphone"></i>
-              <h3>Сборы</h3>
-              <p>Публичная просьба о помощи зависит от реакции людей и занимает время, которого может не быть.</p>
-            </article>
-            <article class="option-card muted">
-              <i data-lucide="users"></i>
-              <h3>Родственники</h3>
-              <p>Даже близким не всегда легко помочь крупной суммой, особенно срочно и без подготовки.</p>
-            </article>
-            <article class="option-card accent">
-              <i data-lucide="umbrella"></i>
-              <h3>Freedom Health</h3>
-              <p>Регулярный взнос заранее превращает большой риск в управляемую часть семейного бюджета.</p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section economics-section">
-        <div class="container split-feature">
-          <a class="price-panel" href="https://ffin.life/ru/individuals/freedom-health/subscribe-health?source=OHPR" aria-label="Перейти к оформлению Freedom Health">
-            <span class="price-label">Ориентир взноса</span>
-            <div class="price">$25</div>
-            <span class="price-unit">в месяц</span>
-            <p>
-              Точная стоимость зависит от параметров программы, возраста, страховой суммы и условий договора.
-            </p>
-          </a>
-          <div class="feature-copy">
-            <p class="section-kicker">Финансовая логика</p>
-            <h2>$25 в месяц — это цена готовности, а не цена лечения</h2>
-            <p>
-              Смысл Freedom Health в том, чтобы не искать крупную сумму в самый тяжелый момент. Вы заранее
-              оформляете защиту, платите понятный взнос и знаете, по каким правилам работает договор.
-            </p>
-            <ul class="check-list">
-              <li><i data-lucide="check"></i> меньше хаоса, если диагноз потребует больших расходов;</li>
-              <li><i data-lucide="check"></i> меньше зависимости от кредитов и срочной помощи;</li>
-              <li><i data-lucide="check"></i> понятный сценарий обращения к страховщику.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <section class="section process-section" id="how">
-        <div class="container">
-          <div class="section-heading compact">
-            <p class="section-kicker">Как это работает</p>
-            <h2>Пять шагов без лишней сложности</h2>
-          </div>
-          <div class="timeline">
-            <div class="step">
-              <span>1</span>
-              <h3>Изучаете условия</h3>
-              <p>Смотрите стоимость, страховую сумму, список рисков, ограничения и исключения.</p>
-            </div>
-            <div class="step">
-              <span>2</span>
-              <h3>Переходите к оформлению</h3>
-              <p>Saqta Market направляет вас к оформлению продукта Freedom Health.</p>
-            </div>
-            <div class="step">
-              <span>3</span>
-              <h3>Платите взнос</h3>
-              <p>Регулярный платеж помогает держать защиту активной по условиям договора.</p>
-            </div>
-            <div class="step">
-              <span>4</span>
-              <h3>Подаете документы</h3>
-              <p>Если наступает страховой случай, документы подаются страховщику на рассмотрение.</p>
-            </div>
-            <div class="step">
-              <span>5</span>
-              <h3>Страховщик принимает решение</h3>
-              <p>Выплата производится при соответствии случая условиям и лимитам договора.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section audience-section">
-        <div class="container two-column">
-          <div>
-            <p class="section-kicker">Кому особенно актуально</p>
-            <h2>Тем, кто не хочет оставлять крупный медицинский риск на случайность</h2>
-          </div>
-          <div class="audience-list">
-            <div><i data-lucide="users"></i><span>семьям с детьми и финансовыми обязательствами;</span></div>
-            <div><i data-lucide="briefcase"></i><span>предпринимателям и самозанятым без стабильного больничного;</span></div>
-            <div><i data-lucide="wallet"></i><span>людям без крупной финансовой подушки;</span></div>
-            <div><i data-lucide="heart-pulse"></i><span>тем, кто хочет заранее продумать защиту при критической болезни.</span></div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section trust-section" id="terms">
-        <div class="container trust-layout">
-          <div class="trust-copy">
-            <p class="section-kicker">Роли и условия</p>
-            <h2>Прозрачно: кто за что отвечает</h2>
-            <p>
-              Freedom Health — страховой продукт партнера Freedom. Saqta Market выступает как маркетплейс
-              и агентская площадка: помогает понять продукт и перейти к оформлению.
-            </p>
-          </div>
-          <div class="trust-stack">
-            <div class="trust-item">
-              <i data-lucide="building-2"></i>
-              <div>
-                <h3>Страховщик / партнер</h3>
-                <p>Определяет условия договора, лимиты, исключения и порядок рассмотрения страхового случая.</p>
-              </div>
-            </div>
-            <div class="trust-item">
-              <i data-lucide="store"></i>
-              <div>
-                <h3>Saqta Market</h3>
-                <p>Помогает пользователю разобраться в продукте и перейти к оформлению без лишней сложности.</p>
-              </div>
-            </div>
-            <div class="trust-item">
-              <i data-lucide="badge-alert"></i>
-              <div>
-                <h3>Важно</h3>
-                <p>Выплаты, покрытие и ограничения действуют только по условиям договора страхования.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="section faq-section" id="faq">
-        <div class="container">
-          <div class="section-heading compact">
-            <p class="section-kicker">FAQ</p>
-            <h2>Коротко о важных вопросах</h2>
-          </div>
-          <div class="faq-list">
-            <details>
-              <summary>Это медицинская страховка?</summary>
-              <p>
-                Freedom Health позиционируется как защита на случай критических заболеваний. Конкретные
-                риски, лимиты и порядок выплаты нужно сверять с договором и правилами программы.
-              </p>
-            </details>
-            <details>
-              <summary>Можно ли использовать выплату на лечение?</summary>
-              <p>
-                Назначение и порядок использования средств зависят от условий договора. Перед оформлением
-                нужно проверить правила продукта Freedom Health.
-              </p>
-            </details>
-            <details>
-              <summary>Кто принимает решение о выплате?</summary>
-              <p>
-                Решение принимает страховщик после рассмотрения документов и проверки соответствия случая
-                условиям договора.
-              </p>
-            </details>
-            <details>
-              <summary>Почему цена указана от $25?</summary>
-              <p>
-                Это ориентир минимального регулярного взноса. Итоговая стоимость может зависеть от возраста,
-                страховой суммы, параметров программы и условий договора.
-              </p>
-            </details>
-          </div>
-        </div>
-      </section>
-
-      <section class="final-cta" id="cta">
-        <div class="container cta-layout">
-          <div>
-            <p class="section-kicker">Следующий шаг</p>
-            <h2>Сделайте риск критической болезни управляемым</h2>
-            <p>
-              Изучите условия Freedom Health и оформите защиту заранее, пока решение можно принять спокойно.
-            </p>
-          </div>
-          <a class="button button-primary button-large" href="https://ffin.life/ru/individuals/freedom-health/subscribe-health?source=OHPR">
-            <i data-lucide="arrow-up-right"></i>
-            Перейти к оформлению
-          </a>
-        </div>
-      </section>
+      <nav class="story-dots" aria-label="Блоки истории" id="storyDots"></nav>
     </main>
 
-    <footer class="site-footer">
-      <div class="container footer-layout">
-        <span>Saqta Market</span>
-        <span>
-          Информация на странице не является публичной офертой. Условия, лимиты, исключения и порядок
-          выплат определяются договором страхования.
-        </span>
-      </div>
-    </footer>
-
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script src="./script.js"></script>
   </body>
 </html>
