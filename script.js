@@ -12,6 +12,8 @@ const slides = [
     image:
       "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1600&q=82",
     theme: "theme-risk",
+    color: "#111827",
+    accent: "#64748b",
   },
   {
     name: "Вопрос денег",
@@ -22,6 +24,8 @@ const slides = [
     image:
       "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1600&q=82",
     theme: "theme-loss",
+    color: "#3f1d5f",
+    accent: "#8b5cf6",
   },
   {
     name: "Долги семьи",
@@ -32,6 +36,8 @@ const slides = [
     image:
       "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=82",
     theme: "theme-debt",
+    color: "#8f2f2f",
+    accent: "#f97316",
   },
   {
     name: "Готовность заранее",
@@ -42,6 +48,8 @@ const slides = [
     image:
       "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=82",
     theme: "theme-ready",
+    color: "#0f4f7a",
+    accent: "#38bdf8",
   },
   {
     name: "Решение Freedom Health",
@@ -54,6 +62,8 @@ const slides = [
     image:
       "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=82",
     theme: "theme-solution",
+    color: "#1375a8",
+    accent: "#22d3ee",
   },
   {
     name: "Доступная защита",
@@ -64,6 +74,8 @@ const slides = [
     image:
       "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1600&q=82",
     theme: "theme-price",
+    color: "#0d9488",
+    accent: "#5eead4",
   },
   {
     name: "Процветание Вашей семьи",
@@ -83,6 +95,8 @@ const slides = [
     image:
       "https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?auto=format&fit=crop&w=1600&q=82",
     theme: "theme-final",
+    color: "#16a34a",
+    accent: "#86efac",
     final: true,
   },
 ];
@@ -175,6 +189,8 @@ function goToSlide(index) {
 function renderSlide() {
   const slide = slides[currentIndex];
   app.className = `story-app ${slide.theme}`;
+  app.style.setProperty("--blue", slide.color);
+  app.style.setProperty("--teal", slide.accent);
   storyTitle.textContent = slide.title;
   storyText.textContent = slide.text;
   visualImage.style.backgroundImage = `url("${slide.image}")`;
@@ -206,6 +222,7 @@ function renderSlide() {
 
   nextButton.querySelector("span:first-child").textContent = slide.cta;
   nextButton.querySelector(".button-arrow").textContent = slide.final ? "↗" : "→";
+  nextButton.style.backgroundColor = slide.color;
   legalNote.textContent =
     slide.legal || "Условия, лимиты и исключения определяются договором страхования.";
 
