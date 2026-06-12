@@ -3,80 +3,35 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Freedom Health | Интерактивная история</title>
+    <title>Freedom Health | Вертикальная история</title>
     <meta
       name="description"
-      content="Интерактивная история о том, как Freedom Health помогает управлять финансовым риском критической болезни."
+      content="Вертикальная история о том, как Freedom Health помогает управлять финансовым риском критической болезни."
     />
     <link rel="preconnect" href="https://images.unsplash.com" />
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <main class="story-app" aria-live="polite">
-      <div class="ambient ambient-one"></div>
-      <div class="ambient ambient-two"></div>
-
-      <header class="story-header">
-        <a class="brand" href="#" data-start aria-label="Saqta Market">
-          <span class="brand-mark">Q</span>
-          <span>Saqta Market</span>
-        </a>
-        <div class="header-center">
-          <span id="stepLabel">Блок 1 из 7</span>
-          <div class="progress-track" aria-label="Прогресс истории">
-            <div class="progress-fill" id="progressFill"></div>
-          </div>
+    <header class="site-header">
+      <a class="brand" href="#section-1" aria-label="Saqta Market">
+        <span class="brand-mark">Q</span>
+        <span>Saqta Market</span>
+      </a>
+      <div class="header-progress" aria-label="Прогресс истории">
+        <span id="stepLabel">Блок 1 из 7</span>
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
         </div>
-        <a
-          class="header-cta"
-          href="https://ffin.life/ru/individuals/freedom-health/subscribe-health?source=OHPR"
-        >
-          Оформить
-        </a>
-      </header>
+      </div>
+      <a
+        class="header-cta"
+        href="https://ffin.life/ru/individuals/freedom-health/subscribe-health?source=OHPR"
+      >
+        Оформить
+      </a>
+    </header>
 
-      <section class="story-shell" id="storyShell">
-        <aside class="visual-panel" aria-hidden="true">
-          <div class="visual-image" id="visualImage"></div>
-          <div class="visual-shade"></div>
-          <div class="visual-card">
-            <span id="visualNumber">01</span>
-            <p id="visualCaption">Финансовый риск</p>
-          </div>
-        </aside>
-
-        <section class="content-panel">
-          <div class="story-copy" id="storyCopy">
-            <h1 id="storyTitle">
-              Диагноз может изменить не только здоровье. Он может изменить финансовую жизнь семьи.
-            </h1>
-            <p class="story-text" id="storyText">
-              Критическая болезнь часто приходит не по расписанию. В этот момент семье нужны не только врачи
-              и время, но и деньги: на лечение, обследования, поездки, восстановление и обычную жизнь рядом с
-              лечением.
-            </p>
-            <p class="micro-text hidden" id="microText"></p>
-            <ul class="benefit-list hidden" id="benefitList"></ul>
-          </div>
-
-          <div class="story-actions">
-            <button class="ghost-button" type="button" id="backButton" disabled>
-              Назад
-            </button>
-            <button class="primary-button" type="button" id="nextButton">
-              <span>Что происходит дальше?</span>
-              <span class="button-arrow">→</span>
-            </button>
-          </div>
-
-          <p class="legal-note" id="legalNote">
-            Условия, лимиты и исключения определяются договором страхования.
-          </p>
-        </section>
-      </section>
-
-      <nav class="story-dots" aria-label="Блоки истории" id="storyDots"></nav>
-    </main>
+    <main class="vertical-story" id="storyRoot"></main>
 
     <script src="./script.js"></script>
   </body>

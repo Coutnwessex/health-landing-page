@@ -101,138 +101,135 @@ const slides = [
   },
 ];
 
-const initialSlide = Number.parseInt(new URLSearchParams(window.location.search).get("slide"), 10);
-let currentIndex =
-  Number.isInteger(initialSlide) && initialSlide >= 1 && initialSlide <= slides.length
-    ? initialSlide - 1
-    : 0;
-let isAnimating = false;
-
-const app = document.querySelector(".story-app");
-const storyCopy = document.getElementById("storyCopy");
-const storyTitle = document.getElementById("storyTitle");
-const storyText = document.getElementById("storyText");
-const microText = document.getElementById("microText");
-const benefitList = document.getElementById("benefitList");
-const nextButton = document.getElementById("nextButton");
-const backButton = document.getElementById("backButton");
-const legalNote = document.getElementById("legalNote");
-const progressFill = document.getElementById("progressFill");
+const root = document.getElementById("storyRoot");
 const stepLabel = document.getElementById("stepLabel");
-const visualImage = document.getElementById("visualImage");
-const visualNumber = document.getElementById("visualNumber");
-const visualCaption = document.getElementById("visualCaption");
-const dots = document.getElementById("storyDots");
+const progressFill = document.getElementById("progressFill");
+const headerCta = document.querySelector(".header-cta");
+const brandMark = document.querySelector(".brand-mark");
 
-slides.forEach((slide, index) => {
-  const dot = document.createElement("button");
-  dot.className = "story-dot";
-  dot.type = "button";
-  dot.setAttribute("aria-label", `Перейти к блоку ${index + 1}: ${slide.name}`);
-  dot.addEventListener("click", () => goToSlide(index));
-  dots.appendChild(dot);
-});
+root.innerHTML = slides.map(createSection).join("");
 
-document.querySelector("[data-start]").addEventListener("click", (event) => {
-  event.preventDefault();
-  goToSlide(0);
-});
+const sections = [...document.querySelectorAll(".story-section")];
 
-nextButton.addEventListener("click", () => {
-  if (slides[currentIndex].final) {
-    window.location.href = subscribeUrl;
-    return;
-  }
+sections.forEach((section, index) => {
+  const nextButton = section.querySelector("[data-next]");
+  const backButton = section.querySelector("[data-back]");
 
-  goToSlide(currentIndex + 1);
-});
-
-backButton.addEventListener("click", () => {
-  goToSlide(currentIndex - 1);
-});
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "ArrowRight" || event.key === "Enter") {
-    if (!slides[currentIndex].final) {
-      goToSlide(currentIndex + 1);
+  nextButton.addEventListener("click", () => {
+    if (slides[index].final) {
+      window.location.href = subscribeUrl;
+      return;
     }
-  }
 
-  if (event.key === "ArrowLeft") {
-    goToSlide(currentIndex - 1);
-  }
-});
-
-function goToSlide(index) {
-  if (isAnimating || index < 0 || index >= slides.length || index === currentIndex) {
-    return;
-  }
-
-  isAnimating = true;
-  storyCopy.classList.add("exiting");
-  visualImage.classList.add("switching");
-
-  window.setTimeout(() => {
-    currentIndex = index;
-    renderSlide();
-    storyCopy.classList.remove("exiting");
-    storyCopy.classList.add("entering");
-    visualImage.classList.remove("switching");
-
-    window.setTimeout(() => {
-      storyCopy.classList.remove("entering");
-      isAnimating = false;
-    }, 620);
-  }, 360);
-}
-
-function renderSlide() {
-  const slide = slides[currentIndex];
-  app.className = `story-app ${slide.theme}`;
-  app.style.setProperty("--blue", slide.color);
-  app.style.setProperty("--teal", slide.accent);
-  storyTitle.textContent = slide.title;
-  storyText.textContent = slide.text;
-  visualImage.style.backgroundImage = `url("${slide.image}")`;
-  visualNumber.textContent = String(currentIndex + 1).padStart(2, "0");
-  visualCaption.textContent = slide.name;
-  progressFill.style.width = `${((currentIndex + 1) / slides.length) * 100}%`;
-  stepLabel.textContent = `Блок ${currentIndex + 1} из ${slides.length}`;
-  backButton.disabled = currentIndex === 0;
-
-  if (slide.micro) {
-    microText.textContent = slide.micro;
-    microText.classList.remove("hidden");
-  } else {
-    microText.textContent = "";
-    microText.classList.add("hidden");
-  }
-
-  benefitList.innerHTML = "";
-  if (slide.benefits) {
-    slide.benefits.forEach((item) => {
-      const li = document.createElement("li");
-      li.textContent = item;
-      benefitList.appendChild(li);
-    });
-    benefitList.classList.remove("hidden");
-  } else {
-    benefitList.classList.add("hidden");
-  }
-
-  nextButton.querySelector("span:first-child").textContent = slide.cta;
-  nextButton.querySelector(".button-arrow").textContent = slide.final ? "↗" : "→";
-  nextButton.style.backgroundColor = slide.color;
-  legalNote.textContent =
-    slide.legal || "Условия, лимиты и исключения определяются договором страхования.";
-
-  document.querySelectorAll(".story-dot").forEach((dot, index) => {
-    dot.classList.toggle("active", index === currentIndex);
+    sections[index + 1].scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
-  const shift = currentIndex * 18;
-  document.querySelector(".ambient-one").style.transform = `translate(${-shift}px, ${shift}px)`;
-  document.querySelector(".ambient-two").style.transform = `translate(${shift}px, ${-shift / 2}px)`;
+  if (backButton) {
+    backButton.addEventListener("click", () => {
+      sections[index - 1].scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+});
+
+const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) {
+        return;
+      }
+
+      const index = Number(entry.target.dataset.index);
+      activateSection(index);
+    });
+  },
+  { threshold: 0.58 },
+);
+
+sections.forEach((section) => observer.observe(section));
+
+const initialSlide = Number.parseInt(new URLSearchParams(window.location.search).get("slide"), 10);
+if (Number.isInteger(initialSlide) && initialSlide >= 1 && initialSlide <= slides.length) {
+  window.setTimeout(() => {
+    window.scrollTo({ top: sections[initialSlide - 1].offsetTop, behavior: "auto" });
+    activateSection(initialSlide - 1);
+  }, 0);
+} else {
+  activateSection(0);
 }
 
-renderSlide();
+document.addEventListener("keydown", (event) => {
+  const activeIndex = sections.findIndex((section) => section.classList.contains("active"));
+
+  if ((event.key === "ArrowDown" || event.key === "Enter") && activeIndex < sections.length - 1) {
+    sections[activeIndex + 1].scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  if (event.key === "ArrowUp" && activeIndex > 0) {
+    sections[activeIndex - 1].scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+});
+
+function createSection(slide, index) {
+  const number = String(index + 1).padStart(2, "0");
+  const benefits = slide.benefits
+    ? `<ul class="benefit-list">${slide.benefits.map((item) => `<li>${item}</li>`).join("")}</ul>`
+    : "";
+  const micro = slide.micro ? `<p class="micro-text">${slide.micro}</p>` : "";
+  const backButton =
+    index > 0
+      ? `<button class="ghost-button" type="button" data-back>Назад</button>`
+      : `<button class="ghost-button hidden-mobile" type="button" disabled>Назад</button>`;
+  const arrow = slide.final ? "↗" : "→";
+
+  return `
+    <section
+      class="story-section ${slide.theme}"
+      id="section-${index + 1}"
+      data-index="${index}"
+      style="--blue: ${slide.color}; --teal: ${slide.accent};"
+    >
+      <div class="section-inner">
+        <aside class="visual-panel" aria-hidden="true">
+          <div class="visual-image" style="background-image: url('${slide.image}')"></div>
+          <div class="visual-shade"></div>
+          <div class="visual-card">
+            <strong>${number}</strong>
+            <span>${slide.name}</span>
+          </div>
+        </aside>
+        <article class="copy-panel">
+          <div class="story-copy">
+            <h1>${slide.title}</h1>
+            <p class="story-text">${slide.text}</p>
+            ${micro}
+            ${benefits}
+          </div>
+          <div class="section-actions">
+            ${backButton}
+            <button class="primary-button" type="button" data-next style="background-color: ${slide.color}">
+              <span>${slide.cta}</span>
+              <span>${arrow}</span>
+            </button>
+          </div>
+          <p class="legal-note">${
+            slide.legal || "Условия, лимиты и исключения определяются договором страхования."
+          }</p>
+        </article>
+      </div>
+    </section>
+  `;
+}
+
+function activateSection(index) {
+  const slide = slides[index];
+  sections.forEach((section, sectionIndex) => {
+    section.classList.toggle("active", sectionIndex === index);
+  });
+
+  document.documentElement.style.setProperty("--blue", slide.color);
+  document.documentElement.style.setProperty("--teal", slide.accent);
+  brandMark.style.backgroundColor = slide.color;
+  headerCta.style.backgroundColor = slide.color;
+  stepLabel.textContent = `Блок ${index + 1} из ${slides.length}`;
+  progressFill.style.width = `${((index + 1) / slides.length) * 100}%`;
+}
