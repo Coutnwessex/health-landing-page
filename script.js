@@ -200,8 +200,6 @@ function createSection(slide, index) {
     index > 0
       ? `<button class="ghost-button" type="button" data-back>Назад</button>`
       : `<button class="ghost-button hidden-mobile" type="button" disabled>Назад</button>`;
-  const arrow = slide.final ? "↗" : "→";
-
   return `
     <section
       class="story-section ${slide.theme}"
@@ -229,7 +227,6 @@ function createSection(slide, index) {
             ${backButton}
             <button class="primary-button" type="button" data-next style="background-color: ${slide.color}">
               <span>${slide.cta}</span>
-              <span>${arrow}</span>
             </button>
           </div>
           <p class="legal-note">${
