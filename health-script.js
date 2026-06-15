@@ -1,6 +1,76 @@
 const subscribeUrl =
   "https://ffin.life/ru/individuals/freedom-health/subscribe-health?source=OHPR";
 
+const healthTariffs = {
+  plans: ["Standard 2", "Standard 1", "Silver", "Platinum"],
+  prices: [
+    {
+      label: "Ежемесячно",
+      values: ["25,30 $", "29,37 $", "44,57 $", "51,84 $"],
+    },
+    {
+      label: "Ежеквартально",
+      values: ["75,89 $", "88,12 $", "133,71 $", "155,51 $"],
+    },
+    {
+      label: "Раз в полгода",
+      values: ["151,78 $", "176,25 $", "267,43 $", "311,02 $"],
+    },
+    {
+      label: "Единоразово",
+      values: ["263,97 $", "306,52 $", "465,09 $", "540,91 $"],
+    },
+  ],
+  coverage: [
+    {
+      label: "Страховой случай",
+      values: [
+        "Злокачественные заболевания",
+        "Злокачественные заболевания; хирургия; кардио/нейрохирургия",
+        "Злокачественные заболевания; хирургия; кардио/нейрохирургия; трансплантация",
+        "Злокачественные заболевания; хирургия; кардио/нейрохирургия; трансплантация; трансплантация костного мозга для детей до 18 лет",
+      ],
+    },
+    {
+      label: "Период ожидания",
+      values: ["3 месяца", "3 месяца", "3 месяца", "3 месяца"],
+    },
+    {
+      label: "Период ожидания по риску «Трансплантация»",
+      values: ["6 месяцев", "6 месяцев", "6 месяцев", "6 месяцев"],
+    },
+    {
+      label: "Страховая сумма",
+      values: ["150 000 $", "150 000 $", "150 000 $", "150 000 $"],
+    },
+    {
+      label: "Пожизненный лимит",
+      values: ["1 000 000 $", "1 000 000 $", "1 000 000 $", "1 000 000 $"],
+    },
+    {
+      label: "Территория лечения",
+      values: [
+        "Казахстан, Турция, Израиль, Южная Корея, Испания",
+        "Казахстан, Турция, Израиль, Южная Корея, Испания",
+        "Казахстан, Турция, Израиль, Южная Корея, Испания",
+        "Казахстан, Турция, Израиль, Южная Корея, Испания",
+      ],
+    },
+    {
+      label: "Перелет и проживание",
+      values: ["2 человека", "2 человека", "2 человека", "2 человека"],
+    },
+    {
+      label: "Реабилитация",
+      values: ["-", "-", "Включена", "Включена"],
+    },
+    {
+      label: "Второе медицинское мнение",
+      values: ["Включено", "Включено", "Включено", "Включено"],
+    },
+  ],
+};
+
 const slides = [
   {
     name: "Финансовый риск",
@@ -65,9 +135,14 @@ const slides = [
   },
   {
     name: "Решение Freedom Health",
-    title: "Freedom Health - защита на случай критической болезни",
+    title: "Freedom Health - страховая программа на случай критической болезни",
     text:
-      "Вы оформляете договор и платите регулярный взнос. Если приходит тяжелая болезнь, Freedom рассматривает документы и выплачивает сумму для лечения в лучших клиниках Казахстан, Турции, Израиля, Южной Кореи, Испании и других стран.",
+      "Вы оформляете договор и платите регулярный взнос. При наступлении страхового случая Freedom рассматривает документы и организует лечение в лучших клиниках мира. Личный координатор берет на себя все: запись к врачу, оформление виз, перелет, проживание и переводчика. Вы просто лечитесь.",
+    benefits: [
+      "покрытие до $150 000 в год;",
+      "пожизненный лимит $1 000 000;",
+      "800 клиник-партнеров в Казахстане, Турции, Израиле, Южной Корее и Испании.",
+    ],
     micro:
       "Saqta Market помогает разобраться в продукте и перейти к оформлению. Условия, лимиты и исключения определяются договором страхования.",
     cta: "Почему это доступно?",
@@ -84,7 +159,7 @@ const slides = [
     name: "Доступная защита",
     title: "От $25 в месяц - чтобы не искать крупную сумму в самый тяжелый момент",
     text:
-      "$25 в месяц - это не цена лечения. Это цена сохранит для Вас и Ваей семьи все, что Вы заработали тяжелым трудом и избавит членов семьи от новых кредитов.",
+      "$25 в месяц - это не цена лечения. Эта цена сохранит для Вас и Ваей семьи все, что Вы заработали тяжелым трудом и избавит членов семьи от новых кредитов.",
     cta: "Что я получаю?",
     image:
       "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1600&q=82",
@@ -108,6 +183,7 @@ const slides = [
       "оформление онлайн.",
     ],
     cta: "Оформить",
+    compareTariffs: true,
     legal:
       "Перед оформлением внимательно ознакомьтесь с условиями договора, лимитами, исключениями и порядком выплат.",
     image:
@@ -129,8 +205,26 @@ const headerCta = document.querySelector(".header-cta");
 const brandMark = document.querySelector(".brand-mark");
 
 root.innerHTML = slides.map(createSection).join("");
+document.body.insertAdjacentHTML("beforeend", createTariffDialog());
 
 const sections = [...document.querySelectorAll(".story-section")];
+const tariffDialog = document.getElementById("tariffDialog");
+const tariffOpenButtons = [...document.querySelectorAll("[data-tariffs-open]")];
+const tariffCloseButtons = [...document.querySelectorAll("[data-tariffs-close]")];
+
+tariffOpenButtons.forEach((button) => {
+  button.addEventListener("click", () => openTariffDialog());
+});
+
+tariffCloseButtons.forEach((button) => {
+  button.addEventListener("click", () => closeTariffDialog());
+});
+
+tariffDialog.addEventListener("click", (event) => {
+  if (event.target === tariffDialog) {
+    closeTariffDialog();
+  }
+});
 
 sections.forEach((section, index) => {
   const nextButton = section.querySelector("[data-next]");
@@ -179,6 +273,11 @@ if (Number.isInteger(initialSlide) && initialSlide >= 1 && initialSlide <= slide
 }
 
 document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && tariffDialog.classList.contains("open")) {
+    closeTariffDialog();
+    return;
+  }
+
   const activeIndex = sections.findIndex((section) => section.classList.contains("active"));
 
   if ((event.key === "ArrowDown" || event.key === "Enter") && activeIndex < sections.length - 1) {
@@ -196,6 +295,9 @@ function createSection(slide, index) {
     ? `<ul class="benefit-list">${slide.benefits.map((item) => `<li>${item}</li>`).join("")}</ul>`
     : "";
   const micro = slide.micro ? `<p class="micro-text">${slide.micro}</p>` : "";
+  const compareButton = slide.compareTariffs
+    ? `<button class="tariff-button" type="button" data-tariffs-open>Сравнить тарифы</button>`
+    : "";
   const backButton =
     index > 0
       ? `<button class="ghost-button" type="button" data-back>Назад</button>`
@@ -225,6 +327,7 @@ function createSection(slide, index) {
           </div>
           <div class="section-actions">
             ${backButton}
+            ${compareButton}
             <button class="primary-button" type="button" data-next style="background-color: ${slide.color}">
               <span>${slide.cta}</span>
             </button>
@@ -236,6 +339,81 @@ function createSection(slide, index) {
       </div>
     </section>
   `;
+}
+
+function createTariffDialog() {
+  return `
+    <div class="tariff-dialog" id="tariffDialog" aria-hidden="true">
+      <div class="tariff-sheet" role="dialog" aria-modal="true" aria-labelledby="tariffTitle">
+        <div class="tariff-sheet-header">
+          <div>
+            <p class="tariff-kicker">Freedom Health</p>
+            <h2 id="tariffTitle">Полные тарифы</h2>
+          </div>
+          <button class="tariff-close" type="button" data-tariffs-close aria-label="Закрыть">×</button>
+        </div>
+        <div class="tariff-scroll">
+          <section class="tariff-section">
+            <h3>Стоимость</h3>
+            ${createTariffTable(healthTariffs.prices)}
+            <p class="tariff-note">
+              При оплате стоимость тарифа, указанная в долларах США, пересчитывается в тенге по курсу Национального Банка Республики Казахстан на день оплаты.
+            </p>
+          </section>
+          <section class="tariff-section">
+            <h3>Что входит</h3>
+            ${createTariffTable(healthTariffs.coverage)}
+            <p class="tariff-note">
+              Кроме исключений, указанных в правилах страхования. Если лечение недоступно в указанных странах, порядок лечения определяется условиями программы.
+            </p>
+          </section>
+        </div>
+        <div class="tariff-footer">
+          <a class="primary-button tariff-submit" href="${subscribeUrl}">Оформить</a>
+        </div>
+      </div>
+    </div>
+  `;
+}
+
+function createTariffTable(rows) {
+  return `
+    <div class="tariff-table-wrap">
+      <table class="tariff-table">
+        <thead>
+          <tr>
+            <th>Тариф</th>
+            ${healthTariffs.plans.map((plan) => `<th>${plan}</th>`).join("")}
+          </tr>
+        </thead>
+        <tbody>
+          ${rows
+            .map(
+              (row) => `
+                <tr>
+                  <th>${row.label}</th>
+                  ${row.values.map((value) => `<td>${value}</td>`).join("")}
+                </tr>
+              `,
+            )
+            .join("")}
+        </tbody>
+      </table>
+    </div>
+  `;
+}
+
+function openTariffDialog() {
+  tariffDialog.classList.add("open");
+  tariffDialog.setAttribute("aria-hidden", "false");
+  document.body.classList.add("dialog-open");
+  tariffDialog.querySelector("[data-tariffs-close]").focus();
+}
+
+function closeTariffDialog() {
+  tariffDialog.classList.remove("open");
+  tariffDialog.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("dialog-open");
 }
 
 function activateSection(index) {
