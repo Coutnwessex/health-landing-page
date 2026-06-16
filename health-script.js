@@ -33,7 +33,7 @@ const healthTariffs = {
     },
     {
       label: "Период ожидания",
-      values: ["3 месяца", "3 месяца", "3 месяца", "3 месяца"],
+      values: ["3 месяца*", "3 месяца*", "3 месяца*", "3 месяца*"],
     },
     {
       label: "Период ожидания по риску «Трансплантация»",
@@ -70,6 +70,142 @@ const healthTariffs = {
     },
   ],
 };
+
+const patientStories = [
+  {
+    person: "Мужчина, возраст не указан",
+    diagnosis: "Аденома щитовидной железы",
+    before:
+      "Изначально рекомендовали полное удаление органа и пожизненный прием гормональных препаратов.",
+    support:
+      "Страховая программа Freedom Health подобрала медицинский центр и организовала лечение в Израиле.",
+    result:
+      "Стоимость лечения составила $40 500. Пациент сохранил орган и избежал пожизненной гормонозаместительной терапии.",
+  },
+  {
+    person: "Мужчина, 37 лет",
+    diagnosis: "Рак головного мозга",
+    before:
+      "Первоначально пациенту рекомендовали стандартную схему без молекулярно-генетического анализа опухоли.",
+    support:
+      "Страховая программа Freedom Health организовала диагностику в специализированных нейроонкологических центрах и помогла подобрать таргетную терапию.",
+    result:
+      "Индивидуальная схема лечения помогла улучшить прогноз и качество жизни пациента.",
+  },
+  {
+    person: "Женщина, 42 года",
+    diagnosis: "Рак молочной железы 1-й стадии",
+    before:
+      "Пациентке рекомендовали мастэктомию без возможности одномоментной реконструкции.",
+    support:
+      "Страховая программа Freedom Health организовала диагностику и генетическое тестирование в нескольких медицинских центрах.",
+    result:
+      "Удалось провести секторальную резекцию с одномоментной пластикой, вылечить заболевание и сохранить качество жизни.",
+  },
+  {
+    person: "Мужчина, 61 год",
+    diagnosis: "Рак предстательной железы",
+    before:
+      "Рекомендованная операция несла высокий риск потери эректильной функции.",
+    support:
+      "Страховая программа Freedom Health организовала очные консультации в 3 медицинских центрах и робот-ассистированную операцию Da Vinci.",
+    result:
+      "Пациент сохранил функциональность органа, программа покрыла операцию стоимостью около $9 500.",
+  },
+  {
+    person: "Женщина, 44 года",
+    diagnosis: "Рак шейки матки",
+    before:
+      "Пациентка планировала лечение за рубежом с длительной организацией визита, диагностикой, операцией и ограничениями на перелет.",
+    support:
+      "Страховая программа Freedom Health организовала диагностику и операцию у одного из ведущих врачей в течение 3 дней.",
+    result:
+      "Пациентка получила качественную помощь и вернулась к нормальному образу жизни в течение 1 недели.",
+  },
+  {
+    person: "Женщина, 65 лет",
+    diagnosis: "Саркома мягких тканей с тромботическими осложнениями",
+    before:
+      "Из-за тромбоза начальные рекомендации были на удаление конечности.",
+    support:
+      "Страховая программа Freedom Health подобрала специализированный центр, врача и подключила реабилитологов.",
+    result:
+      "Лечение с реабилитацией стоило $8 000. Удалось вылечить заболевание, сохранить конечность и ее функциональность.",
+  },
+];
+
+const healthFaq = [
+  {
+    question: "Что такое Freedom Health?",
+    answer:
+      "Freedom Health — программа добровольного международного медицинского страхования, которая помогает организовать и оплатить лечение критических заболеваний за рубежом. Страховщик координирует процесс: от поиска клиники до оплаты лечения медицинскому учреждению.",
+  },
+  {
+    question: "Кто может оформить полис?",
+    answer:
+      "Страхователем по Freedom Health может быть физическое лицо. По умолчанию страхуются лица в возрасте до 55 лет на дату заключения или пролонгации договора, если иное не указано в полисе.",
+  },
+  {
+    question: "Кто не может быть застрахован?",
+    answer:
+      "На страхование не принимаются инвалиды I или II группы, инвалиды с детства, лица 55 лет и старше, если иное не предусмотрено, лица на учете в профильных диспансерах, а также госпитализированные на момент заключения договора.",
+  },
+  {
+    question: "Какие программы доступны?",
+    answer:
+      "Доступны программы Platinum, Silver, Standard 1 и Standard 2. Они отличаются набором рисков и сервисов: онкология, кардиохирургия, нейрохирургия, трансплантация, реабилитация и второе медицинское мнение зависят от выбранной программы.",
+  },
+  {
+    question: "Какова страховая сумма?",
+    answer:
+      "По ключевым рискам предусмотрено покрытие до 150 000 USD в год, а пожизненный общий лимит составляет 1 000 000 USD. Для отдельных программ и рисков действуют специальные лимиты по условиям договора.",
+  },
+  {
+    question: "Что считается страховым случаем?",
+    answer:
+      "Страховым случаем является критическое заболевание, диагностированное в период действия договора, при котором застрахованный обратился к страховщику для организации медицинских и иных услуг по выбранной программе.",
+  },
+  {
+    question: "Какие заболевания покрываются?",
+    answer:
+      "В зависимости от программы покрываются злокачественные новообразования, кардиохирургия, нейрохирургия, трансплантация органов, трансплантация костного мозга для детей, реабилитация и второе экспертное медицинское мнение.",
+  },
+  {
+    question: "Что не является страховым случаем?",
+    answer:
+      "Не покрываются заболевания вне выбранной программы, заболевания до начала страхования, случаи в период ожидания, ВИЧ/СПИД, злоупотребление алкоголем или наркотиками, умышленный вред себе, экстремальный спорт и другие исключения по договору.",
+  },
+  {
+    question: "Что такое период ожидания?",
+    answer:
+      "Период ожидания — срок с начала действия договора, в течение которого страховщик освобожден от выплат. Для большинства рисков он составляет 90 дней, для трансплантации — 180 дней. При непрерывной пролонгации период ожидания повторно не применяется.",
+  },
+  {
+    question: "В каких странах организуется лечение?",
+    answer:
+      "Основные страны лечения: Турция, Израиль, Южная Корея и Испания. В отдельных случаях лечение возможно в Казахстане, Европе, США или по всему миру для риска трансплантации органов — в зависимости от программы и условий.",
+  },
+  {
+    question: "Что оплачивает страховщик при наступлении случая?",
+    answer:
+      "В зависимости от программы страховщик организует и оплачивает медицинское лечение, диагностику, операции, лекарства, перелет, проживание, трансфер, перевод, помощь с визой и другие услуги в пределах условий договора.",
+  },
+  {
+    question: "Как сообщить о страховом случае?",
+    answer:
+      "Нужно незамедлительно уведомить сервисную компанию и/или страховщика через личный кабинет или на бумажном носителе, указав ФИО, номер договора, местонахождение, контактный телефон и обстоятельства случая.",
+  },
+  {
+    question: "Какие документы нужны для подтверждения заболевания?",
+    answer:
+      "Понадобятся медицинские выписки, результаты исследований, заключения профильных специалистов и копия амбулаторной карты. Точный перечень зависит от заболевания и требований страховщика.",
+  },
+  {
+    question: "В какие сроки принимается решение?",
+    answer:
+      "Решение принимается в течение 10 рабочих дней с даты получения полного пакета документов. Если документов недостаточно, страховщик уведомляет об этом в течение 3 рабочих дней.",
+  },
+];
 
 const slides = [
   {
@@ -159,8 +295,8 @@ const slides = [
     name: "Доступная защита",
     title: "От $25 в месяц - чтобы не искать крупную сумму в самый тяжелый момент",
     text:
-      "$25 в месяц - это не цена лечения. Эта цена сохранит для Вас и Ваей семьи все, что Вы заработали тяжелым трудом и избавит членов семьи от новых кредитов.",
-    cta: "Что я получаю?",
+      "$25 в месяц - это не цена лечения. Эта цена сохранит для Вас и Вашей семьи все, что Вы заработали тяжелым трудом и избавит членов семьи от новых кредитов.",
+    cta: "А это действительно работает?",
     image:
       "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1600&q=82",
     theme: "theme-price",
@@ -169,6 +305,22 @@ const slides = [
     bgA: "#dffbf4",
     bgB: "#aeeadd",
     bgC: "#f2fffb",
+  },
+  {
+    name: "Истории пациентов",
+    title: "Freedom Health уже помогает людям",
+    text:
+      "В этих историях страховая программа Freedom Health делает то, что важно при критической болезни: помогает с выбором клиники, диагностикой, консультациями, лечением и восстановлением по условиям программы.",
+    cta: "Что я получаю?",
+    reviews: true,
+    image:
+      "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1600&q=82",
+    theme: "theme-stories",
+    color: "#11856f",
+    accent: "#5eead4",
+    bgA: "#e3fbf4",
+    bgB: "#b4eadc",
+    bgC: "#f3fffb",
   },
   {
     name: "Процветание Вашей семьи",
@@ -205,9 +357,11 @@ const headerCta = document.querySelector(".header-cta");
 const brandMark = document.querySelector(".brand-mark");
 
 root.innerHTML = slides.map(createSection).join("");
+root.insertAdjacentHTML("afterend", createFaqSection("FAQ по Freedom Health", healthFaq));
 document.body.insertAdjacentHTML("beforeend", createTariffDialog());
 
 const sections = [...document.querySelectorAll(".story-section")];
+const reviewCarousels = [...document.querySelectorAll("[data-review-carousel]")];
 const tariffDialog = document.getElementById("tariffDialog");
 const tariffOpenButtons = [...document.querySelectorAll("[data-tariffs-open]")];
 const tariffCloseButtons = [...document.querySelectorAll("[data-tariffs-close]")];
@@ -246,6 +400,23 @@ sections.forEach((section, index) => {
   }
 });
 
+reviewCarousels.forEach((carousel) => {
+  const prevButton = carousel.querySelector("[data-review-prev]");
+  const nextButton = carousel.querySelector("[data-review-next]");
+
+  prevButton.addEventListener("click", () => {
+    const currentIndex = Number(carousel.dataset.activeIndex || 0);
+    updateReviewCarousel(carousel, currentIndex - 1);
+  });
+
+  nextButton.addEventListener("click", () => {
+    const currentIndex = Number(carousel.dataset.activeIndex || 0);
+    updateReviewCarousel(carousel, currentIndex + 1);
+  });
+
+  updateReviewCarousel(carousel, 0);
+});
+
 const observer = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
@@ -278,6 +449,10 @@ document.addEventListener("keydown", (event) => {
     return;
   }
 
+  if (event.target.closest("button, a, .faq-section")) {
+    return;
+  }
+
   const activeIndex = sections.findIndex((section) => section.classList.contains("active"));
 
   if ((event.key === "ArrowDown" || event.key === "Enter") && activeIndex < sections.length - 1) {
@@ -295,6 +470,7 @@ function createSection(slide, index) {
     ? `<ul class="benefit-list">${slide.benefits.map((item) => `<li>${item}</li>`).join("")}</ul>`
     : "";
   const micro = slide.micro ? `<p class="micro-text">${slide.micro}</p>` : "";
+  const reviews = slide.reviews ? createReviewCarousel() : "";
   const compareButton = slide.compareTariffs
     ? `<button class="tariff-button" type="button" data-tariffs-open>Сравнить тарифы</button>`
     : "";
@@ -304,7 +480,7 @@ function createSection(slide, index) {
       : `<button class="ghost-button hidden-mobile" type="button" disabled>Назад</button>`;
   return `
     <section
-      class="story-section ${slide.theme}"
+      class="story-section ${slide.theme} ${slide.reviews ? "has-reviews" : ""}"
       id="section-${index + 1}"
       data-index="${index}"
       style="--blue: ${slide.color}; --teal: ${slide.accent}; --bg-a: ${slide.bgA}; --bg-b: ${slide.bgB}; --bg-c: ${slide.bgC};"
@@ -324,6 +500,7 @@ function createSection(slide, index) {
             <p class="story-text">${slide.text}</p>
             ${micro}
             ${benefits}
+            ${reviews}
           </div>
           <div class="section-actions">
             ${backButton}
@@ -339,6 +516,83 @@ function createSection(slide, index) {
       </div>
     </section>
   `;
+}
+
+function createFaqSection(title, items) {
+  return `
+    <section class="faq-section" id="faq">
+      <div class="faq-container">
+        <div class="faq-heading">
+          <p>Справочные материалы</p>
+          <h2>${title}</h2>
+        </div>
+        <div class="faq-list">
+          ${items
+            .map(
+              (item) => `
+                <details class="faq-item">
+                  <summary>${item.question}</summary>
+                  <p>${item.answer}</p>
+                </details>
+              `,
+            )
+            .join("")}
+        </div>
+      </div>
+    </section>
+  `;
+}
+
+function createReviewCarousel() {
+  return `
+    <div class="review-carousel" data-review-carousel data-active-index="0">
+      <div class="review-track">
+        ${patientStories
+          .map(
+            (story, index) => `
+              <article class="review-card ${index === 0 ? "active" : ""}" data-review-card>
+                <p class="review-meta">${story.person}</p>
+                <h3>${story.diagnosis}</h3>
+                <dl>
+                  <div>
+                    <dt>До обращения</dt>
+                    <dd>${story.before}</dd>
+                  </div>
+                  <div>
+                    <dt>Что сделала программа</dt>
+                    <dd>${story.support}</dd>
+                  </div>
+                  <div>
+                    <dt>Результат</dt>
+                    <dd>${story.result}</dd>
+                  </div>
+                </dl>
+              </article>
+            `,
+          )
+          .join("")}
+      </div>
+      <div class="review-controls">
+        <button class="review-arrow" type="button" data-review-prev aria-label="Предыдущая история">Назад</button>
+        <span data-review-status>1 из ${patientStories.length}</span>
+        <button class="review-arrow" type="button" data-review-next aria-label="Следующая история">Дальше</button>
+      </div>
+    </div>
+  `;
+}
+
+function updateReviewCarousel(carousel, nextIndex) {
+  const cards = [...carousel.querySelectorAll("[data-review-card]")];
+  const normalizedIndex = (nextIndex + cards.length) % cards.length;
+  const status = carousel.querySelector("[data-review-status]");
+
+  carousel.dataset.activeIndex = String(normalizedIndex);
+
+  cards.forEach((card, index) => {
+    card.classList.toggle("active", index === normalizedIndex);
+  });
+
+  status.textContent = `${normalizedIndex + 1} из ${cards.length}`;
 }
 
 function createTariffDialog() {
@@ -363,6 +617,9 @@ function createTariffDialog() {
           <section class="tariff-section">
             <h3>Что входит</h3>
             ${createTariffTable(healthTariffs.coverage)}
+            <p class="tariff-note">
+              * Страховка включается через 3 месяца после оформления — стандарт для всего рынка критического страхования. Как КАСКО, которое начинает действовать не сразу после покупки. После окончания периода ожидания полис работает в полную силу.
+            </p>
             <p class="tariff-note">
               Кроме исключений, указанных в правилах страхования. Если лечение недоступно в указанных странах, порядок лечения определяется условиями программы.
             </p>

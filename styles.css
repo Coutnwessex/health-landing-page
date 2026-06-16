@@ -565,6 +565,65 @@ h2 {
   padding-inline: 24px;
 }
 
+.faq-section {
+  background: #f7fafc;
+  padding: 90px 22px;
+}
+
+.faq-list {
+  display: grid;
+  gap: 12px;
+}
+
+.faq-item {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.05);
+}
+
+.faq-item summary {
+  position: relative;
+  cursor: pointer;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 850;
+  list-style: none;
+  padding: 20px 56px 20px 22px;
+}
+
+.faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-item summary::after {
+  position: absolute;
+  top: 50%;
+  right: 22px;
+  display: grid;
+  width: 22px;
+  height: 22px;
+  place-items: center;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  background: rgba(20, 92, 255, 0.1);
+  color: var(--blue);
+  content: "+";
+}
+
+.faq-item[open] summary::after {
+  content: "−";
+}
+
+.faq-item p {
+  margin: 0;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  line-height: 1.6;
+  padding: 18px 22px 22px;
+}
+
 .site-footer {
   padding: 28px 24px;
   background: #081526;
@@ -657,8 +716,18 @@ h2 {
   .products-section,
   .why-section,
   .process-section,
-  .final-cta {
+  .final-cta,
+  .faq-section {
     padding: 66px 18px;
+  }
+
+  .faq-item summary {
+    font-size: 16px;
+    padding: 18px 50px 18px 18px;
+  }
+
+  .faq-item p {
+    padding: 16px 18px 18px;
   }
 
   .product-image {
