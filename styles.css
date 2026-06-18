@@ -392,120 +392,161 @@ h2 {
 }
 
 .visual-rare::before {
-  top: 20px;
-  left: 17px;
-  width: 40px;
-  height: 30px;
-  border: 3px solid var(--blue);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.48);
+  content: "%";
+  inset: 15px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  font-size: 28px;
+  font-weight: 950;
+  line-height: 1;
 }
 
 .visual-rare::after {
-  top: 10px;
-  right: 13px;
+  right: 11px;
+  bottom: 12px;
   width: 18px;
   height: 18px;
+  border-radius: 4px;
   background: var(--amber);
-  clip-path: polygon(50% 0, 61% 34%, 98% 35%, 68% 56%, 79% 91%, 50% 70%, 21% 91%, 32% 56%, 2% 35%, 39% 34%);
+  transform: rotate(45deg);
 }
 
 .visual-rare span {
-  left: 23px;
-  bottom: 20px;
-  width: 28px;
-  height: 4px;
+  right: 16px;
+  bottom: 18px;
+  width: 8px;
+  height: 8px;
   border-radius: 999px;
-  background: var(--teal);
+  background: #fff;
 }
 
 .visual-value::before {
-  top: 17px;
-  left: 16px;
-  width: 42px;
-  height: 32px;
-  border-radius: 8px 8px 8px 14px;
-  background: linear-gradient(135deg, var(--green), #6ee7a1);
-  transform: rotate(-10deg);
+  top: 13px;
+  left: 13px;
+  width: 50px;
+  height: 50px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--blue);
+  clip-path: none;
 }
 
 .visual-value::after {
   top: 22px;
-  left: 23px;
-  width: 8px;
-  height: 8px;
-  border: 3px solid #fff;
-  border-radius: 50%;
+  left: 22px;
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 0;
+  background: #fff;
+  clip-path: polygon(50% 0, 61% 34%, 98% 35%, 68% 56%, 79% 91%, 50% 70%, 21% 91%, 32% 56%, 2% 35%, 39% 34%);
+  transform: none;
 }
 
 .visual-value span {
-  right: 16px;
-  bottom: 18px;
-  width: 24px;
-  height: 28px;
-  border-right: 4px solid var(--blue);
-  border-bottom: 4px solid var(--blue);
-  transform: rotate(45deg);
+  right: 13px;
+  bottom: 12px;
+  width: 16px;
+  height: 16px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: none;
+  transform: none;
 }
 
 .visual-clear::before {
-  top: 18px;
-  left: 14px;
-  width: 44px;
-  height: 30px;
-  border: 3px solid var(--teal);
-  border-radius: 10px 10px 10px 4px;
-  background: rgba(255, 255, 255, 0.46);
+  top: 16px;
+  left: 13px;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--blue);
+  opacity: 0.95;
+  clip-path: none;
 }
 
 .visual-clear::after {
-  left: 25px;
-  bottom: 18px;
-  width: 16px;
-  height: 16px;
+  right: 12px;
+  bottom: 14px;
+  width: 38px;
+  height: 38px;
+  border: 0;
+  border-radius: 12px;
   background: var(--teal);
-  clip-path: polygon(0 0, 100% 0, 0 100%);
+  opacity: 0.95;
+  clip-path: none;
 }
 
 .visual-clear span {
-  top: 28px;
-  left: 23px;
-  width: 26px;
-  height: 3px;
-  border-radius: 999px;
-  background: var(--blue);
-  box-shadow:
-    0 8px 0 var(--blue),
-    0 16px 0 var(--blue);
+  top: 21px;
+  left: 27px;
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 34px;
+  font-weight: 950;
+  line-height: 1;
+  text-shadow: 0 2px 8px rgba(5, 16, 30, 0.22);
+  transform: none;
+  box-shadow: none;
+  z-index: 1;
+}
+
+.visual-clear span::before {
+  content: "2";
 }
 
 .visual-flow::before {
-  left: 14px;
-  bottom: 16px;
-  width: 48px;
-  height: 34px;
-  border: 3px solid var(--green);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.46);
+  top: 12px;
+  left: 15px;
+  width: 46px;
+  height: 52px;
+  border-radius: 18px 18px 22px 22px;
+  background: var(--green);
+  clip-path: polygon(50% 0, 100% 15%, 100% 58%, 50% 100%, 0 58%, 0 15%);
+  transform: none;
 }
 
 .visual-flow::after {
-  right: 17px;
-  top: 19px;
-  width: 20px;
-  height: 20px;
-  border-top: 4px solid var(--green);
-  border-right: 4px solid var(--green);
-  transform: rotate(45deg);
+  display: none;
 }
 
 .visual-flow span {
-  left: 22px;
-  bottom: 31px;
-  width: 23px;
-  height: 4px;
-  border-radius: 999px;
-  background: var(--blue);
+  top: 23px;
+  left: 31px;
+  width: auto;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 950;
+  line-height: 1;
+  transform: none;
+  z-index: 1;
+}
+
+.visual-flow span::before,
+.visual-flow span::after {
+  position: absolute;
+  content: "";
+}
+
+.visual-flow span::before {
+  content: "F";
+  position: static;
+}
+
+.visual-flow span::after {
+  display: none;
 }
 
 .reason-item h3 {

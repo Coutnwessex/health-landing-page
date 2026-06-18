@@ -784,12 +784,52 @@ h1 {
   background: linear-gradient(var(--blue), var(--blue)) center / 8px 2px no-repeat;
 }
 
-.faq-item p {
+.faq-answer {
   margin: 0;
   border-top: 1px solid var(--line);
   color: var(--muted);
   line-height: 1.6;
   padding: 18px 22px 22px;
+}
+
+.faq-answer p,
+.faq-answer h3,
+.faq-answer ul,
+.faq-answer ol {
+  margin: 0;
+}
+
+.faq-answer p + p,
+.faq-answer p + h3,
+.faq-answer h3 + p,
+.faq-answer h3 + ul,
+.faq-answer h3 + ol,
+.faq-answer ul + p,
+.faq-answer ol + p {
+  margin-top: 14px;
+}
+
+.faq-answer h3 {
+  color: var(--ink);
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.faq-answer ul,
+.faq-answer ol {
+  display: grid;
+  gap: 8px;
+  padding-left: 22px;
+}
+
+.faq-answer li {
+  padding-left: 4px;
+}
+
+.faq-answer a {
+  color: var(--blue);
+  font-weight: 850;
+  text-decoration: underline;
 }
 
 .theme-risk {
@@ -1177,8 +1217,12 @@ h1 {
     padding: 18px 50px 18px 18px;
   }
 
-  .faq-item p {
+  .faq-answer {
     padding: 16px 18px 18px;
+  }
+
+  .faq-answer h3 {
+    font-size: 16px;
   }
 }
 
