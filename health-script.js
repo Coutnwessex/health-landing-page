@@ -250,6 +250,105 @@ const healthFaq = [
   },
 ];
 
+const healthFaqKz = [
+  {
+    question: "Ауыр аурулардан сақтандыру деген не",
+    answer: `
+      <p>Ауыр аурулардан сақтандыру - шартта көрсетілген ауыр диагноз қойылған жағдайда емді ұйымдастыруға және төлеуге көмектесетін қаржылық қорғаныс.</p>
+      <h3>Қалай жұмыс істейді</h3>
+      <ol>
+        <li>Сіз бағдарлама мен тарифті таңдайсыз;</li>
+        <li>Сақтандыру жарнасын төлейсіз;</li>
+        <li>Диагноз расталса, бағдарлама емдеу сценарийін ұйымдастырады.</li>
+      </ol>
+      <p>Freedom Health шетелдегі жетекші клиникаларда емделуге, дәрігерлерді таңдауға, құжаттарды аударуға, сапар мен тұруды ұйымдастыруға көмектеседі. Жылдық қамту - $150 000 дейін, өмір бойғы лимит - $1 000 000.</p>
+      <h3>Әдетте қандай аурулар қамтылады</h3>
+      <ul>
+        <li>онкологиялық аурулар;</li>
+        <li>кардиохирургияны қажет ететін жүрек-қантамыр аурулары;</li>
+        <li>нейрохирургияны қажет ететін неврологиялық аурулар;</li>
+        <li>ағза трансплантациясын қажет ететін жағдайлар.</li>
+      </ul>
+    `,
+  },
+  {
+    question: "3 айлық күту кезеңі деген не?",
+    answer: `
+      <p><span style="text-decoration: underline;">Күту кезеңі</span> - шарт жасалғаннан кейін сақтандыру қорғанысы толық іске қосылғанға дейінгі уақыт.</p>
+      <p>Freedom Health бойынша бұл кезең 3 айды құрайды. Осы уақыт ішінде полис бар, жарна төленеді, бірақ осы кезеңде анықталған сақтандыру жағдайлары өтелмейді.</p>
+      <p>Бұл сақтандыру нарығындағы стандартты механизм: ол сақтандыруды диагнозды алдын ала біліп алып рәсімдеу тәуекелінен қорғайды. Күту кезеңі аяқталғаннан кейін полис толық күшінде жұмыс істейді.</p>
+    `,
+  },
+  {
+    question: "Freedom Health деген не?",
+    answer: `
+      <p>Freedom Health - ауыр ауру жағдайында шетелдегі емді ұйымдастыруға және төлеуге арналған сақтандыру бағдарламасы.</p>
+      <ul>
+        <li>әлемнің жетекші клиникаларында емдеу;</li>
+        <li>жеке медициналық координатор;</li>
+        <li>құжаттарды аудару және сапарды ұйымдастыру;</li>
+        <li>екінші сараптамалық медициналық пікір.</li>
+      </ul>
+      <p>Бағдарламаны 55 жасқа дейінгі адамдарға, оның ішінде балаларға рәсімдеуге болады. Бұл күнделікті медициналық сақтандыруды алмастырмайды, бірақ қымбат ем қажет болатын ауыр жағдайларға арналған қосымша қорғаныс.</p>
+    `,
+  },
+  {
+    question: "Freedom Health жазылымы қандай тәуекелдерді жабады?",
+    answer: `
+      <p>Freedom Health қымбат әрі күрделі емді қажет ететін ауыр аурулар бойынша көмектеседі.</p>
+      <ul>
+        <li>қатерлі ісіктерді емдеу;</li>
+        <li>жүрекке күрделі операциялар;</li>
+        <li>ми мен жұлынға нейрохирургиялық операциялар;</li>
+        <li>трансплантация;</li>
+        <li>реабилитация.</li>
+      </ul>
+      <p>Сақтандыру сомасы жылына $150 000 дейін және өмір бойына $1 000 000 дейін. Нақты шарттар таңдалған тариф пен сақтандыру шартына байланысты.</p>
+    `,
+  },
+  {
+    question: "Бағдарлама қамтуына қандай елдер кіреді?",
+    answer: `
+      <p>Freedom Health негізгі бес елде емдеуді қамтиды:</p>
+      <ul>
+        <li>Қазақстан;</li>
+        <li>Түркия;</li>
+        <li>Израиль;</li>
+        <li>Оңтүстік Корея;</li>
+        <li>Испания.</li>
+      </ul>
+      <p>Егер қажет ем осы елдерде қолжетімсіз болса, бағдарлама Еуропаның басқа елінде немесе АҚШ-та емдеу мүмкіндігін қарастырады. Ерекшеліктер шартпен анықталады.</p>
+    `,
+  },
+  {
+    question: "Жазылым бойынша қандай клиникалар мен дәрігерлер қолжетімді?",
+    answer: `
+      <p>Бағдарлама бойынша әлемдегі 800-ден астам серіктес клиника қолжетімді. Бұл нақты диагноз бойынша ең қолайлы емдеу сценарийін таңдауға мүмкіндік береді.</p>
+      <p>Клиникалар тізімі алдын ала бірдей бекітілмейді: ол диагнозға, емдеу әдісіне және қай жерде ең жақсы көмек алуға болатынына байланысты таңдалады.</p>
+    `,
+  },
+  {
+    question: "Сақтандыру жағдайы кезінде не істеу керек",
+    answer: `
+      <p>Диагноз қойылғаннан кейін сақтандыру немесе сервистік компанияға мүмкіндігінше тез хабарлау керек.</p>
+      <ol>
+        <li>Жеке кабинет немесе көрсетілген байланыс арналары арқылы хабарлаңыз;</li>
+        <li>Шарт нөмірін, байланыс деректерін және диагноз туралы ақпаратты беріңіз;</li>
+        <li>Медициналық құжаттарды дайындаңыз;</li>
+        <li>Координатордың келесі нұсқауларын орындаңыз.</li>
+      </ol>
+      <p>Осыдан кейін бағдарлама екінші медициналық пікірді, клиниканы таңдауды және емді ұйымдастыруды бастайды.</p>
+    `,
+  },
+  {
+    question: "Сақтандыру жағдайы болған кезде қандай құжаттар ұсыну керек?",
+    answer: `
+      <p>Әдетте диагнозды растайтын медициналық құжаттар қажет: медициналық картадан көшірмелер, тексеру нәтижелері, дәрігер қорытындылары және қажет болған жағдайда қосымша талдаулар.</p>
+      <p>Нақты тізім диагнозға және сақтандыру шартының талаптарына байланысты. Құжаттарды сақтандыру компаниясы немесе сервистік координатор нақтылайды.</p>
+    `,
+  },
+];
+
 const slides = [
   {
     name: "Финансовый риск",
@@ -400,7 +499,7 @@ const headerCta = document.querySelector(".header-cta");
 const brandMark = document.querySelector(".brand-mark");
 
 root.innerHTML = slides.map(createSection).join("");
-root.insertAdjacentHTML("afterend", createFaqSection("FAQ по Freedom Health", healthFaq));
+root.insertAdjacentHTML("afterend", createFaqSection(getFaqTitle(), getHealthFaqItems()));
 document.body.insertAdjacentHTML("beforeend", createTariffDialog());
 
 const sections = [...document.querySelectorAll(".story-section")];
@@ -408,6 +507,8 @@ const reviewCarousels = [...document.querySelectorAll("[data-review-carousel]")]
 const tariffDialog = document.getElementById("tariffDialog");
 const tariffOpenButtons = [...document.querySelectorAll("[data-tariffs-open]")];
 const tariffCloseButtons = [...document.querySelectorAll("[data-tariffs-close]")];
+
+document.addEventListener("saqta:languagechange", updateFaqLanguage);
 
 tariffOpenButtons.forEach((button) => {
   button.addEventListener("click", () => openTariffDialog());
@@ -559,6 +660,24 @@ function createSection(slide, index) {
       </div>
     </section>
   `;
+}
+
+function getCurrentLang() {
+  return localStorage.getItem("saqta-lang") || "ru";
+}
+
+function getFaqTitle() {
+  return getCurrentLang() === "kz" ? "Freedom Health бойынша FAQ" : "FAQ по Freedom Health";
+}
+
+function getHealthFaqItems() {
+  return getCurrentLang() === "kz" ? healthFaqKz : healthFaq;
+}
+
+function updateFaqLanguage() {
+  const faqSection = document.getElementById("faq");
+  if (!faqSection) return;
+  faqSection.outerHTML = createFaqSection(getFaqTitle(), getHealthFaqItems());
 }
 
 function createFaqSection(title, items) {
@@ -725,6 +844,6 @@ function activateSection(index) {
   document.documentElement.style.setProperty("--blue", slide.color);
   document.documentElement.style.setProperty("--teal", slide.accent);
   headerCta.style.backgroundColor = slide.color;
-  stepLabel.textContent = `Блок ${index + 1} из ${slides.length}`;
+  stepLabel.textContent = `Шаг ${index + 1} из ${slides.length}`;
   progressFill.style.width = `${((index + 1) / slides.length) * 100}%`;
 }

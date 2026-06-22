@@ -72,6 +72,78 @@ const urbanFaq = [
   },
 ];
 
+const urbanFaqKz = [
+  {
+    question: "Freedom Urban деген не?",
+    answer:
+      "Freedom Urban - қоғамдық көлік жолаушыларын жазатайым оқиғалардан ерікті онлайн сақтандыру бағдарламасы. Қорғаныс Қазақстан бойынша қоғамдық көліктегі сапар кезінде әрекет етеді.",
+  },
+  {
+    question: "Сақтандыру объектісі не?",
+    answer:
+      "Сақтандыру объектісі - қоғамдық көліктегі сапар кезінде жазатайым оқиға салдарынан өмірге және денсаулыққа зиян келуімен байланысты сақтандырылған адамның мүліктік мүдделері.",
+  },
+  {
+    question: "Жазатайым оқиға деп не саналады?",
+    answer:
+      "Жазатайым оқиға - сыртқы әсерден кенеттен болған қысқа мерзімді оқиға, оның салдарынан денсаулыққа зиян, жарақат немесе қайтыс болу орын алады. Бұл өнім бойынша аурулар жазатайым оқиға болып саналмайды.",
+  },
+  {
+    question: "Полисті кім рәсімдей алады?",
+    answer:
+      "Сақтанушы жеке тұлға бола алады. Сақтандырылған адам қоғамдық көлікпен сапарды растайтын құжаты бар жолаушы болуы мүмкін.",
+  },
+  {
+    question: "Кім сақтандырыла алмайды?",
+    answer:
+      "Шарт жасалған кезде психикалық аурулары бар адамдар, сондай-ақ I, II немесе III топтағы мүгедектігі бар адамдар сақтандыруға қабылданбайды.",
+  },
+  {
+    question: "Сақтандыру жағдайы деп не саналады?",
+    answer:
+      "Сақтандыру жағдайларына қоғамдық көліктегі сапар кезінде алынған дене жарақатына байланысты қайтыс болу, I, II немесе III топ мүгедектігін белгілеу, госпитализация және медициналық шығындар жатады.",
+  },
+  {
+    question: "Сапар кезінде сақтандыру қорғанысы қашан әрекет етеді?",
+    answer:
+      "Қорғаныс сақтандырылған адам қоғамдық көлікке кірген сәттен бастап маршруттың соңғы нүктесінде шыққанға дейін әрекет етеді, оған отырғызу, көлікте болу және түсу кіреді.",
+  },
+  {
+    question: "Сақтандыру қай жерде әрекет етеді?",
+    answer: "Сақтандыру шарты Қазақстан Республикасының аумағында әрекет етеді.",
+  },
+  {
+    question: "Қайтыс болу немесе мүгедектік кезінде төлем мөлшері қандай?",
+    answer:
+      "Қайтыс болу немесе мүгедектік сақтандыру жағдайы болған кезде төлем полисте көрсетілген сақтандыру сомасының 100% мөлшерінде жүргізіледі.",
+  },
+  {
+    question: "Госпитализация кезінде төлем мөлшері қандай?",
+    answer:
+      "Госпитализация кезінде стационарлық емнің 2-күнінен 11-күніне дейін әр күн үшін төлем жүргізіледі. Бірінші күн төленбейді, ал жалпы төлем полистегі лимиттен аспайды.",
+  },
+  {
+    question: "Медициналық шығындар бойынша не өтеледі?",
+    answer:
+      "Қоғамдық көліктегі жазатайым оқиға салдарынан алынған дене жарақатын емдеуге нақты жұмсалған шығындар растайтын құжаттар негізінде және полис лимиті шегінде өтеледі.",
+  },
+  {
+    question: "Госпитализация немесе медициналық шығындар кезінде қандай құжаттар қажет?",
+    answer:
+      "Әдетте өтініш, жеке куәлік, ауру тарихынан көшірме, қоғамдық көліктегі сақтандыру жағдайы туралы акт, медициналық шығындарды растайтын құжаттар, қажет болса суреттер және сапарды растайтын билет немесе түбіртек қажет.",
+  },
+  {
+    question: "Сақтандырушы қандай жағдайда төлемнен бас тарта алады?",
+    answer:
+      "Бас тарту қасақана әрекеттер, алкогольдік немесе есірткілік масаң күй, жазатайым оқиға орнына ауру, өзін-өзі өлтіру, жалған мәліметтер, уақтылы хабарламау және шарттағы басқа ерекшеліктер болған жағдайда мүмкін.",
+  },
+  {
+    question: "Сақтандыру жағдайы туралы қандай мерзімде хабарлау керек?",
+    answer:
+      "Сақтандыру жағдайы болған күннен бастап 30 күнтізбелік күн ішінде сақтандырушыға хабарлау қажет. Дәлелді себепсіз мерзімді өткізіп алу төлемнен бас тартуға негіз болуы мүмкін.",
+  },
+];
+
 const slides = [
   {
     name: "Обычный маршрут",
@@ -227,11 +299,13 @@ const headerCta = document.querySelector(".header-cta");
 const brandMark = document.querySelector(".brand-mark");
 
 root.innerHTML = slides.map(createSection).join("");
-root.insertAdjacentHTML("afterend", createFaqSection("FAQ по Freedom Urban", urbanFaq));
+root.insertAdjacentHTML("afterend", createFaqSection(getFaqTitle(), getUrbanFaqItems()));
 
 const sections = [...document.querySelectorAll(".story-section")];
 let activeIndex = 0;
 let ticking = false;
+
+document.addEventListener("saqta:languagechange", updateFaqLanguage);
 
 sections.forEach((section, index) => {
   const nextButton = section.querySelector("[data-next]");
@@ -296,6 +370,24 @@ document.addEventListener("keydown", (event) => {
     sections[activeIndex - 1].scrollIntoView({ behavior: "smooth", block: "start" });
   }
 });
+
+function getCurrentLang() {
+  return localStorage.getItem("saqta-lang") || "ru";
+}
+
+function getFaqTitle() {
+  return getCurrentLang() === "kz" ? "Freedom Urban бойынша FAQ" : "FAQ по Freedom Urban";
+}
+
+function getUrbanFaqItems() {
+  return getCurrentLang() === "kz" ? urbanFaqKz : urbanFaq;
+}
+
+function updateFaqLanguage() {
+  const faqSection = document.getElementById("faq");
+  if (!faqSection) return;
+  faqSection.outerHTML = createFaqSection(getFaqTitle(), getUrbanFaqItems());
+}
 
 function createFaqSection(title, items) {
   return `
@@ -400,7 +492,7 @@ function activateSection(index) {
   document.documentElement.style.setProperty("--blue", slide.color);
   document.documentElement.style.setProperty("--teal", slide.accent);
   headerCta.style.backgroundColor = slide.color;
-  stepLabel.textContent = `Блок ${index + 1} из ${slides.length}`;
+  stepLabel.textContent = `Шаг ${index + 1} из ${slides.length}`;
   progressFill.style.width = `${((index + 1) / slides.length) * 100}%`;
 }
 

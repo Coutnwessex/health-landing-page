@@ -12,7 +12,8 @@
     <link rel="icon" href="./assets/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
     <link rel="preconnect" href="https://images.unsplash.com" />
-    <link rel="stylesheet" href="./health-styles.css" />
+    <link rel="stylesheet" href="./health-styles.css?v=20260622-fix1" />
+    <link rel="stylesheet" href="./claim.css?v=20260622-i18n" />
   </head>
   <body>
     <header class="site-header">
@@ -20,23 +21,55 @@
         <span class="brand-mark"><img src="./assets/saqta-mark.svg" alt="" /></span>
         <span>Saqta Market</span>
       </a>
+      <button class="menu-toggle" type="button" data-menu-toggle aria-label="Открыть меню" aria-expanded="false">
+        <span></span>
+      </button>
+      <nav class="header-nav story-nav" aria-label="Основная навигация">
+        <a href="./index.html#products">Продукты</a>
+        <a href="./news.html">Новости</a>
+        <a href="./documents.html">Документы</a>
+        <a href="./contact.html">Контакты</a>
+        <button class="claim-button menu-claim-button" type="button" data-claim-open>Страховой случай</button>
+      </nav>
       <div class="header-progress" aria-label="Прогресс истории">
-        <span id="stepLabel">Блок 1 из 7</span>
+        <span id="stepLabel">Шаг 1 из 7</span>
         <div class="progress-track">
           <div class="progress-fill" id="progressFill"></div>
         </div>
       </div>
-      <a
-        class="header-cta"
-        href="https://ffin.life/ru/individuals/freedom-health/subscribe-health?source=OHPR"
-      >
-        Оформить
-      </a>
+      <div class="header-actions">
+        <div class="lang-switch" aria-label="Выбор языка">
+          <button type="button" data-lang="ru">RU</button>
+          <button type="button" data-lang="kz">KZ</button>
+        </div>
+        <a class="header-docs" href="./news.html">Новости</a>
+        <a class="header-docs" href="./documents.html">Документы</a>
+        <a class="header-docs" href="./contact.html">Контакты</a>
+        <button class="claim-button" type="button" data-claim-open>Страховой случай</button>
+        <a
+          class="header-cta"
+          href="https://ffin.life/ru/individuals/freedom-health/subscribe-health?source=OHPR"
+        >
+          Оформить
+        </a>
+      </div>
     </header>
 
     <main class="vertical-story" id="storyRoot"></main>
 
-    <script src="./health-script.js"></script>
+    <div class="claim-modal" data-claim-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="claimTitle">
+      <div class="claim-dialog">
+        <button class="claim-close" type="button" data-claim-close aria-label="Закрыть">×</button>
+        <p class="claim-kicker">Страховой случай</p>
+        <h2 id="claimTitle">Контакт-центр Freedom Life</h2>
+        <a class="claim-call" href="tel:7775">7775</a>
+        <p class="claim-note">С любого номера в Казахстане бесплатно.</p>
+      </div>
+    </div>
+
+    <script src="./i18n.js?v=20260622-fix1"></script>
+    <script src="./claim.js?v=20260622-i18n"></script>
+    <script src="./health-script.js?v=20260622-fix1"></script>
     <script src="https://cdn.pulse.is/livechat/loader.js" data-live-chat-id="6a3195933203985e2509274f" async></script>
   </body>
 </html>
