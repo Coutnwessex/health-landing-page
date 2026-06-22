@@ -91,6 +91,14 @@ h3 {
   object-fit: contain;
 }
 
+.brand-wordmark {
+  display: block;
+  width: 154px;
+  height: 42px;
+  object-fit: contain;
+  object-position: left center;
+}
+
 .header-nav {
   gap: 24px;
   color: #31485c;
@@ -641,6 +649,16 @@ h2 {
   align-items: end;
 }
 
+.news-hero-grid > div {
+  grid-column: 1 / -1;
+  max-width: 760px;
+}
+
+.news-hero-grid > p {
+  grid-column: 1 / -1;
+  max-width: 780px;
+}
+
 .contact-hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
@@ -806,6 +824,101 @@ h2 {
 .news-link {
   color: var(--blue);
   font-weight: 900;
+}
+
+.article-modal {
+  position: fixed;
+  z-index: 120;
+  inset: 0;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: rgba(8, 21, 38, 0.46);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+}
+
+.article-modal.is-open {
+  display: flex;
+}
+
+.article-dialog {
+  position: relative;
+  width: min(760px, 100%);
+  max-height: min(760px, calc(100dvh - 40px));
+  overflow-y: auto;
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: 0 26px 90px rgba(7, 21, 42, 0.26);
+  padding: clamp(24px, 4vw, 42px);
+}
+
+.article-close {
+  position: sticky;
+  z-index: 1;
+  top: 0;
+  float: right;
+  display: grid;
+  width: 38px;
+  height: 38px;
+  place-items: center;
+  border: 0;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.article-date {
+  display: block;
+  margin-right: 52px;
+  color: #08745e;
+  font-size: 13px;
+  font-weight: 950;
+}
+
+.article-dialog h2 {
+  max-width: 660px;
+  margin: 14px 52px 22px 0;
+  color: var(--ink);
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.05;
+}
+
+.article-body {
+  display: grid;
+  gap: 16px;
+  color: #3f566c;
+  font-size: clamp(17px, 1.7vw, 20px);
+  line-height: 1.62;
+}
+
+.article-body h3 {
+  margin: 18px 0 0;
+  color: var(--ink);
+  font-size: clamp(22px, 2.4vw, 30px);
+  line-height: 1.16;
+}
+
+.article-body p {
+  margin: 0;
+}
+
+.article-body ul {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 22px;
+}
+
+.article-body li {
+  padding-left: 4px;
+}
+
+body.article-lock {
+  overflow: hidden;
 }
 
 .documents-grid {
@@ -1010,11 +1123,9 @@ h2 {
     min-width: 0;
   }
 
-  .brand span:last-child {
-    max-width: 132px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  .brand-wordmark {
+    width: 126px;
+    height: 36px;
   }
 
   .header-actions-main,

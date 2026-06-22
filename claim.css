@@ -19,8 +19,8 @@
   height: 30px;
   border: 0;
   border-radius: 8px;
-  background: transparent;
-  color: #31485c;
+  background: #102033;
+  color: #fff;
   cursor: pointer;
   font: inherit;
   font-size: 12px;
@@ -29,8 +29,7 @@
 }
 
 .lang-switch button.is-active {
-  background: #102033;
-  color: #fff;
+  display: none;
 }
 
 .menu-toggle {
@@ -272,6 +271,33 @@ body.claim-lock {
   .header-actions {
     display: flex;
     margin-left: auto;
+  }
+
+  .header-actions .lang-switch {
+    flex: 0 0 auto;
+    border-radius: 9px;
+    padding: 2px;
+  }
+
+  .header-actions .lang-switch button {
+    min-width: 28px;
+    height: 28px;
+    border-radius: 7px;
+    font-size: 11px;
+    padding: 0 6px;
+  }
+
+  .product-page .header-actions {
+    margin-right: 4px;
+  }
+
+  .product-page .header-actions .lang-switch {
+    padding: 2px;
+  }
+
+  .product-page .header-actions .lang-switch button {
+    min-width: 32px;
+    padding: 0 8px;
   }
 
   .header-actions .header-docs,

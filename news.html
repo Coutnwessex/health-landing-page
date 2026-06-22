@@ -11,14 +11,14 @@
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="./assets/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20260622-fix1" />
-    <link rel="stylesheet" href="./claim.css?v=20260622-i18n" />
+    <link rel="stylesheet" href="./styles.css?v=20260623-news-full1" />
+    <link rel="stylesheet" href="./claim.css?v=20260622-lang2" />
   </head>
   <body class="news-page">
     <header class="site-header">
       <a class="brand" href="./index.html" aria-label="Saqta Market">
         <span class="brand-mark"><img src="./assets/saqta-mark.svg" alt="" /></span>
-        <span>Saqta Market</span>
+        <img class="brand-wordmark" src="./assets/saqta-wordmark.svg" alt="Saqta Market" />
       </a>
       <button class="menu-toggle" type="button" data-menu-toggle aria-label="Открыть меню" aria-expanded="false">
         <span></span>
@@ -38,7 +38,6 @@
           <button type="button" data-lang="kz">KZ</button>
         </div>
         <button class="claim-button" type="button" data-claim-open>Страховой случай</button>
-        <a class="header-action" href="./index.html#products">Выбрать продукт</a>
       </div>
     </header>
 
@@ -67,8 +66,7 @@
               <a
                 class="news-image"
                 href="https://saqta-market.kz/tpost/disf35lvy1-strahovka-zachem-ona-nuzhna-i-kak-ona-ra"
-                target="_blank"
-                rel="noopener"
+                data-news-open="insurance"
               >
                 <img src="./assets/news/insurance-how-it-works-card.png" alt="" />
               </a>
@@ -82,8 +80,7 @@
                 <a
                   class="news-link"
                   href="https://saqta-market.kz/tpost/disf35lvy1-strahovka-zachem-ona-nuzhna-i-kak-ona-ra"
-                  target="_blank"
-                  rel="noopener"
+                  data-news-open="insurance"
                 >
                   Читать статью
                 </a>
@@ -94,8 +91,7 @@
               <a
                 class="news-image"
                 href="https://saqta-market.kz/tpost/1z8jcsytb1-rak-bolshe-ne-prigovor"
-                target="_blank"
-                rel="noopener"
+                data-news-open="cancer"
               >
                 <img src="./assets/news/cancer-not-a-sentence-card.png" alt="" />
               </a>
@@ -106,8 +102,7 @@
                 <a
                   class="news-link"
                   href="https://saqta-market.kz/tpost/1z8jcsytb1-rak-bolshe-ne-prigovor"
-                  target="_blank"
-                  rel="noopener"
+                  data-news-open="cancer"
                 >
                   Читать статью
                 </a>
@@ -118,8 +113,7 @@
               <a
                 class="news-image"
                 href="https://saqta-market.kz/tpost/749lcig7g1-freedom-urban-gorodskaya-zaschita-novogo"
-                target="_blank"
-                rel="noopener"
+                data-news-open="urban"
               >
                 <img src="./assets/news/freedom-urban-protection.png" alt="" />
               </a>
@@ -130,8 +124,7 @@
                 <a
                   class="news-link"
                   href="https://saqta-market.kz/tpost/749lcig7g1-freedom-urban-gorodskaya-zaschita-novogo"
-                  target="_blank"
-                  rel="noopener"
+                  data-news-open="urban"
                 >
                   Читать статью
                 </a>
@@ -142,8 +135,7 @@
               <a
                 class="news-image"
                 href="https://saqta-market.kz/tpost/szcg9fit11-freedom-health-strahovanie-kotoroe-rabot"
-                target="_blank"
-                rel="noopener"
+                data-news-open="health"
               >
                 <img src="./assets/news/freedom-health-works.png" alt="" />
               </a>
@@ -154,8 +146,7 @@
                 <a
                   class="news-link"
                   href="https://saqta-market.kz/tpost/szcg9fit11-freedom-health-strahovanie-kotoroe-rabot"
-                  target="_blank"
-                  rel="noopener"
+                  data-news-open="health"
                 >
                   Читать статью
                 </a>
@@ -176,6 +167,15 @@
       </div>
     </footer>
 
+    <div class="article-modal" data-article-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="articleTitle">
+      <div class="article-dialog">
+        <button class="article-close" type="button" data-article-close aria-label="Закрыть">×</button>
+        <span class="article-date" data-article-date></span>
+        <h2 id="articleTitle" data-article-title></h2>
+        <div class="article-body" data-article-body></div>
+      </div>
+    </div>
+
     <div class="claim-modal" data-claim-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="claimTitle">
       <div class="claim-dialog">
         <button class="claim-close" type="button" data-claim-close aria-label="Закрыть">×</button>
@@ -186,8 +186,9 @@
       </div>
     </div>
 
-    <script src="./i18n.js?v=20260622-fix1"></script>
+    <script src="./i18n.js?v=20260622-fix2"></script>
     <script src="./claim.js?v=20260622-i18n"></script>
+    <script src="./news-script.js?v=20260623-full1"></script>
     <script src="https://cdn.pulse.is/livechat/loader.js" data-live-chat-id="6a3195933203985e2509274f" async></script>
   </body>
 </html>

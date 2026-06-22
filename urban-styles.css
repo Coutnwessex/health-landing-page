@@ -58,7 +58,7 @@ h1 {
   left: 50%;
   display: grid;
   width: min(1240px, calc(100% - 28px));
-  grid-template-columns: minmax(170px, 240px) minmax(180px, 280px) minmax(0, auto);
+  grid-template-columns: minmax(170px, 240px) 220px minmax(0, auto);
   align-items: center;
   gap: 18px;
   transform: translateX(-50%);
@@ -105,7 +105,17 @@ h1 {
   object-fit: contain;
 }
 
+.brand-wordmark {
+  display: block;
+  width: 154px;
+  height: 42px;
+  object-fit: contain;
+  object-position: left center;
+}
+
 .header-progress {
+  width: 220px;
+  justify-self: start;
   flex-direction: column;
   gap: 8px;
   color: #34495d;
@@ -688,9 +698,21 @@ h1 {
     padding: 8px;
   }
 
+  .brand {
+    flex: 0 1 94px;
+    gap: 6px;
+  }
+
   .brand-mark {
-    width: 32px;
-    height: 32px;
+    width: 22px;
+    height: 22px;
+    border-radius: 7px;
+    padding: 2px;
+  }
+
+  .brand-wordmark {
+    width: 64px;
+    height: 24px;
   }
 
   .header-progress {
