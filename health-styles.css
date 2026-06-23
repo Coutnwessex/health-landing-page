@@ -1024,6 +1024,14 @@ h1 {
     height: 285px;
   }
 
+  .story-section[data-index="4"] .section-inner {
+    grid-template-rows: 220px minmax(0, 1fr);
+  }
+
+  .story-section[data-index="4"] .visual-panel {
+    height: 220px;
+  }
+
   .copy-panel {
     min-height: 0;
     padding: 16px;
@@ -1280,6 +1288,14 @@ h1 {
 
   .visual-panel {
     height: 270px;
+  }
+
+  .story-section[data-index="4"] .section-inner {
+    grid-template-rows: 190px minmax(0, 1fr);
+  }
+
+  .story-section[data-index="4"] .visual-panel {
+    height: 190px;
   }
 
   .has-reviews .section-inner {
