@@ -1,23 +1,22 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ru">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Saqta Market | Специальные страховые продукты</title>
+    <title>Saqta Market v2 | Специальные страховые продукты</title>
     <meta
       name="description"
-      content="Saqta Market помогает разобраться и оформить специальные страховые продукты Freedom: Urban для городских поездок и Health для финансовой готовности к крупным расходам при критической болезни."
+      content="Тестовая версия главной страницы Saqta Market в новом сине-голубом стиле."
     />
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="./assets/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
-    <link rel="preconnect" href="https://images.unsplash.com" />
-    <link rel="stylesheet" href="./styles.css?v=20260622-logo2" />
+    <link rel="stylesheet" href="./styles-v2.css?v=20260623-home-v2-10" />
     <link rel="stylesheet" href="./claim.css?v=20260622-lang2" />
   </head>
-  <body>
+  <body class="home-v2">
     <header class="site-header">
-      <a class="brand" href="#top" aria-label="Saqta Market">
+      <a class="brand" href="./index.html" aria-label="Saqta Market">
         <span class="brand-mark"><img src="./assets/saqta-mark.svg" alt="" /></span>
         <img class="brand-wordmark" src="./assets/saqta-wordmark.svg" alt="Saqta Market" />
       </a>
@@ -31,7 +30,7 @@
         <a href="./news.html">Новости</a>
         <a href="./documents.html">Документы</a>
         <a href="./contact.html">Контакты</a>
-        <a href="./index-v2.html">v2</a>
+        <a href="./index-v2.html" aria-current="page">v2</a>
         <button class="claim-button menu-claim-button" type="button" data-claim-open>Страховой случай</button>
       </nav>
       <div class="header-actions-main">
@@ -44,58 +43,64 @@
     </header>
 
     <main id="top">
-      <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-media" role="img" aria-label="Городской маршрут и спокойная семейная жизнь"></div>
-        <div class="hero-overlay"></div>
-        <div class="hero-content">
-          <p class="eyebrow">Специальные страховые продукты</p>
-          <h1 id="hero-title">Защититесь от расходов, которые приходят без предупреждения</h1>
-          <p class="hero-copy">
-            Freedom Health помогает
-            подготовиться к крупным расходам при критической болезни от $25/мес с покрытием до $150 000. Freedom Urban помогает защитить городские поездки от 500 ₸/мес.  Saqta Market объясняет
-            продукты простым языком и ведет к оформлению онлайн.
-          </p>
-          <div class="hero-actions">
-            <a class="button button-primary" href="#products">Смотреть продукты</a>
-            <a class="button button-secondary" href="#position">Почему Saqta Market</a>
+      <section class="hero-v2" aria-labelledby="hero-title">
+        <div class="hero-glow hero-glow-left" aria-hidden="true"></div>
+        <div class="hero-glow hero-glow-right" aria-hidden="true"></div>
+        <div class="container hero-stage">
+          <div class="liquid-shape" aria-hidden="true">
+            <span class="liquid-core"></span>
+            <span class="liquid-loop loop-one"></span>
+            <span class="liquid-loop loop-two"></span>
+            <span class="liquid-loop loop-three"></span>
+          </div>
+          <div class="hero-copy-block">
+            <p class="eyebrow">Специальные страховые продукты</p>
+            <h1 id="hero-title">Защититесь от расходов, которые приходят без предупреждения</h1>
+          </div>
+          <div class="hero-side-copy">
+            <p>
+              Freedom Health помогает подготовиться к крупным расходам при критической болезни от $25/мес с
+              покрытием до $150 000. Freedom Urban помогает защитить городские поездки от 500 ₸/мес. Saqta Market
+              объясняет продукты простым языком и ведет к оформлению онлайн.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#products">Смотреть продукты</a>
+              <a class="button button-secondary" href="#position">Почему Saqta Market</a>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="intro-section" id="position">
-        <div class="container intro-grid">
-          <div>
+      <section class="position-v2" id="position">
+        <div class="container position-grid">
+          <div class="position-panel">
             <img class="position-logo" src="./assets/saqta-logo.svg" alt="Saqta Market" />
             <h2>Saqta Market - платформа специальных страховых решений для жизни в Казахстане</h2>
           </div>
-          <div class="intro-copy">
+          <div class="position-copy">
+            <p>Мы отбираем только те продукты, которые реально работают — и объясняем их без страхового жаргона.</p>
             <p>
-              Мы отбираем только те продукты, которые реально работают — и объясняем их без
-              страхового жаргона.
-            </p>
-            <p>
-              Urban уникален как продукт для городских поездок. Health доступен через Freedom, но
-              через Saqta Market представлен по специальной цене.
+              Urban уникален как продукт для городских поездок. Health доступен через Freedom, но через Saqta Market
+              представлен по специальной цене.
             </p>
           </div>
         </div>
       </section>
 
-      <section class="products-section" id="products">
+      <section class="products-v2" id="products">
         <div class="container">
-          <div class="section-heading">
+          <div class="section-heading-v2">
             <p class="section-kicker">Доступные продукты</p>
             <h2>Два продукта - две понятные задачи</h2>
           </div>
-
-          <div class="product-grid">
-            <article class="product-card health-card">
-              <div class="product-image health-image" aria-hidden="true"></div>
-              <div class="product-content">
+          <div class="product-grid-v2">
+            <article class="product-card-v2 health-card-v2">
+              <div class="product-photo-v2 product-photo-health" aria-hidden="true"></div>
+              <div class="product-content-v2">
                 <h3>Freedom Health</h3>
                 <p>
-                  Защита на случай критической болезни. Помогает заранее подготовиться к крупным
-                  расходам на лечение, поездки и восстановление.
+                  Защита на случай критической болезни. Помогает заранее подготовиться к крупным расходам на лечение,
+                  поездки и восстановление.
                 </p>
                 <ul>
                   <li>покрытие до $150 000 в год;</li>
@@ -104,24 +109,18 @@
                 </ul>
                 <div class="product-actions">
                   <a class="button button-primary" href="./health.html">Открыть страницу</a>
-                  <a
-                    class="button button-light"
-                    href="https://ffin.life/ru/individuals/freedom-health/subscribe-health?source=OHPR"
-                  >
-                    Оформить
-                  </a>
+                  <a class="button button-light" href="https://ffin.life/ru/individuals/freedom-health/subscribe-health?source=OHPR">Оформить</a>
                 </div>
               </div>
             </article>
 
-            <article class="product-card urban-card">
-              <div class="product-image urban-image" aria-hidden="true"></div>
-              <div class="product-content">
+            <article class="product-card-v2 urban-card-v2">
+              <div class="product-content-v2">
                 <span class="product-tag">Уникальный продукт</span>
                 <h3>Freedom Urban</h3>
                 <p>
-                  Защита поездок на общественном транспорте: автобус, метро, троллейбус, трамвай
-                  или такси. Продукт не размещен на сайте Freedom как обычная витрина.
+                  Защита поездок на общественном транспорте: автобус, метро, троллейбус, трамвай или такси. Продукт не
+                  размещен на сайте Freedom как обычная витрина.
                 </p>
                 <ul>
                   <li>от 6 000 ₸ в год;</li>
@@ -130,43 +129,33 @@
                 </ul>
                 <div class="product-actions">
                   <a class="button button-primary" href="./urban.html">Открыть страницу</a>
-                  <a
-                    class="button button-light"
-                    href="https://ffin.life/ru/individuals/freedom-urban/product?policyType=URS"
-                  >
-                    Оформить
-                  </a>
+                  <a class="button button-light" href="https://ffin.life/ru/individuals/freedom-urban/product?policyType=URS">Оформить</a>
                 </div>
               </div>
+              <div class="product-photo-v2 product-photo-urban" aria-hidden="true"></div>
             </article>
           </div>
         </div>
       </section>
 
-      <section class="why-section">
+      <section class="why-v2">
         <div class="container">
-          <div class="section-heading compact">
+          <div class="section-heading-v2 compact">
             <h2>Наши преимущества</h2>
           </div>
-          <div class="reason-grid">
-            <div class="reason-item">
-              <div class="reason-visual visual-value" aria-hidden="true">
-                <span></span>
-              </div>
+          <div class="reason-grid-v2">
+            <div class="reason-item-v2">
+              <img class="reason-icon" src="./assets/v2-icon-curated.png" alt="" aria-hidden="true" />
               <h3>Самые интересные продукты</h3>
               <p>Мы отбираем только самые интересные продукты и объясняем их без страхового жаргона</p>
             </div>
-            <div class="reason-item">
-              <div class="reason-visual visual-clear" aria-hidden="true">
-                <span></span>
-              </div>
+            <div class="reason-item-v2">
+              <img class="reason-icon" src="./assets/v2-icon-two-products.png" alt="" aria-hidden="true" />
               <h3>Два решения для разных рисков</h3>
               <p>Health помогает подготовиться к крупным расходам при критической болезни, Urban защищает в городских поездках</p>
             </div>
-            <div class="reason-item">
-              <div class="reason-visual visual-flow" aria-hidden="true">
-                <span></span>
-              </div>
+            <div class="reason-item-v2">
+              <img class="reason-icon" src="./assets/v2-icon-partner.png" alt="" aria-hidden="true" />
               <h3>Официальный партнёр Freedom</h3>
               <p>Мы сотрудничаем с Freedom и ведем пользователя к официальному оформлению продукта</p>
             </div>
@@ -174,13 +163,13 @@
         </div>
       </section>
 
-      <section class="process-section" id="how">
-        <div class="container process-layout">
-          <div>
+      <section class="process-v2" id="how">
+        <div class="container process-grid-v2">
+          <div class="process-copy">
             <p class="section-kicker">Как работает Saqta Market</p>
             <h2>Сначала понятный сценарий, потом оформление</h2>
           </div>
-          <div class="steps">
+          <div class="process-rail">
             <div><strong>1</strong><span>Вы выбираете жизненный риск: здоровье или городские поездки.</span></div>
             <div><strong>2</strong><span>Изучаете продукт в простом формате, без лишней страховой терминологии.</span></div>
             <div><strong>3</strong><span>Переходите к оформлению онлайн у партнера Freedom.</span></div>
@@ -188,8 +177,8 @@
         </div>
       </section>
 
-      <section class="final-cta">
-        <div class="container final-layout">
+      <section class="final-v2">
+        <div class="container final-grid-v2">
           <div>
             <p class="section-kicker">Начните с продукта</p>
             <h2>Выберите защиту под задачу, которая важна сейчас</h2>
@@ -198,9 +187,9 @@
         </div>
       </section>
 
-      <section class="faq-section" id="faq">
+      <section class="faq-v2" id="faq">
         <div class="container">
-          <div class="section-heading compact">
+          <div class="section-heading-v2 compact">
             <p class="section-kicker">Справочные материалы</p>
             <h2>FAQ по страхованию</h2>
           </div>
@@ -208,65 +197,58 @@
             <details class="faq-item">
               <summary>Что такое Saqta Market?</summary>
               <p>
-                Saqta Market — это платформа специальных страховых решений. Мы отбираем продукты,
-                которые закрывают понятные жизненные риски, объясняем их простым языком и помогаем
-                перейти к официальному оформлению онлайн. Сейчас на платформе доступны Freedom Health
-                и Freedom Urban.
+                Saqta Market — это платформа специальных страховых решений. Мы отбираем продукты, которые закрывают
+                понятные жизненные риски, объясняем их простым языком и помогаем перейти к официальному оформлению
+                онлайн. Сейчас на платформе доступны Freedom Health и Freedom Urban.
               </p>
             </details>
             <details class="faq-item">
               <summary>Как оформить страховой полис?</summary>
               <p>
-                Полисы оформляются онлайн через официальный сайт страховой компании или сайты
-                партнеров. Нужно изучить условия, заполнить электронную форму, оплатить страховую
-                премию и получить электронный полис.
+                Полисы оформляются онлайн через официальный сайт страховой компании или сайты партнеров. Нужно изучить
+                условия, заполнить электронную форму, оплатить страховую премию и получить электронный полис.
               </p>
             </details>
             <details class="faq-item">
               <summary>Можно ли оформить полис на другого человека?</summary>
               <p>
-                Да. Страхователь и застрахованный могут быть разными лицами. В таком случае нужно
-                согласие застрахованного, а для несовершеннолетнего — согласие законных
-                представителей.
+                Да. Страхователь и застрахованный могут быть разными лицами. В таком случае нужно согласие застрахованного,
+                а для несовершеннолетнего — согласие законных представителей.
               </p>
             </details>
             <details class="faq-item">
               <summary>Как оплатить страховую премию?</summary>
               <p>
-                Оплата производится безналичным способом на банковский счет страховщика. Через
-                партнерские ресурсы может быть доступна оплата картой или другими платежными
-                способами.
+                Оплата производится безналичным способом на банковский счет страховщика. Через партнерские ресурсы может
+                быть доступна оплата картой или другими платежными способами.
               </p>
             </details>
             <details class="faq-item">
               <summary>Что делать при наступлении страхового случая?</summary>
               <p>
-                Нужно письменно уведомить страховщика в установленные сроки, получить форму заявления
-                и перечень документов, собрать необходимые документы и направить их через личный
-                кабинет или другим предусмотренным способом.
+                Нужно письменно уведомить страховщика в установленные сроки, получить форму заявления и перечень документов,
+                собрать необходимые документы и направить их через личный кабинет или другим предусмотренным способом.
               </p>
             </details>
             <details class="faq-item">
               <summary>В течение какого срока принимается решение о выплате?</summary>
               <p>
-                После получения полного комплекта документов страховщик принимает решение о выплате
-                или отказе в течение 10 рабочих дней. Выплата производится в течение 5 рабочих дней с
-                даты принятия решения.
+                После получения полного комплекта документов страховщик принимает решение о выплате или отказе в течение 10
+                рабочих дней. Выплата производится в течение 5 рабочих дней с даты принятия решения.
               </p>
             </details>
             <details class="faq-item">
               <summary>Можно ли расторгнуть договор досрочно?</summary>
               <p>
-                Да. При отказе от договора в течение 14 календарных дней премия возвращается за
-                вычетом пропорциональной части за прошедшее время и расходов на расторжение, но не
-                более 10% от премии.
+                Да. При отказе от договора в течение 14 календарных дней премия возвращается за вычетом пропорциональной
+                части за прошедшее время и расходов на расторжение, но не более 10% от премии.
               </p>
             </details>
             <details class="faq-item">
               <summary>Куда обратиться при несогласии с решением страховщика?</summary>
               <p>
-                Споры решаются путем переговоров. Если договориться не удалось, можно обратиться к
-                страховому омбудсмену в порядке, предусмотренном законодательством РК, либо в суд.
+                Споры решаются путем переговоров. Если договориться не удалось, можно обратиться к страховому омбудсмену в
+                порядке, предусмотренном законодательством РК, либо в суд.
               </p>
             </details>
           </div>
@@ -278,8 +260,8 @@
       <div class="container footer-layout">
         <strong>Saqta Market</strong>
         <span>
-          Saqta Market помогает разобраться в продукте и перейти к оформлению. Условия, лимиты,
-          исключения и порядок выплат определяются договором страхования.
+          Saqta Market помогает разобраться в продукте и перейти к оформлению. Условия, лимиты, исключения и порядок
+          выплат определяются договором страхования.
         </span>
       </div>
     </footer>
@@ -294,7 +276,6 @@
       </div>
     </div>
 
-    <script src="./script.js"></script>
     <script src="./i18n.js?v=20260622-fix2"></script>
     <script src="./claim.js?v=20260622-i18n"></script>
     <script src="https://cdn.pulse.is/livechat/loader.js" data-live-chat-id="6a3195933203985e2509274f" async></script>
