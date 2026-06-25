@@ -1,6 +1,40 @@
 const subscribeUrl =
   "https://ffin.life/ru/individuals/freedom-health/subscribe-health?source=OHPR";
 
+function trackHealthEvent(eventName, params = {}) {
+  window.saqtaTrackEvent?.(eventName, {
+    product: "health",
+    ...params,
+  });
+}
+
+function goToSubscribeWithTracking(params = {}) {
+  let navigated = false;
+  const navigate = () => {
+    if (navigated) return;
+    navigated = true;
+    window.location.href = subscribeUrl;
+  };
+
+  if (!window.dataLayer) {
+    navigate();
+    return;
+  }
+
+  window.dataLayer.push({
+    event: "health_apply_click",
+    page_path: window.location.pathname,
+    page_title: document.title,
+    language: localStorage.getItem("saqta-lang") || "ru",
+    product: "health",
+    ...params,
+    event_callback: navigate,
+    event_timeout: 800,
+  });
+
+  window.setTimeout(navigate, 900);
+}
+
 const healthTariffs = {
   plans: ["Standard 2", "Standard 1", "Silver", "Platinum"],
   prices: [
@@ -511,7 +545,15 @@ const tariffCloseButtons = [...document.querySelectorAll("[data-tariffs-close]")
 document.addEventListener("saqta:languagechange", updateFaqLanguage);
 
 tariffOpenButtons.forEach((button) => {
-  button.addEventListener("click", () => openTariffDialog());
+  button.addEventListener("click", () => {
+    trackHealthEvent("health_tariffs_button_click", {
+      location: button.dataset.analyticsLocation || "story_step",
+      step_number: button.dataset.stepNumber,
+      step_title: button.dataset.stepTitle,
+      button_text: button.textContent.trim(),
+    });
+    openTariffDialog();
+  });
 });
 
 tariffCloseButtons.forEach((button) => {
@@ -529,11 +571,19 @@ sections.forEach((section, index) => {
   const backButton = section.querySelector("[data-back]");
 
   nextButton.addEventListener("click", () => {
+    const trackingParams = {
+      location: "story_step",
+      step_number: index + 1,
+      step_title: slides[index].name,
+      button_text: slides[index].cta,
+    };
+
     if (slides[index].final) {
-      window.location.href = subscribeUrl;
+      goToSubscribeWithTracking(trackingParams);
       return;
     }
 
+    trackHealthEvent("health_story_cta_click", trackingParams);
     sections[index + 1].scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
@@ -616,7 +666,7 @@ function createSection(slide, index) {
   const micro = slide.micro ? `<p class="micro-text">${slide.micro}</p>` : "";
   const reviews = slide.reviews ? createReviewCarousel() : "";
   const compareButton = slide.compareTariffs
-    ? `<button class="tariff-button" type="button" data-tariffs-open>Сравнить тарифы</button>`
+    ? `<button class="tariff-button" type="button" data-tariffs-open data-step-number="${index + 1}" data-step-title="${slide.name}" data-analytics-location="story_step">Сравнить тарифы</button>`
     : "";
   const backButton =
     index > 0
@@ -788,7 +838,7 @@ function createTariffDialog() {
           </section>
         </div>
         <div class="tariff-footer">
-          <a class="primary-button tariff-submit" href="${subscribeUrl}">Оформить</a>
+          <a class="primary-button tariff-submit" href="${subscribeUrl}" data-analytics-event="health_apply_click" data-analytics-product="health" data-analytics-location="tariff_dialog">Оформить</a>
         </div>
       </div>
     </div>
@@ -826,6 +876,9 @@ function openTariffDialog() {
   tariffDialog.classList.add("open");
   tariffDialog.setAttribute("aria-hidden", "false");
   document.body.classList.add("dialog-open");
+  trackHealthEvent("health_tariffs_open", {
+    location: "tariff_dialog",
+  });
   tariffDialog.querySelector("[data-tariffs-close]").focus();
 }
 

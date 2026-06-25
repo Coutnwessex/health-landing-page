@@ -1,5 +1,39 @@
 const subscribeUrl = "https://ffin.life/ru/individuals/freedom-urban/product?policyType=URS";
 
+function trackUrbanEvent(eventName, params = {}) {
+  window.saqtaTrackEvent?.(eventName, {
+    product: "urban",
+    ...params,
+  });
+}
+
+function goToSubscribeWithTracking(params = {}) {
+  let navigated = false;
+  const navigate = () => {
+    if (navigated) return;
+    navigated = true;
+    window.location.href = subscribeUrl;
+  };
+
+  if (!window.dataLayer) {
+    navigate();
+    return;
+  }
+
+  window.dataLayer.push({
+    event: "urban_apply_click",
+    page_path: window.location.pathname,
+    page_title: document.title,
+    language: localStorage.getItem("saqta-lang") || "ru",
+    product: "urban",
+    ...params,
+    event_callback: navigate,
+    event_timeout: 800,
+  });
+
+  window.setTimeout(navigate, 900);
+}
+
 const urbanFaq = [
   {
     question: "Что такое Freedom Urban?",
@@ -312,11 +346,19 @@ sections.forEach((section, index) => {
   const backButton = section.querySelector("[data-back]");
 
   nextButton.addEventListener("click", () => {
+    const trackingParams = {
+      location: "story_step",
+      step_number: index + 1,
+      step_title: slides[index].name,
+      button_text: slides[index].cta,
+    };
+
     if (slides[index].final) {
-      window.location.href = subscribeUrl;
+      goToSubscribeWithTracking(trackingParams);
       return;
     }
 
+    trackUrbanEvent("urban_story_cta_click", trackingParams);
     sections[index + 1].scrollIntoView({ behavior: "smooth", block: "start" });
   });
 
