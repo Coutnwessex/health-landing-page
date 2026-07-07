@@ -762,17 +762,33 @@ function bindHealthInteractions() {
     const cards = [...carousel.querySelectorAll("[data-review-card]")];
     const counter = carousel.querySelector("[data-review-count]");
     let activeIndex = 0;
+    let leaveTimer = 0;
     let touchStartX = 0;
     let touchStartY = 0;
     let touchDeltaX = 0;
     let touchDeltaY = 0;
-    const showCard = (nextIndex) => {
-      activeIndex = (nextIndex + cards.length) % cards.length;
+    const showCard = (nextIndex, direction = "next") => {
+      const normalizedIndex = (nextIndex + cards.length) % cards.length;
+      if (normalizedIndex === activeIndex) return;
+
+      window.clearTimeout(leaveTimer);
+      carousel.dataset.reviewDirection = direction;
+
+      const previousCard = cards[activeIndex];
+      cards.forEach((card) => card.classList.remove("is-leaving"));
+      previousCard?.classList.add("is-leaving");
+      previousCard?.classList.remove("active");
+
+      activeIndex = normalizedIndex;
       cards.forEach((card, index) => card.classList.toggle("active", index === activeIndex));
       if (counter) counter.textContent = `${activeIndex + 1} / ${cards.length}`;
+
+      leaveTimer = window.setTimeout(() => {
+        previousCard?.classList.remove("is-leaving");
+      }, 320);
     };
-    carousel.querySelector("[data-review-prev]")?.addEventListener("click", () => showCard(activeIndex - 1));
-    carousel.querySelector("[data-review-next]")?.addEventListener("click", () => showCard(activeIndex + 1));
+    carousel.querySelector("[data-review-prev]")?.addEventListener("click", () => showCard(activeIndex - 1, "prev"));
+    carousel.querySelector("[data-review-next]")?.addEventListener("click", () => showCard(activeIndex + 1, "next"));
     carousel.addEventListener(
       "touchstart",
       (event) => {
@@ -796,7 +812,7 @@ function bindHealthInteractions() {
     carousel.addEventListener("touchend", () => {
       const isHorizontalSwipe = Math.abs(touchDeltaX) > 48 && Math.abs(touchDeltaX) > Math.abs(touchDeltaY) * 1.3;
       if (!isHorizontalSwipe) return;
-      showCard(activeIndex + (touchDeltaX < 0 ? 1 : -1));
+      showCard(activeIndex + (touchDeltaX < 0 ? 1 : -1), touchDeltaX < 0 ? "next" : "prev");
     });
   });
 
