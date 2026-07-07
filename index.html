@@ -25,7 +25,7 @@
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="./assets/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
-    <link rel="stylesheet" href="./styles.css?v=20260622-logo2" />
+    <link rel="preload" as="image" href="./assets/home-v2-hero.webp" type="image/webp" />
     <link rel="stylesheet" href="./claim.css?v=20260622-lang2" />
     <style>
       :root {
@@ -75,6 +75,14 @@
 
       a {
         color: inherit;
+        text-decoration: none;
+      }
+
+      p,
+      h1,
+      h2,
+      h3 {
+        margin: 0;
       }
 
       .container {
@@ -104,20 +112,37 @@
       }
 
       .brand {
+        display: inline-flex;
+        align-items: center;
         gap: 12px;
         min-width: 190px;
       }
 
       .brand-mark {
+        display: grid;
+        place-items: center;
         width: 42px;
         height: 42px;
+        overflow: hidden;
+        border-radius: 13px;
         background: linear-gradient(145deg, #edf8ff, #ffffff);
         box-shadow: inset 0 0 0 1px rgba(19, 91, 216, 0.08);
+        padding: 4px;
+      }
+
+      .brand-mark img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
       }
 
       .brand-wordmark {
+        display: block;
         width: 96px;
         height: auto;
+        object-fit: contain;
+        object-position: left center;
       }
 
       .header-nav {
@@ -201,7 +226,6 @@
         box-shadow: 0 18px 42px rgba(19, 91, 216, 0.24);
       }
 
-      .button-secondary,
       .button-light {
         border-color: rgba(19, 91, 216, 0.2);
         background: rgba(255, 255, 255, 0.78);
@@ -259,29 +283,6 @@
         min-width: 0;
       }
 
-      .eyebrow,
-      .section-kicker {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        margin: 0 0 22px;
-        color: var(--blue-700);
-        font-size: 12px;
-        font-weight: 900;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-      }
-
-      .eyebrow::before,
-      .section-kicker::before {
-        content: "";
-        width: 18px;
-        height: 5px;
-        border-radius: 999px;
-        background: var(--blue-700);
-        transform: rotate(-28deg);
-      }
-
       .hero-copy-block h1 {
         max-width: 610px;
         margin: 0;
@@ -324,7 +325,11 @@
         inset: -84px -38px -42px 54px;
         background:
           linear-gradient(90deg, rgba(248, 252, 255, 1) 0%, rgba(248, 252, 255, 0.96) 7%, rgba(248, 252, 255, 0.76) 15%, rgba(248, 252, 255, 0.42) 25%, rgba(248, 252, 255, 0.16) 36%, rgba(248, 252, 255, 0.04) 48%, rgba(248, 252, 255, 0) 62%),
-          url("./assets/home-v2-hero.png") calc(100% + 118px) center / auto 100% no-repeat;
+          image-set(
+              url("./assets/home-v2-hero.webp") type("image/webp"),
+              url("./assets/home-v2-hero.png") type("image/png")
+            )
+            calc(100% + 118px) center / auto 100% no-repeat;
         filter: saturate(1.04) contrast(1.02);
       }
 
@@ -414,21 +419,6 @@
         line-height: var(--heading-line);
       }
 
-      .section-heading.products-heading {
-        display: block;
-      }
-
-      .section-heading.products-heading h2 {
-        max-width: none;
-        font-size: clamp(42px, 4.45vw, 58px);
-        line-height: var(--heading-line);
-      }
-
-      .section-heading.products-heading p:not(.section-kicker) {
-        max-width: 760px;
-        margin-top: 24px;
-      }
-
       .products-title {
         display: grid;
         place-items: center;
@@ -441,20 +431,6 @@
         width: 100%;
         font-size: clamp(42px, 4.45vw, 58px);
         line-height: var(--heading-line);
-      }
-
-      .advantages-heading {
-        display: block;
-      }
-
-      .advantages-heading h2 {
-        max-width: 610px;
-        font-size: clamp(42px, 4.45vw, 58px);
-        line-height: var(--heading-line);
-      }
-
-      .advantages-heading p:not(.section-kicker) {
-        margin-top: 24px;
       }
 
       h2 {
@@ -485,7 +461,7 @@
         margin-bottom: 34px;
       }
 
-      .section-heading p:not(.section-kicker) {
+      .section-heading p {
         max-width: 500px;
         margin: 0;
         color: var(--muted);
@@ -514,9 +490,17 @@
         background: #dff1ff;
       }
 
+      .product-media picture,
       .product-media img {
         width: 100%;
         height: 100%;
+      }
+
+      .product-media picture {
+        display: block;
+      }
+
+      .product-media img {
         object-fit: cover;
         display: block;
       }
@@ -532,17 +516,6 @@
 
       .product-content {
         padding: 34px;
-      }
-
-      .product-tag {
-        display: inline-flex;
-        margin-bottom: 18px;
-        padding: 8px 14px;
-        border-radius: 999px;
-        background: var(--blue-100);
-        color: var(--blue-700);
-        font-size: 13px;
-        font-weight: 900;
       }
 
       .product-content h3 {
@@ -637,8 +610,7 @@
         line-height: 1.48;
       }
 
-      .process-panel,
-      .final-panel {
+      .process-panel {
         display: grid;
         grid-template-columns: minmax(0, 0.85fr) minmax(420px, 1fr);
         gap: 40px;
@@ -686,10 +658,6 @@
         font-size: 18px;
         font-weight: 400;
         line-height: 1.55;
-      }
-
-      .final-panel {
-        align-items: center;
       }
 
       .faq-section {
@@ -863,8 +831,7 @@
 
         .hero-inner,
         .intro-grid,
-        .process-panel,
-        .final-panel {
+        .process-panel {
           grid-template-columns: 1fr;
         }
 
@@ -883,7 +850,11 @@
           inset: 0;
           background:
             linear-gradient(180deg, rgba(248, 252, 255, 0.12), rgba(248, 252, 255, 0.08)),
-            url("./assets/home-v2-hero.png") 70% center / cover no-repeat;
+            image-set(
+                url("./assets/home-v2-hero.webp") type("image/webp"),
+                url("./assets/home-v2-hero.png") type("image/png")
+              )
+              70% center / cover no-repeat;
           border-radius: 24px;
         }
 
@@ -914,7 +885,7 @@
           display: block;
         }
 
-        .section-heading p:not(.section-kicker) {
+        .section-heading p {
           margin-top: 16px;
         }
       }
@@ -931,20 +902,8 @@
           overflow-wrap: normal;
         }
 
-        .hero-copy-block .eyebrow {
-          display: none;
-        }
-
         .hero-copy {
           font-size: 18px;
-        }
-
-        .eyebrow,
-        .section-kicker {
-          gap: 10px;
-          font-size: 10px;
-          letter-spacing: 0.16em;
-          overflow-wrap: anywhere;
         }
 
         .hero-actions,
@@ -972,7 +931,7 @@
         }
 
         .intro-copy,
-        .section-heading p:not(.section-kicker) {
+        .section-heading p {
           font-size: 18px;
         }
 
@@ -981,8 +940,7 @@
         }
 
         .product-content,
-        .process-panel,
-        .final-panel {
+        .process-panel {
           padding: 24px;
         }
 
@@ -1166,7 +1124,17 @@
           <div class="product-grid">
             <article class="product-card">
               <div class="product-media">
-                <img src="./assets/home-v2-health.png" alt="Freedom Health" />
+                <picture>
+                  <source srcset="./assets/health-real-help-family-age10.webp" type="image/webp" />
+                  <img
+                    src="./assets/health-real-help-family-age10.png"
+                    alt="Freedom Health"
+                    width="1672"
+                    height="941"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </div>
               <div class="product-content">
                 <h3>Freedom Health</h3>
@@ -1201,7 +1169,17 @@
 
             <article class="product-card">
               <div class="product-media">
-                <img src="./assets/home-v2-urban.png" alt="Freedom Urban" />
+                <picture>
+                  <source srcset="./assets/home-v2-urban.webp" type="image/webp" />
+                  <img
+                    src="./assets/home-v2-urban.png"
+                    alt="Freedom Urban"
+                    width="1448"
+                    height="1086"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </div>
               <div class="product-content">
                 <h3>Freedom Urban</h3>
@@ -1369,10 +1347,10 @@
       </div>
     </div>
 
-    <script src="./script.js"></script>
-    <script src="./i18n.js?v=20260622-fix2"></script>
-    <script src="./analytics.js?v=20260625-gtm1"></script>
-    <script src="./claim.js?v=20260622-i18n"></script>
+    <script src="./script.js" defer></script>
+    <script src="./i18n.js?v=20260622-fix2" defer></script>
+    <script src="./analytics.js?v=20260625-gtm1" defer></script>
+    <script src="./claim.js?v=20260622-i18n" defer></script>
     <script
       src="https://cdn.pulse.is/livechat/loader.js"
       data-live-chat-id="6a3195933203985e2509274f"

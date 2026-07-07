@@ -13,6 +13,559 @@
     <link rel="apple-touch-icon" href="./assets/apple-touch-icon.png" />
     <link rel="stylesheet" href="./styles.css?v=20260623-news-full1" />
     <link rel="stylesheet" href="./claim.css?v=20260622-lang2" />
+    <style>
+      :root {
+        --blue-950: #061b3f;
+        --blue-800: #0b3f91;
+        --blue-700: #135bd8;
+        --blue-500: #1e7bff;
+        --blue-100: #eaf6ff;
+        --ink: #081a35;
+        --muted: #5b6d86;
+        --line: rgba(28, 91, 167, 0.14);
+        --card: rgba(255, 255, 255, 0.88);
+        --shadow: 0 24px 70px rgba(22, 70, 135, 0.14);
+        --heading-color: #10284f;
+        --heading-weight: 650;
+        --heading-line: 1.1;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body.news-page {
+        margin: 0;
+        background:
+          radial-gradient(circle at 82% 10%, rgba(69, 144, 255, 0.2), transparent 32rem),
+          radial-gradient(circle at 8% 42%, rgba(181, 232, 255, 0.58), transparent 30rem),
+          linear-gradient(180deg, #f7fbff 0%, #eef8ff 48%, #f8fcff 100%);
+        color: var(--ink);
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      }
+
+      body.news-page::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        background-image:
+          linear-gradient(rgba(28, 91, 167, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(28, 91, 167, 0.045) 1px, transparent 1px);
+        background-size: 54px 54px;
+        mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.36), transparent 78%);
+      }
+
+      .container {
+        width: min(1180px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 18px;
+        left: auto;
+        right: auto;
+        z-index: 50;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: min(1180px, calc(100% - 40px));
+        margin: 18px auto 0;
+        padding: 14px 18px;
+        gap: 22px;
+        transform: none;
+        border: 1px solid rgba(255, 255, 255, 0.78);
+        border-radius: 22px;
+        background: rgba(255, 255, 255, 0.88);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(22px);
+      }
+
+      .brand {
+        gap: 12px;
+        min-width: 190px;
+      }
+
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        background: linear-gradient(145deg, #edf8ff, #ffffff);
+        box-shadow: inset 0 0 0 1px rgba(19, 91, 216, 0.08);
+      }
+
+      .brand-wordmark {
+        width: 96px;
+        height: auto;
+      }
+
+      .header-nav {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 26px;
+      }
+
+      .header-nav a {
+        color: #233853;
+        font-weight: 500;
+        letter-spacing: 0;
+      }
+
+      .header-nav a:hover {
+        color: var(--blue-700);
+      }
+
+      .header-actions-main {
+        gap: 12px;
+      }
+
+      .lang-switch {
+        width: 52px;
+        height: 52px;
+        padding: 0;
+        border: 0;
+        background: #f2f6fb;
+      }
+
+      .lang-switch button {
+        display: none;
+      }
+
+      .lang-switch button.is-active {
+        display: grid;
+        width: 52px;
+        height: 52px;
+        place-items: center;
+        border: 1px solid rgba(8, 26, 53, 0.06);
+        border-radius: 14px;
+        background: #f2f6fb;
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      .claim-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 52px;
+        padding: 0 24px;
+        border: 1px solid transparent;
+        border-radius: 14px;
+        background: var(--blue-950);
+        color: #fff;
+        font-weight: 500;
+        text-decoration: none;
+        box-shadow: 0 16px 36px rgba(6, 27, 63, 0.18);
+        transition:
+          transform 180ms ease,
+          box-shadow 180ms ease,
+          border-color 180ms ease,
+          background 180ms ease;
+      }
+
+      .claim-button:hover {
+        transform: translateY(-2px);
+      }
+
+      .news-hero {
+        padding: 56px 0 0;
+        background: transparent;
+      }
+
+      .news-hero-card {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 310px;
+        gap: 44px;
+        align-items: center;
+        min-height: 360px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.76);
+        border-radius: 26px;
+        background:
+          radial-gradient(circle at 88% 16%, rgba(30, 123, 255, 0.16), transparent 20rem),
+          linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(234, 247, 255, 0.94));
+        box-shadow: var(--shadow);
+        padding: clamp(30px, 5vw, 58px);
+      }
+
+      .news-hero h1 {
+        max-width: 700px;
+        margin: 0;
+        color: var(--heading-color);
+        font-size: clamp(42px, 4.45vw, 58px);
+        font-weight: var(--heading-weight);
+        line-height: var(--heading-line);
+        letter-spacing: 0;
+      }
+
+      .news-hero p {
+        max-width: 660px;
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: clamp(18px, 1.6vw, 23px);
+        font-weight: 400;
+        line-height: 1.55;
+      }
+
+      .news-visual {
+        position: relative;
+        min-height: 220px;
+      }
+
+      .news-visual::before,
+      .news-visual::after,
+      .news-stack {
+        position: absolute;
+        content: "";
+      }
+
+      .news-visual::before {
+        inset: 10px 18px 36px 0;
+        border: 1px solid rgba(19, 91, 216, 0.16);
+        border-radius: 30px;
+        background: rgba(255, 255, 255, 0.76);
+        box-shadow: 0 18px 52px rgba(22, 70, 135, 0.1);
+      }
+
+      .news-visual::after {
+        right: 12px;
+        top: 24px;
+        width: 72px;
+        height: 72px;
+        border-radius: 24px;
+        background: linear-gradient(135deg, #0d62e8, #18a5ff);
+        box-shadow: 0 20px 46px rgba(19, 91, 216, 0.2);
+      }
+
+      .news-stack {
+        z-index: 2;
+        top: 54px;
+        left: 38px;
+        width: 192px;
+        padding: 22px;
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 18px 52px rgba(22, 70, 135, 0.12);
+      }
+
+      .news-stack span {
+        display: block;
+        height: 10px;
+        margin-bottom: 12px;
+        border-radius: 999px;
+        background: rgba(19, 91, 216, 0.16);
+      }
+
+      .news-stack span:first-child {
+        width: 56%;
+        background: linear-gradient(135deg, #0d62e8, #18a5ff);
+      }
+
+      .news-stack span:nth-child(2) {
+        width: 90%;
+      }
+
+      .news-stack span:nth-child(3) {
+        width: 78%;
+      }
+
+      .news-stack i {
+        display: grid;
+        width: 54px;
+        height: 54px;
+        margin-top: 20px;
+        place-items: center;
+        border-radius: 18px;
+        background: var(--blue-100);
+      }
+
+      .news-stack i::before {
+        content: "";
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--blue-700);
+      }
+
+      .news-section {
+        padding: 62px 0 92px;
+        background: transparent;
+      }
+
+      .news-section-heading {
+        display: grid;
+        place-items: center;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .news-section-heading h2 {
+        margin: 0;
+        color: var(--heading-color);
+        font-size: clamp(38px, 4.2vw, 54px);
+        font-weight: var(--heading-weight);
+        line-height: var(--heading-line);
+      }
+
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 20px;
+      }
+
+      .news-card {
+        overflow: hidden;
+        border: 1px solid rgba(37, 115, 217, 0.14);
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.86);
+        box-shadow: 0 18px 54px rgba(22, 70, 135, 0.08);
+      }
+
+      .news-image {
+        display: block;
+        aspect-ratio: 1.22;
+        overflow: hidden;
+        background: #dff1ff;
+      }
+
+      .news-image picture,
+      .news-image img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .news-image picture {
+        display: block;
+      }
+
+      .news-image img {
+        display: block;
+        object-fit: cover;
+        transition:
+          transform 220ms ease,
+          filter 220ms ease;
+      }
+
+      .news-card:hover .news-image img {
+        transform: scale(1.035);
+        filter: saturate(1.04);
+      }
+
+      .news-content {
+        display: grid;
+        align-content: start;
+        gap: 13px;
+        padding: 22px;
+      }
+
+      .news-date {
+        color: var(--blue-700);
+        font-size: 13px;
+        font-weight: 650;
+      }
+
+      .news-card h2 {
+        margin: 0;
+        color: var(--heading-color);
+        font-size: clamp(20px, 1.65vw, 25px);
+        font-weight: var(--heading-weight);
+        line-height: 1.14;
+      }
+
+      .news-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.55;
+      }
+
+      .news-link {
+        color: var(--blue-700);
+        font-weight: 500;
+        text-decoration: none;
+      }
+
+      .news-link:hover {
+        color: var(--blue-800);
+      }
+
+      .article-modal {
+        background: rgba(8, 21, 38, 0.46);
+        backdrop-filter: blur(12px);
+      }
+
+      .article-dialog {
+        border: 1px solid rgba(255, 255, 255, 0.8);
+        border-radius: 26px;
+        box-shadow: 0 26px 90px rgba(7, 21, 42, 0.26);
+      }
+
+      .article-close {
+        background: var(--blue-100);
+        color: var(--blue-700);
+      }
+
+      .article-date {
+        color: var(--blue-700);
+        font-weight: 650;
+      }
+
+      .article-dialog h2 {
+        color: var(--heading-color);
+        font-weight: var(--heading-weight);
+      }
+
+      .article-body {
+        color: var(--muted);
+        font-weight: 400;
+      }
+
+      .article-body h3 {
+        color: var(--heading-color);
+        font-weight: var(--heading-weight);
+      }
+
+      .site-footer {
+        border-top: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.72);
+        color: #53657d;
+      }
+
+      .footer-layout {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 28px;
+        padding: 30px 0;
+      }
+
+      .footer-layout strong {
+        color: var(--blue-950);
+      }
+
+      .footer-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        color: #233853;
+        font-weight: 500;
+      }
+
+      .footer-nav a:hover {
+        color: var(--blue-700);
+      }
+
+      .footer-layout span {
+        max-width: 560px;
+      }
+
+      @media (max-width: 1120px) {
+        .news-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 980px) {
+        .site-header {
+          top: 10px;
+          width: min(100% - 24px, 760px);
+          padding: 10px 12px;
+          border-radius: 16px;
+        }
+
+        .brand {
+          min-width: 0;
+        }
+
+        .brand-wordmark {
+          width: 82px;
+        }
+
+        .menu-toggle {
+          display: inline-flex;
+        }
+
+        .header-nav {
+          position: absolute;
+          left: 12px;
+          right: 12px;
+          top: calc(100% + 10px);
+          display: none;
+          padding: 14px;
+          border: 1px solid var(--line);
+          border-radius: 16px;
+          background: rgba(255, 255, 255, 0.96);
+          box-shadow: var(--shadow);
+        }
+
+        .site-header.is-menu-open .header-nav {
+          display: grid;
+        }
+
+        .header-actions-main .claim-button {
+          display: none;
+        }
+
+        .lang-switch,
+        .lang-switch button.is-active {
+          width: 46px;
+          height: 46px;
+          border-radius: 13px;
+        }
+
+        .news-hero-card {
+          grid-template-columns: 1fr;
+        }
+
+        .news-visual {
+          order: -1;
+          min-height: 190px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .container {
+          width: calc(100% - 24px);
+        }
+
+        .news-hero {
+          padding-top: 34px;
+        }
+
+        .news-hero-card {
+          min-height: auto;
+          border-radius: 22px;
+          padding: 24px;
+        }
+
+        .news-hero h1 {
+          font-size: clamp(31px, 9.1vw, 38px);
+          line-height: 1.08;
+        }
+
+        .news-hero p {
+          font-size: 18px;
+        }
+
+        .news-section {
+          padding: 36px 0 68px;
+        }
+
+        .news-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .news-content {
+          padding: 22px;
+        }
+
+        .footer-layout {
+          display: grid;
+        }
+      }
+    </style>
   </head>
   <body class="news-page">
     <header class="site-header">
@@ -27,9 +580,6 @@
         <a href="./index.html#products">Продукты</a>
         <a href="./index.html#position">Почему мы</a>
         <a href="./index.html#how">Как оформить</a>
-        <a href="./news.html" aria-current="page">Новости</a>
-        <a href="./documents.html">Документы</a>
-        <a href="./contact.html">Контакты</a>
         <button class="claim-button menu-claim-button" type="button" data-claim-open>Страховой случай</button>
       </nav>
       <div class="header-actions-main">
@@ -43,21 +593,27 @@
 
     <main id="top">
       <section class="news-hero">
-        <div class="container news-hero-grid">
-          <div>
-            <p class="section-kicker">Новости и статьи</p>
+        <div class="container news-hero-card">
+          <div class="news-hero-copy">
             <h1>Материалы Saqta Market</h1>
+            <p>
+              Последние публикации о страховании, финансовой защите, Freedom Health и Freedom Urban.
+            </p>
           </div>
-          <p>
-            Последние публикации о страховании, финансовой защите, Freedom Health и Freedom Urban.
-          </p>
+          <div class="news-visual" aria-hidden="true">
+            <div class="news-stack">
+              <span></span>
+              <span></span>
+              <span></span>
+              <i></i>
+            </div>
+          </div>
         </div>
       </section>
 
       <section class="news-section">
         <div class="container">
-          <div class="section-heading compact">
-            <p class="section-kicker">Последние публикации</p>
+          <div class="news-section-heading">
             <h2>4 свежие статьи</h2>
           </div>
 
@@ -68,7 +624,17 @@
                 href="https://saqta-market.kz/tpost/disf35lvy1-strahovka-zachem-ona-nuzhna-i-kak-ona-ra"
                 data-news-open="insurance"
               >
-                <img src="./assets/news/insurance-how-it-works-card.png" alt="" />
+                <picture>
+                  <source srcset="./assets/news/insurance-how-it-works-card.webp" type="image/webp" />
+                  <img
+                    src="./assets/news/insurance-how-it-works-card.png"
+                    alt=""
+                    width="1000"
+                    height="800"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </a>
               <div class="news-content">
                 <span class="news-date">01.06.2026</span>
@@ -93,7 +659,17 @@
                 href="https://saqta-market.kz/tpost/1z8jcsytb1-rak-bolshe-ne-prigovor"
                 data-news-open="cancer"
               >
-                <img src="./assets/news/cancer-not-a-sentence-card.png" alt="" />
+                <picture>
+                  <source srcset="./assets/news/cancer-not-a-sentence-card.webp" type="image/webp" />
+                  <img
+                    src="./assets/news/cancer-not-a-sentence-card.png"
+                    alt=""
+                    width="1000"
+                    height="800"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </a>
               <div class="news-content">
                 <span class="news-date">01.06.2026</span>
@@ -115,7 +691,17 @@
                 href="https://saqta-market.kz/tpost/749lcig7g1-freedom-urban-gorodskaya-zaschita-novogo"
                 data-news-open="urban"
               >
-                <img src="./assets/news/freedom-urban-protection.png" alt="" />
+                <picture>
+                  <source srcset="./assets/news/freedom-urban-protection.webp" type="image/webp" />
+                  <img
+                    src="./assets/news/freedom-urban-protection.png"
+                    alt=""
+                    width="938"
+                    height="416"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </a>
               <div class="news-content">
                 <span class="news-date">25.12.2025</span>
@@ -137,7 +723,17 @@
                 href="https://saqta-market.kz/tpost/szcg9fit11-freedom-health-strahovanie-kotoroe-rabot"
                 data-news-open="health"
               >
-                <img src="./assets/news/freedom-health-works.png" alt="" />
+                <picture>
+                  <source srcset="./assets/news/freedom-health-works.webp" type="image/webp" />
+                  <img
+                    src="./assets/news/freedom-health-works.png"
+                    alt=""
+                    width="938"
+                    height="416"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
               </a>
               <div class="news-content">
                 <span class="news-date">25.12.2025</span>
@@ -160,6 +756,11 @@
     <footer class="site-footer">
       <div class="container footer-layout">
         <strong>Saqta Market</strong>
+        <nav class="footer-nav" aria-label="Дополнительная навигация">
+          <a href="./news.html" aria-current="page">Новости</a>
+          <a href="./documents.html">Документы</a>
+          <a href="./contact.html">Контакты</a>
+        </nav>
         <span>
           Saqta Market помогает разобраться в продукте и перейти к оформлению. Условия, лимиты,
           исключения и порядок выплат определяются договором страхования.
@@ -186,9 +787,9 @@
       </div>
     </div>
 
-    <script src="./i18n.js?v=20260622-fix2"></script>
-    <script src="./claim.js?v=20260622-i18n"></script>
-    <script src="./news-script.js?v=20260623-full1"></script>
+    <script src="./i18n.js?v=20260622-fix2" defer></script>
+    <script src="./claim.js?v=20260622-i18n" defer></script>
+    <script src="./news-script.js?v=20260623-full1" defer></script>
     <script src="https://cdn.pulse.is/livechat/loader.js" data-live-chat-id="6a3195933203985e2509274f" async></script>
   </body>
 </html>

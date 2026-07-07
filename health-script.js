@@ -1,40 +1,6 @@
 const subscribeUrl =
   "https://ffin.life/ru/individuals/freedom-health/subscribe-health?source=OHPR";
 
-function trackHealthEvent(eventName, params = {}) {
-  window.saqtaTrackEvent?.(eventName, {
-    product: "health",
-    ...params,
-  });
-}
-
-function goToSubscribeWithTracking(params = {}) {
-  let navigated = false;
-  const navigate = () => {
-    if (navigated) return;
-    navigated = true;
-    window.location.href = subscribeUrl;
-  };
-
-  if (!window.dataLayer) {
-    navigate();
-    return;
-  }
-
-  window.dataLayer.push({
-    event: "health_apply_click",
-    page_path: window.location.pathname,
-    page_title: document.title,
-    language: localStorage.getItem("saqta-lang") || "ru",
-    product: "health",
-    ...params,
-    event_callback: navigate,
-    event_timeout: 800,
-  });
-
-  window.setTimeout(navigate, 900);
-}
-
 const healthTariffs = {
   plans: ["Standard 2", "Standard 1", "Silver", "Platinum"],
   prices: [
@@ -383,401 +349,308 @@ const healthFaqKz = [
   },
 ];
 
-const slides = [
-  {
-    name: "Финансовый риск",
-    title:
-      "Диагноз может изменить не только здоровье. Он может изменить финансовую жизнь семьи.",
-    text:
-      "Критическая болезнь часто приходит не по расписанию. В этот момент семье нужны не только врачи и время, но и деньги: на лечение, обследования, поездки, восстановление и обычную жизнь рядом с лечением.",
-    cta: "Что происходит дальше?",
-    image:
-      "https://images.unsplash.com/photo-1511895426328-dc8714191300?auto=format&fit=crop&w=1600&q=82",
-    theme: "theme-risk",
-    color: "#111827",
-    accent: "#64748b",
-    bgA: "#e6eef2",
-    bgB: "#c9d6df",
-    bgC: "#eef4f6",
-  },
-  {
-    name: "Вопрос денег",
-    title: "После диагноза начинается второй вопрос: где срочно взять деньги?",
-    text:
-      "Когда расходы становятся большими, у семьи обычно остается несколько вариантов. Продажа своих главных приобретений машины, квартиры или бизнеса. То, ради чего люди тяжело работали годами, и хотели передать своим детям может оказаться под угрозой из-за одного внезапного диагноза.",
-    cta: "Что делать если и это не помогло?",
-    image:
-      "https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=1600&q=82",
-    theme: "theme-loss",
-    color: "#3f1d5f",
-    accent: "#8b5cf6",
-    bgA: "#f1e9ff",
-    bgB: "#d7c5f2",
-    bgC: "#f7efff",
-  },
-  {
-    name: "Долги семьи",
-    title: "Кредиты, берут на себя все члены семьи, ради спасения одного.",
-    text:
-      "Теперь все члены семь в долгах, а другие родственники не всегда могут помочь крупной суммой.",
-    cta: "Можно ли подготовиться заранее?",
-    image:
-      "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=82",
-    theme: "theme-debt",
-    color: "#8f2f2f",
-    accent: "#f97316",
-    bgA: "#fff0e5",
-    bgB: "#f4c4ad",
-    bgC: "#fbe8e4",
-  },
-  {
-    name: "Готовность заранее",
-    title: "Критическую болезнь нельзя запланировать. Но финансовую готовность - можно.",
-    text:
-      "Freedom Health нужен не потому, что вы ждете болезнь. Он нужен, чтобы заранее превратить крупный финансовый риск в совсем небольшой регулярный платеж в обмен на уверенность.",
-    cta: "Как это работает?",
-    image:
-      "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1600&q=82",
-    theme: "theme-ready",
-    color: "#0f4f7a",
-    accent: "#38bdf8",
-    bgA: "#e2f3ff",
-    bgB: "#b8ddf3",
-    bgC: "#eef9ff",
-  },
-  {
-    name: "Решение Freedom Health",
-    title: "Freedom Health - страховая программа на случай критической болезни",
-    text:
-      "Вы оформляете договор и платите регулярный взнос. При наступлении страхового случая Freedom рассматривает документы и организует лечение в лучших клиниках мира. Личный координатор берет на себя все: запись к врачу, оформление виз, перелет, проживание и переводчика. Вы просто лечитесь.",
-    benefits: [
-      "покрытие до $150 000 в год;",
-      "пожизненный лимит $1 000 000;",
-      "800 клиник-партнеров в Казахстане, Турции, Израиле, Южной Корее и Испании.",
-    ],
-    micro:
-      "Saqta Market помогает разобраться в продукте и перейти к оформлению. Условия, лимиты и исключения определяются договором страхования.",
-    cta: "Почему это доступно?",
-    image:
-      "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1600&q=82",
-    theme: "theme-solution",
-    color: "#1375a8",
-    accent: "#22d3ee",
-    bgA: "#e0f7fb",
-    bgB: "#b4edf5",
-    bgC: "#f0fbfd",
-  },
-  {
-    name: "Доступная защита",
-    title: "От $25 в месяц - чтобы не искать крупную сумму в самый тяжелый момент",
-    text:
-      "$25 в месяц - это не цена лечения. Эта цена сохранит для Вас и Вашей семьи все, что Вы заработали тяжелым трудом и избавит членов семьи от новых кредитов.",
-    cta: "А это действительно работает?",
-    image:
-      "https://images.unsplash.com/photo-1554224154-26032ffc0d07?auto=format&fit=crop&w=1600&q=82",
-    theme: "theme-price",
-    color: "#0d9488",
-    accent: "#5eead4",
-    bgA: "#dffbf4",
-    bgB: "#aeeadd",
-    bgC: "#f2fffb",
-  },
-  {
-    name: "Истории пациентов",
-    title: "Freedom Health уже помогает людям",
-    text:
-      "В этих историях страховая программа Freedom Health делает то, что важно при критической болезни: помогает с выбором клиники, диагностикой, консультациями, лечением и восстановлением по условиям программы.",
-    cta: "Что я получаю?",
-    reviews: true,
-    image:
-      "https://images.unsplash.com/photo-1584515933487-779824d29309?auto=format&fit=crop&w=1600&q=82",
-    theme: "theme-stories",
-    color: "#11856f",
-    accent: "#5eead4",
-    bgA: "#e3fbf4",
-    bgB: "#b4eadc",
-    bgC: "#f3fffb",
-  },
-  {
-    name: "Процветание Вашей семьи",
-    title: "Ваша семья не должна терять, а должна процветать",
-    text:
-      "Freedom Health помогает заранее подготовиться к большим расходам при критической болезни. Исключить риск нельзя, но можно им управлять.",
-    benefits: [
-      "от $25 в месяц;",
-      "сохранение всех жизненных накоплений в семье;",
-      "процветание следующих поколений вашей семьи без долгов;",
-      "защита при критических заболеваниях по условиям договора;",
-      "оформление онлайн.",
-    ],
-    cta: "Оформить",
-    compareTariffs: true,
-    legal:
-      "Перед оформлением внимательно ознакомьтесь с условиями договора, лимитами, исключениями и порядком выплат.",
-    image:
-      "https://images.unsplash.com/photo-1542037104857-ffbb0b9155fb?auto=format&fit=crop&w=1600&q=82",
-    theme: "theme-final",
-    color: "#16a34a",
-    accent: "#86efac",
-    bgA: "#dcfce7",
-    bgB: "#b8f4c9",
-    bgC: "#f4fff7",
-    final: true,
-  },
-];
-
-const root = document.getElementById("storyRoot");
-const stepLabel = document.getElementById("stepLabel");
-const progressFill = document.getElementById("progressFill");
-const headerCta = document.querySelector(".header-cta");
-const brandMark = document.querySelector(".brand-mark");
-
-root.innerHTML = slides.map(createSection).join("");
-root.insertAdjacentHTML("afterend", createFaqSection(getFaqTitle(), getHealthFaqItems()));
-document.body.insertAdjacentHTML("beforeend", createTariffDialog());
-
-const sections = [...document.querySelectorAll(".story-section")];
-const reviewCarousels = [...document.querySelectorAll("[data-review-carousel]")];
-const tariffDialog = document.getElementById("tariffDialog");
-const tariffOpenButtons = [...document.querySelectorAll("[data-tariffs-open]")];
-const tariffCloseButtons = [...document.querySelectorAll("[data-tariffs-close]")];
-
-document.addEventListener("saqta:languagechange", updateFaqLanguage);
-
-tariffOpenButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    trackHealthEvent("health_tariffs_button_click", {
-      location: button.dataset.analyticsLocation || "story_step",
-      step_number: button.dataset.stepNumber,
-      step_title: button.dataset.stepTitle,
-      button_text: button.textContent.trim(),
-    });
-    openTariffDialog();
-  });
-});
-
-tariffCloseButtons.forEach((button) => {
-  button.addEventListener("click", () => closeTariffDialog());
-});
-
-tariffDialog.addEventListener("click", (event) => {
-  if (event.target === tariffDialog) {
-    closeTariffDialog();
-  }
-});
-
-sections.forEach((section, index) => {
-  const nextButton = section.querySelector("[data-next]");
-  const backButton = section.querySelector("[data-back]");
-
-  nextButton.addEventListener("click", () => {
-    const trackingParams = {
-      location: "story_step",
-      step_number: index + 1,
-      step_title: slides[index].name,
-      button_text: slides[index].cta,
-    };
-
-    if (slides[index].final) {
-      goToSubscribeWithTracking(trackingParams);
-      return;
+const healthSteps = {
+  "ru": [
+    {
+      "name": "Финансовый риск",
+      "eyebrow": "Freedom Health",
+      "title": "Финансовая защита от критической болезни",
+      "text": "Критическая болезнь часто приходит не по расписанию. В этот момент семье нужны не только врачи и время, но и деньги: на лечение, обследования, поездки, восстановление и обычную жизнь рядом с лечением.",
+      "cta": "Что происходит дальше?",
+      "image": "./assets/health-hero-financial-protection.webp",
+      "fallback": "./assets/health-hero-financial-protection.png",
+      "variant": "hero"
+    },
+    {
+      "name": "Вопрос денег",
+      "eyebrow": "Когда расходы растут",
+      "title": "Семье приходится искать деньги быстро",
+      "text": "Без подготовки большой диагноз часто превращается в кредит, срочную продажу машины, квартиры или бизнеса, сборы в Instagram или просьбы о помощи у родственников. Под угрозой оказывается то, что семья создавала годами.",
+      "cta": "Можно ли подготовиться заранее?",
+      "image": "./assets/health-risk-money-search-v2.webp",
+      "fallback": "./assets/health-risk-money-search-v2.png",
+      "variant": "risk"
+    },
+    {
+      "name": "Решение",
+      "eyebrow": "Управление риском",
+      "title": "Freedom Health заранее готовит финансовую защиту",
+      "text": "Исключить риск критической болезни нельзя. Но можно заранее превратить крупный финансовый риск в понятный регулярный взнос и получить поддержку по условиям страховой программы.",
+      "cta": "Это действительно работает?",
+      "bullets": [
+        "от $25 в месяц",
+        "покрытие до $150 000 в год",
+        "пожизненный лимит $1 000 000",
+        "800 клиник-партнеров в 5 странах"
+      ],
+      "image": "./assets/health-solution-prepared-protection-v5.webp",
+      "fallback": "./assets/health-solution-prepared-protection-v5.png",
+      "variant": "solution"
+    },
+    {
+      "name": "Истории пациентов",
+      "eyebrow": "Реальный опыт",
+      "title": "Freedom Health уже помогает людям",
+      "text": "В этих историях страховая программа Freedom Health делает то, что важно при критической болезни: помогает с выбором клиники, диагностикой, консультациями, лечением и восстановлением по условиям программы.",
+      "cta": "Что я получаю?",
+      "reviews": true,
+      "image": "./assets/health-real-help-family-age10.webp",
+      "fallback": "./assets/health-real-help-family-age10.png",
+      "variant": "reviews"
+    },
+    {
+      "name": "Тарифы",
+      "eyebrow": "Что входит",
+      "title": "Выберите уровень защиты и переходите к оформлению",
+      "text": "Перед оформлением посмотрите тарифы, покрытие и период ожидания. После 3 месяцев ожидания полис работает в полную силу по условиям договора.",
+      "cta": "Оформить",
+      "image": "./assets/health-real-help-family-age10.webp",
+      "fallback": "./assets/health-real-help-family-age10.png",
+      "tariffs": true,
+      "final": true,
+      "variant": "tariffs"
     }
+  ],
+  "kz": [
+    {
+      "name": "Қаржылық тәуекел",
+      "eyebrow": "Freedom Health",
+      "title": "Критикалық ауру кезіндегі қаржылық қорғаныс",
+      "text": "Критикалық ауру көбіне жоспарсыз келеді. Мұндай сәтте отбасыға дәрігер мен уақыт қана емес, емге, тексерулерге, сапарға, қалпына келуге және күнделікті өмірге ақша да қажет болады.",
+      "cta": "Одан кейін не болады?",
+      "image": "./assets/health-hero-financial-protection.webp",
+      "fallback": "./assets/health-hero-financial-protection.png",
+      "variant": "hero"
+    },
+    {
+      "name": "Ақша мәселесі",
+      "eyebrow": "Шығын көбейгенде",
+      "title": "Отбасыға ақшаны тез табуға тура келеді",
+      "text": "Дайындық болмаса, ауыр диагноз несиеге, көлік, пәтер немесе бизнесті шұғыл сатуға, Instagram-дағы жинауға немесе туыстардан көмек сұрауға әкелуі мүмкін. Отбасының жылдар бойы жинағаны тәуекелге түседі.",
+      "cta": "Алдын ала дайындалуға бола ма?",
+      "bullets": [
+        "отбасының негізгі жинағын сақтап қалу",
+        "емді қарызға айналдырмау",
+        "шұғыл жинау мен кездейсоқ көмекке тәуелді болмау"
+      ],
+      "image": "./assets/health-risk-money-search-v2.webp",
+      "fallback": "./assets/health-risk-money-search-v2.png",
+      "variant": "risk"
+    },
+    {
+      "name": "Шешім",
+      "eyebrow": "Тәуекелді басқару",
+      "title": "Freedom Health қаржылық қорғанысты алдын ала дайындайды",
+      "text": "Критикалық ауру тәуекелін толық алып тастау мүмкін емес. Бірақ ірі қаржылық тәуекелді түсінікті тұрақты жарнаға айналдырып, сақтандыру бағдарламасының шарттары бойынша қолдау алуға болады.",
+      "cta": "Бұл шынымен жұмыс істей ме?",
+      "bullets": [
+        "айына $25 бастап",
+        "жылына $150 000 дейінгі жабу",
+        "өмір бойғы лимит $1 000 000",
+        "5 елде 800 серіктес клиника"
+      ],
+      "image": "./assets/health-solution-prepared-protection-v5-kz.webp",
+      "fallback": "./assets/health-solution-prepared-protection-v5-kz.png",
+      "variant": "solution"
+    },
+    {
+      "name": "Пациент оқиғалары",
+      "eyebrow": "Нақты тәжірибе",
+      "title": "Freedom Health адамдарға қазірдің өзінде көмектесіп жүр",
+      "text": "Бұл оқиғаларда Freedom Health бағдарламасы критикалық ауру кезінде маңызды нәрселерге көмектеседі: клиника таңдауға, диагностикаға, консультацияға, емге және қалпына келуге.",
+      "cta": "Мен не аламын?",
+      "reviews": true,
+      "image": "./assets/health-real-help-family-age10.webp",
+      "fallback": "./assets/health-real-help-family-age10.png",
+      "variant": "reviews"
+    },
+    {
+      "name": "Тарифтер",
+      "eyebrow": "Не кіреді",
+      "title": "Қорғаныс деңгейін таңдап, рәсімдеуге өтіңіз",
+      "text": "Рәсімдеу алдында тарифтерді, жабуды және күту кезеңін қарап шығыңыз. 3 айлық күту кезеңінен кейін полис шарт бойынша толық күшіне енеді.",
+      "cta": "Рәсімдеу",
+      "image": "./assets/health-real-help-family-age10.webp",
+      "fallback": "./assets/health-real-help-family-age10.png",
+      "tariffs": true,
+      "final": true,
+      "variant": "tariffs"
+    }
+  ]
+};
 
-    trackHealthEvent("health_story_cta_click", trackingParams);
-    sections[index + 1].scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-
-  if (backButton) {
-    backButton.addEventListener("click", () => {
-      sections[index - 1].scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  }
-});
-
-reviewCarousels.forEach((carousel) => {
-  const prevButton = carousel.querySelector("[data-review-prev]");
-  const nextButton = carousel.querySelector("[data-review-next]");
-
-  prevButton.addEventListener("click", () => {
-    const currentIndex = Number(carousel.dataset.activeIndex || 0);
-    updateReviewCarousel(carousel, currentIndex - 1);
-  });
-
-  nextButton.addEventListener("click", () => {
-    const currentIndex = Number(carousel.dataset.activeIndex || 0);
-    updateReviewCarousel(carousel, currentIndex + 1);
-  });
-
-  updateReviewCarousel(carousel, 0);
-});
-
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) {
-        return;
-      }
-
-      const index = Number(entry.target.dataset.index);
-      activateSection(index);
-    });
+const healthUi = {
+  "ru": {
+    "apply": "Оформить",
+    "compareTariffs": "Сравнить тарифы",
+    "faqTitle": "FAQ по Freedom Health",
+    "fullTariffs": "Полные тарифы",
+    "price": "Стоимость",
+    "coverage": "Что входит",
+    "plan": "Тариф",
+    "close": "Закрыть",
+    "previousStory": "Предыдущая история",
+    "nextStory": "Следующая история",
+    "before": "До обращения",
+    "support": "Что сделала программа",
+    "result": "Результат",
+    "yearCoverage": "покрытие в год",
+    "lifetimeLimit": "пожизненный лимит",
+    "clinics": "клиник-партнеров",
+    "waiting": "период ожидания",
+    "waitingNote": "* Страховка включается через 3 месяца после оформления. После окончания периода ожидания полис работает в полную силу по условиям договора.",
+    "priceNote": "При оплате стоимость тарифа, указанная в долларах США, пересчитывается в тенге по курсу Национального Банка Республики Казахстан на день оплаты.",
+    "coverageNote": "Кроме исключений, указанных в правилах страхования. Если лечение недоступно в указанных странах, порядок лечения определяется условиями программы."
   },
-  { threshold: 0.58 },
-);
-
-sections.forEach((section) => observer.observe(section));
-
-const initialSlide = Number.parseInt(new URLSearchParams(window.location.search).get("slide"), 10);
-if (Number.isInteger(initialSlide) && initialSlide >= 1 && initialSlide <= slides.length) {
-  window.setTimeout(() => {
-    window.scrollTo({ top: sections[initialSlide - 1].offsetTop, behavior: "auto" });
-    activateSection(initialSlide - 1);
-  }, 0);
-} else {
-  activateSection(0);
-}
-
-document.addEventListener("keydown", (event) => {
-  if (event.key === "Escape" && tariffDialog.classList.contains("open")) {
-    closeTariffDialog();
-    return;
+  "kz": {
+    "apply": "Рәсімдеу",
+    "compareTariffs": "Тарифтерді салыстыру",
+    "faqTitle": "Freedom Health бойынша FAQ",
+    "fullTariffs": "Толық тарифтер",
+    "price": "Құны",
+    "coverage": "Не кіреді",
+    "plan": "Тариф",
+    "close": "Жабу",
+    "previousStory": "Алдыңғы оқиға",
+    "nextStory": "Келесі оқиға",
+    "before": "Жүгінгенге дейін",
+    "support": "Бағдарлама не істеді",
+    "result": "Нәтиже",
+    "yearCoverage": "жылдық жабу",
+    "lifetimeLimit": "өмір бойғы лимит",
+    "clinics": "серіктес клиника",
+    "waiting": "күту кезеңі",
+    "waitingNote": "* Сақтандыру рәсімделгеннен кейін 3 айдан соң іске қосылады. Күту кезеңі аяқталғаннан кейін полис шарт бойынша толық күшінде жұмыс істейді.",
+    "priceNote": "Төлем кезінде АҚШ долларымен көрсетілген тариф құны төлем күніндегі Қазақстан Республикасы Ұлттық Банкінің бағамы бойынша теңгеге қайта есептеледі.",
+    "coverageNote": "Сақтандыру ережелерінде көрсетілген ерекшеліктерден басқа. Егер ем көрсетілген елдерде қолжетімсіз болса, емдеу тәртібі бағдарлама шарттарымен анықталады."
   }
+};
 
-  if (event.target.closest("button, a, .faq-section")) {
-    return;
-  }
-
-  const activeIndex = sections.findIndex((section) => section.classList.contains("active"));
-
-  if ((event.key === "ArrowDown" || event.key === "Enter") && activeIndex < sections.length - 1) {
-    sections[activeIndex + 1].scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-
-  if (event.key === "ArrowUp" && activeIndex > 0) {
-    sections[activeIndex - 1].scrollIntoView({ behavior: "smooth", block: "start" });
-  }
-});
-
-function createSection(slide, index) {
-  const number = String(index + 1).padStart(2, "0");
-  const benefits = slide.benefits
-    ? `<ul class="benefit-list">${slide.benefits.map((item) => `<li>${item}</li>`).join("")}</ul>`
-    : "";
-  const micro = slide.micro ? `<p class="micro-text">${slide.micro}</p>` : "";
-  const reviews = slide.reviews ? createReviewCarousel() : "";
-  const compareButton = slide.compareTariffs
-    ? `<button class="tariff-button" type="button" data-tariffs-open data-step-number="${index + 1}" data-step-title="${slide.name}" data-analytics-location="story_step">Сравнить тарифы</button>`
-    : "";
-  const backButton =
-    index > 0
-      ? `<button class="ghost-button" type="button" data-back>Назад</button>`
-      : `<button class="ghost-button hidden-mobile" type="button" disabled>Назад</button>`;
-  return `
-    <section
-      class="story-section ${slide.theme} ${slide.reviews ? "has-reviews" : ""}"
-      id="section-${index + 1}"
-      data-index="${index}"
-      style="--blue: ${slide.color}; --teal: ${slide.accent}; --bg-a: ${slide.bgA}; --bg-b: ${slide.bgB}; --bg-c: ${slide.bgC};"
-    >
-      <div class="section-inner">
-        <aside class="visual-panel" aria-hidden="true">
-          <div class="visual-image" style="background-image: url('${slide.image}')"></div>
-          <div class="visual-shade"></div>
-          <div class="visual-card">
-            <strong>${number}</strong>
-            <span>${slide.name}</span>
-          </div>
-        </aside>
-        <article class="copy-panel">
-          <div class="story-copy">
-            <h1>${slide.title}</h1>
-            <p class="story-text">${slide.text}</p>
-            ${micro}
-            ${benefits}
-            ${reviews}
-          </div>
-          <div class="section-actions">
-            ${backButton}
-            ${compareButton}
-            <button class="primary-button" type="button" data-next style="background-color: ${slide.color}">
-              <span>${slide.cta}</span>
-            </button>
-          </div>
-          <p class="legal-note">${
-            slide.legal || "Условия, лимиты и исключения определяются договором страхования."
-          }</p>
-        </article>
-      </div>
-    </section>
-  `;
-}
+const storyRoot = document.getElementById("storyRoot");
 
 function getCurrentLang() {
   return localStorage.getItem("saqta-lang") || "ru";
 }
 
-function getFaqTitle() {
-  return getCurrentLang() === "kz" ? "Freedom Health бойынша FAQ" : "FAQ по Freedom Health";
+function getHealthSteps() {
+  return healthSteps[getCurrentLang()] || healthSteps.ru;
+}
+
+function getHealthUi() {
+  return healthUi[getCurrentLang()] || healthUi.ru;
 }
 
 function getHealthFaqItems() {
   return getCurrentLang() === "kz" ? healthFaqKz : healthFaq;
 }
 
-function updateFaqLanguage() {
-  const faqSection = document.getElementById("faq");
-  if (!faqSection) return;
-  faqSection.outerHTML = createFaqSection(getFaqTitle(), getHealthFaqItems());
+function renderHealthPage() {
+  if (!storyRoot) return;
+  document.documentElement.lang = getCurrentLang();
+  document.body.dataset.lang = getCurrentLang();
+  const steps = getHealthSteps();
+
+  storyRoot.innerHTML = `
+    <div class="health-flow">
+      ${steps.map((step, index) => createHealthStep(step, index, steps.length)).join("")}
+    </div>
+    ${createFaqSection(getHealthUi().faqTitle, getHealthFaqItems())}
+  `;
+
+  document.getElementById("tariffDialog")?.remove();
+  document.body.insertAdjacentHTML("beforeend", createTariffDialog());
+  bindHealthInteractions();
 }
 
-function createFaqSection(title, items) {
+function createHealthStep(step, index, total) {
+  const number = index + 1;
+  const nextId = number < total ? `health-step-${number + 1}` : "";
+  const visual = step.image
+    ? createImageVisual(step)
+    : createGraphicVisual(step.variant, number);
+  const bullets = Array.isArray(step.bullets)
+    ? `<ul class="health-bullet-list">${step.bullets.map((item) => `<li>${item}</li>`).join("")}</ul>`
+    : "";
+  const reviews = step.reviews ? createReviewCarousel() : "";
+  const tariffs = step.tariffs ? createTariffPreview() : "";
+  const secondary = step.tariffs
+    ? `<button class="health-secondary-cta" type="button" data-tariffs-open data-analytics-event="health_tariffs_button_click" data-analytics-product="health" data-analytics-location="story_step" data-analytics-step-number="${number}" data-analytics-step-title="${step.name}">${getHealthUi().compareTariffs}</button>`
+    : "";
+  const primaryAttrs = step.final
+    ? `href="${subscribeUrl}" data-analytics-event="health_apply_click" data-analytics-product="health" data-analytics-location="story_step" data-analytics-step-number="${number}" data-analytics-step-title="${step.name}"`
+    : `href="#${nextId}" data-next-step="${nextId}" data-analytics-event="health_story_cta_click" data-analytics-product="health" data-analytics-location="story_step" data-analytics-step-number="${number}" data-analytics-step-title="${step.name}" data-analytics-button-text="${step.cta}"`;
+
   return `
-    <section class="faq-section" id="faq">
-      <div class="faq-container">
-        <div class="faq-heading">
-          <p>Справочные материалы</p>
-          <h2>${title}</h2>
+    <section class="health-story-step health-step-${step.variant}" id="health-step-${number}" data-step-index="${number}" aria-labelledby="health-step-title-${number}">
+      <div class="health-step-shell">
+        <div class="health-step-visual" aria-hidden="true">
+          ${visual}
         </div>
-        <div class="faq-list">
-          ${items
-            .map(
-              (item) => `
-                <details class="faq-item">
-                  <summary>${item.question}</summary>
-                  <div class="faq-answer">${item.answer}</div>
-                </details>
-              `,
-            )
-            .join("")}
+        <div class="health-step-copy">
+          <h1 id="health-step-title-${number}">${step.title}</h1>
+          <p class="health-lead">${step.text}</p>
+          ${bullets}
+          ${reviews}
+          ${tariffs}
+          <div class="health-step-actions">
+            ${secondary}
+            <a class="health-primary-cta" ${primaryAttrs}>${step.cta}</a>
+          </div>
         </div>
       </div>
     </section>
   `;
 }
 
-function createReviewCarousel() {
+function createImageVisual(step) {
   return `
-    <div class="review-carousel" data-review-carousel data-active-index="0">
+    <picture>
+      <source srcset="${step.image}" type="image/webp" />
+      <img src="${step.fallback || step.image}" alt="" loading="eager" />
+    </picture>
+    <span class="health-visual-glow"></span>
+  `;
+}
+
+function createGraphicVisual(variant, number) {
+  return `
+    <div class="health-step-illustration illustration-${variant}">
+      <span class="illustration-number">${String(number).padStart(2, "0")}</span>
+      <span class="illustration-ring"></span>
+      <span class="illustration-card"></span>
+      <span class="illustration-line"></span>
+    </div>
+  `;
+}
+
+function createTariffPreview() {
+  const ui = getHealthUi();
+  return `
+    <div class="health-tariff-preview">
+      <div><strong>до $150 000</strong><span>${ui.yearCoverage}</span></div>
+      <div><strong>$1 000 000</strong><span>${ui.lifetimeLimit}</span></div>
+      <div><strong>800</strong><span>${ui.clinics}</span></div>
+      <div><strong>3 месяца*</strong><span>${ui.waiting}</span></div>
+    </div>
+    <p class="health-waiting-note">${ui.waitingNote}</p>
+  `;
+}
+
+function createReviewCarousel() {
+  const ui = getHealthUi();
+  return `
+    <div class="review-carousel" data-review-carousel>
       <div class="review-track">
         ${patientStories
           .map(
             (story, index) => `
-              <article class="review-card ${index === 0 ? "active" : ""}" data-review-card>
+              <article class="review-card${index === 0 ? " active" : ""}" data-review-card>
                 <p class="review-meta">${story.person}</p>
                 <h3>${story.diagnosis}</h3>
                 <dl>
-                  <div>
-                    <dt>До обращения</dt>
-                    <dd>${story.before}</dd>
-                  </div>
-                  <div>
-                    <dt>Что сделала программа</dt>
-                    <dd>${story.support}</dd>
-                  </div>
-                  <div>
-                    <dt>Результат</dt>
-                    <dd>${story.result}</dd>
-                  </div>
+                  <div><dt>${ui.before}</dt><dd>${story.before}</dd></div>
+                  <div><dt>${ui.support}</dt><dd>${story.support}</dd></div>
+                  <div><dt>${ui.result}</dt><dd>${story.result}</dd></div>
                 </dl>
               </article>
             `,
@@ -785,76 +658,79 @@ function createReviewCarousel() {
           .join("")}
       </div>
       <div class="review-controls">
-        <button class="review-arrow" type="button" data-review-prev aria-label="Предыдущая история">Назад</button>
-        <span data-review-status>1 из ${patientStories.length}</span>
-        <button class="review-arrow" type="button" data-review-next aria-label="Следующая история">Дальше</button>
+        <button class="review-arrow" type="button" data-review-prev aria-label="${ui.previousStory}">←</button>
+        <span class="review-count" data-review-count>1 / ${patientStories.length}</span>
+        <button class="review-arrow" type="button" data-review-next aria-label="${ui.nextStory}">→</button>
       </div>
     </div>
   `;
 }
 
-function updateReviewCarousel(carousel, nextIndex) {
-  const cards = [...carousel.querySelectorAll("[data-review-card]")];
-  const normalizedIndex = (nextIndex + cards.length) % cards.length;
-  const status = carousel.querySelector("[data-review-status]");
-
-  carousel.dataset.activeIndex = String(normalizedIndex);
-
-  cards.forEach((card, index) => {
-    card.classList.toggle("active", index === normalizedIndex);
-  });
-
-  status.textContent = `${normalizedIndex + 1} из ${cards.length}`;
+function createFaqSection(title, items) {
+  return `
+    <section class="faq-section health-faq-section" id="faq" aria-labelledby="faqTitle">
+      <div class="section-heading">
+        <h2 id="faqTitle">${title}</h2>
+      </div>
+      <div class="faq-list">
+        ${items
+          .map(
+            (item, index) => `
+              <article class="faq-item">
+                <button class="faq-question" type="button" aria-expanded="false">
+                  <span>${item.question}</span>
+                  <span class="faq-icon" aria-hidden="true"></span>
+                </button>
+                <div class="faq-answer">
+                  ${item.answer}
+                </div>
+              </article>
+            `,
+          )
+          .join("")}
+      </div>
+    </section>
+  `;
 }
 
 function createTariffDialog() {
+  const ui = getHealthUi();
   return `
     <div class="tariff-dialog" id="tariffDialog" aria-hidden="true">
-      <div class="tariff-sheet" role="dialog" aria-modal="true" aria-labelledby="tariffTitle">
-        <div class="tariff-sheet-header">
+      <div class="tariff-panel" role="dialog" aria-modal="true" aria-labelledby="tariffTitle">
+        <div class="tariff-panel-header">
           <div>
-            <p class="tariff-kicker">Freedom Health</p>
-            <h2 id="tariffTitle">Полные тарифы</h2>
+            <p class="health-product-name">Freedom Health</p>
+            <h2 id="tariffTitle">${ui.fullTariffs}</h2>
           </div>
-          <button class="tariff-close" type="button" data-tariffs-close aria-label="Закрыть">×</button>
+          <button class="tariff-close" type="button" data-tariffs-close aria-label="${ui.close}">×</button>
         </div>
-        <div class="tariff-scroll">
-          <section class="tariff-section">
-            <h3>Стоимость</h3>
-            ${createTariffTable(healthTariffs.prices)}
-            <p class="tariff-note">
-              При оплате стоимость тарифа, указанная в долларах США, пересчитывается в тенге по курсу Национального Банка Республики Казахстан на день оплаты.
-            </p>
+        <div class="tariff-panel-body">
+          <section>
+            <h3>${ui.price}</h3>
+            ${createTariffTable(healthTariffs.prices, ui.plan)}
+            <p class="tariff-note">${ui.priceNote}</p>
           </section>
-          <section class="tariff-section">
-            <h3>Что входит</h3>
-            ${createTariffTable(healthTariffs.coverage)}
-            <p class="tariff-note">
-              * Страховка включается через 3 месяца после оформления — стандарт для всего рынка критического страхования. Как КАСКО, которое начинает действовать не сразу после покупки. После окончания периода ожидания полис работает в полную силу.
-            </p>
-            <p class="tariff-note">
-              Кроме исключений, указанных в правилах страхования. Если лечение недоступно в указанных странах, порядок лечения определяется условиями программы.
-            </p>
+          <section>
+            <h3>${ui.coverage}</h3>
+            ${createTariffTable(healthTariffs.coverage, ui.plan)}
+            <p class="tariff-note">${ui.waitingNote}</p>
+            <p class="tariff-note">${ui.coverageNote}</p>
           </section>
         </div>
-        <div class="tariff-footer">
-          <a class="primary-button tariff-submit" href="${subscribeUrl}" data-analytics-event="health_apply_click" data-analytics-product="health" data-analytics-location="tariff_dialog">Оформить</a>
+        <div class="tariff-panel-footer">
+          <a class="primary-button tariff-submit" href="${subscribeUrl}" data-analytics-event="health_apply_click" data-analytics-product="health" data-analytics-location="tariff_dialog">${ui.apply}</a>
         </div>
       </div>
     </div>
   `;
 }
 
-function createTariffTable(rows) {
+function createTariffTable(rows, planLabel) {
   return `
     <div class="tariff-table-wrap">
       <table class="tariff-table">
-        <thead>
-          <tr>
-            <th>Тариф</th>
-            ${healthTariffs.plans.map((plan) => `<th>${plan}</th>`).join("")}
-          </tr>
-        </thead>
+        <thead><tr><th>${planLabel}</th>${healthTariffs.plans.map((plan) => `<th>${plan}</th>`).join("")}</tr></thead>
         <tbody>
           ${rows
             .map(
@@ -872,31 +748,101 @@ function createTariffTable(rows) {
   `;
 }
 
-function openTariffDialog() {
-  tariffDialog.classList.add("open");
-  tariffDialog.setAttribute("aria-hidden", "false");
-  document.body.classList.add("dialog-open");
-  trackHealthEvent("health_tariffs_open", {
-    location: "tariff_dialog",
+function bindHealthInteractions() {
+  document.querySelectorAll("[data-next-step]").forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const target = document.getElementById(link.dataset.nextStep);
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   });
-  tariffDialog.querySelector("[data-tariffs-close]").focus();
+
+  document.querySelectorAll("[data-review-carousel]").forEach((carousel) => {
+    const cards = [...carousel.querySelectorAll("[data-review-card]")];
+    const counter = carousel.querySelector("[data-review-count]");
+    let activeIndex = 0;
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchDeltaX = 0;
+    let touchDeltaY = 0;
+    const showCard = (nextIndex) => {
+      activeIndex = (nextIndex + cards.length) % cards.length;
+      cards.forEach((card, index) => card.classList.toggle("active", index === activeIndex));
+      if (counter) counter.textContent = `${activeIndex + 1} / ${cards.length}`;
+    };
+    carousel.querySelector("[data-review-prev]")?.addEventListener("click", () => showCard(activeIndex - 1));
+    carousel.querySelector("[data-review-next]")?.addEventListener("click", () => showCard(activeIndex + 1));
+    carousel.addEventListener(
+      "touchstart",
+      (event) => {
+        const touch = event.touches[0];
+        touchStartX = touch.clientX;
+        touchStartY = touch.clientY;
+        touchDeltaX = 0;
+        touchDeltaY = 0;
+      },
+      { passive: true },
+    );
+    carousel.addEventListener(
+      "touchmove",
+      (event) => {
+        const touch = event.touches[0];
+        touchDeltaX = touch.clientX - touchStartX;
+        touchDeltaY = touch.clientY - touchStartY;
+      },
+      { passive: true },
+    );
+    carousel.addEventListener("touchend", () => {
+      const isHorizontalSwipe = Math.abs(touchDeltaX) > 48 && Math.abs(touchDeltaX) > Math.abs(touchDeltaY) * 1.3;
+      if (!isHorizontalSwipe) return;
+      showCard(activeIndex + (touchDeltaX < 0 ? 1 : -1));
+    });
+  });
+
+  document.querySelectorAll("[data-tariffs-open]").forEach((button) => {
+    button.addEventListener("click", openTariffDialog);
+  });
+  document.querySelector("[data-tariffs-close]")?.addEventListener("click", closeTariffDialog);
+  document.getElementById("tariffDialog")?.addEventListener("click", (event) => {
+    if (event.target === event.currentTarget) closeTariffDialog();
+  });
+
+  document.querySelectorAll(".faq-question").forEach((button) => {
+    button.addEventListener("click", () => {
+      const item = button.closest(".faq-item");
+      const isOpen = item.classList.toggle("open");
+      button.setAttribute("aria-expanded", String(isOpen));
+    });
+  });
+}
+
+function openTariffDialog() {
+  const dialog = document.getElementById("tariffDialog");
+  if (!dialog) return;
+  dialog.classList.add("open");
+  dialog.setAttribute("aria-hidden", "false");
+  document.body.classList.add("modal-open");
+  window.dataLayer?.push({
+    event: "health_tariffs_open",
+    product: "health",
+    location: "tariff_dialog",
+    language: getCurrentLang(),
+  });
+  dialog.querySelector("[data-tariffs-close]")?.focus();
 }
 
 function closeTariffDialog() {
-  tariffDialog.classList.remove("open");
-  tariffDialog.setAttribute("aria-hidden", "true");
-  document.body.classList.remove("dialog-open");
+  const dialog = document.getElementById("tariffDialog");
+  if (!dialog) return;
+  dialog.classList.remove("open");
+  dialog.setAttribute("aria-hidden", "true");
+  document.body.classList.remove("modal-open");
 }
 
-function activateSection(index) {
-  const slide = slides[index];
-  sections.forEach((section, sectionIndex) => {
-    section.classList.toggle("active", sectionIndex === index);
-  });
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape") closeTariffDialog();
+});
 
-  document.documentElement.style.setProperty("--blue", slide.color);
-  document.documentElement.style.setProperty("--teal", slide.accent);
-  headerCta.style.backgroundColor = slide.color;
-  stepLabel.textContent = `Шаг ${index + 1} из ${slides.length}`;
-  progressFill.style.width = `${((index + 1) / slides.length) * 100}%`;
-}
+window.addEventListener("saqta:languagechange", renderHealthPage);
+document.addEventListener("DOMContentLoaded", renderHealthPage);
