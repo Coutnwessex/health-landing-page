@@ -1,12 +1,6 @@
 (function () {
   window.dataLayer = window.dataLayer || [];
 
-  const delayedEvents = new Set([
-    "health_apply_click",
-    "urban_apply_click",
-    "urban_tariff_card_click",
-  ]);
-
   function getLang() {
     return localStorage.getItem("saqta-lang") || "ru";
   }
@@ -40,20 +34,6 @@
     return payload;
   }
 
-  function shouldDelayNavigation(event, link, eventName) {
-    return (
-      link &&
-      link.href &&
-      delayedEvents.has(eventName) &&
-      !event.defaultPrevented &&
-      !event.metaKey &&
-      !event.ctrlKey &&
-      !event.shiftKey &&
-      !event.altKey &&
-      link.target !== "_blank"
-    );
-  }
-
   document.addEventListener("click", (event) => {
     const target = event.target.closest("[data-analytics-event]");
     if (!target) return;
@@ -62,33 +42,8 @@
     if (!eventName) return;
 
     const params = readAnalyticsParams(target);
-    const link = target.closest("a");
 
-    if (!shouldDelayNavigation(event, link, eventName)) {
-      trackEvent(eventName, params);
-      return;
-    }
-
-    event.preventDefault();
-
-    let navigated = false;
-    const navigate = () => {
-      if (navigated) return;
-      navigated = true;
-      window.location.href = link.href;
-    };
-
-    window.dataLayer.push({
-      event: eventName,
-      page_path: window.location.pathname,
-      page_title: document.title,
-      language: getLang(),
-      ...params,
-      event_callback: navigate,
-      event_timeout: 800,
-    });
-
-    window.setTimeout(navigate, 900);
+    trackEvent(eventName, params);
   });
 
   let chatClickTracked = false;
