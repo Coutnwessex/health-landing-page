@@ -1,7 +1,11 @@
 (function () {
   window.dataLayer = window.dataLayer || [];
 
-  const delayedEvents = new Set(["health_apply_click", "urban_apply_click"]);
+  const delayedEvents = new Set([
+    "health_apply_click",
+    "urban_apply_click",
+    "urban_tariff_card_click",
+  ]);
 
   function getLang() {
     return localStorage.getItem("saqta-lang") || "ru";
@@ -127,6 +131,23 @@
     },
     true,
   );
+
+  document.addEventListener("click", (event) => {
+    const button = event.target.closest(".faq-question");
+    if (!button) return;
+
+    const item = button.closest(".faq-item");
+    if (!item || !item.classList.contains("open")) return;
+
+    const question =
+      button.querySelector("span")?.textContent.trim() || button.textContent.trim();
+    const product = document.body.dataset.product || "main";
+
+    trackEvent("faq_open", {
+      product,
+      question,
+    });
+  });
 
   window.saqtaTrackEvent = trackEvent;
 })();
