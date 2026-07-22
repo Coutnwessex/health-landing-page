@@ -80,7 +80,7 @@ const patientStories = [
     support:
       "Страховая программа Freedom Health подобрала медицинский центр и организовала лечение в Израиле.",
     result:
-      "Стоимость лечения составила $40 500. Пациент сохранил орган и избежал пожизненной гормонозаместительной терапии.",
+      "Freedom Health покрыл стоимость лечения в размере $40 500. Пациент сохранил орган и избежал пожизненной гормонозаместительной терапии.",
   },
   {
     person: "Мужчина, 37 лет",
@@ -90,7 +90,7 @@ const patientStories = [
     support:
       "Страховая программа Freedom Health организовала диагностику в специализированных нейроонкологических центрах и помогла подобрать таргетную терапию.",
     result:
-      "Индивидуальная схема лечения помогла улучшить прогноз и качество жизни пациента.",
+      "Freedom Health покрыл стоимость лечения в размере $8 000. Индивидуальная схема лечения помогла улучшить прогноз и качество жизни пациента.",
   },
   {
     person: "Женщина, 42 года",
@@ -100,7 +100,7 @@ const patientStories = [
     support:
       "Страховая программа Freedom Health организовала диагностику и генетическое тестирование в нескольких медицинских центрах.",
     result:
-      "Удалось провести секторальную резекцию с одномоментной пластикой, вылечить заболевание и сохранить качество жизни.",
+      "Freedom Health покрыл стоимость лечения в размере $8 000. Удалось провести секторальную резекцию с одномоментной пластикой, вылечить заболевание и сохранить качество жизни.",
   },
   {
     person: "Мужчина, 61 год",
@@ -110,7 +110,7 @@ const patientStories = [
     support:
       "Страховая программа Freedom Health организовала очные консультации в 3 медицинских центрах и робот-ассистированную операцию Da Vinci.",
     result:
-      "Пациент сохранил функциональность органа, программа покрыла операцию стоимостью около $9 500.",
+      "Freedom Health покрыл стоимость операции в размере $9 500. Пациент сохранил функциональность органа.",
   },
   {
     person: "Женщина, 44 года",
@@ -120,7 +120,7 @@ const patientStories = [
     support:
       "Страховая программа Freedom Health организовала диагностику и операцию у одного из ведущих врачей в течение 3 дней.",
     result:
-      "Пациентка получила качественную помощь и вернулась к нормальному образу жизни в течение 1 недели.",
+      "Freedom Health покрыл стоимость лечения в размере $8 000. Пациентка получила качественную помощь и вернулась к нормальному образу жизни в течение 1 недели.",
   },
   {
     person: "Женщина, 65 лет",
@@ -130,9 +130,142 @@ const patientStories = [
     support:
       "Страховая программа Freedom Health подобрала специализированный центр, врача и подключила реабилитологов.",
     result:
-      "Лечение с реабилитацией стоило $8 000. Удалось вылечить заболевание, сохранить конечность и ее функциональность.",
+      "Freedom Health покрыл лечение с реабилитацией стоимостью $8 000. Удалось вылечить заболевание, сохранить конечность и ее функциональность.",
   },
 ];
+
+const patientStoriesKz = [
+  {
+    person: "Ер адам, жасы көрсетілмеген",
+    diagnosis: "Қалқанша без аденомасы",
+    before:
+      "Бастапқыда ағзаны толық алып тастау және гормондық препараттарды өмір бойы қабылдау ұсынылған.",
+    support:
+      "Freedom Health сақтандыру бағдарламасы медициналық орталық таңдап, Израильде емделуді ұйымдастырды.",
+    result:
+      "Freedom Health $40 500 көлеміндегі емдеу құнын жапты. Пациент ағзасын сақтап қалды және өмір бойғы гормон алмастыру терапиясынан құтылды.",
+  },
+  {
+    person: "Ер адам, 37 жас",
+    diagnosis: "Ми қатерлі ісігі",
+    before:
+      "Бастапқыда пациентке ісіктің молекулалық-генетикалық талдауынсыз стандартты емдеу схемасы ұсынылған.",
+    support:
+      "Freedom Health сақтандыру бағдарламасы мамандандырылған нейроонкологиялық орталықтарда диагностика ұйымдастырып, таргеттік терапия таңдауға көмектесті.",
+    result:
+      "Freedom Health $8 000 көлеміндегі емдеу құнын жапты. Жеке емдеу схемасы пациенттің болжамын және өмір сапасын жақсартуға көмектесті.",
+  },
+  {
+    person: "Әйел, 42 жас",
+    diagnosis: "Сүт безінің 1-сатыдағы қатерлі ісігі",
+    before:
+      "Пациентке бір уақытта реконструкция жасау мүмкіндігінсіз мастэктомия ұсынылған.",
+    support:
+      "Freedom Health сақтандыру бағдарламасы бірнеше медициналық орталықта диагностика және генетикалық тестілеу ұйымдастырды.",
+    result:
+      "Freedom Health $8 000 көлеміндегі емдеу құнын жапты. Секторалдық резекцияны бір уақытта пластикамен өткізуге, ауруды емдеуге және өмір сапасын сақтауға мүмкіндік туды.",
+  },
+  {
+    person: "Ер адам, 61 жас",
+    diagnosis: "Қуықасты безінің қатерлі ісігі",
+    before:
+      "Ұсынылған операция эректильді функцияны жоғалту қаупін арттырды.",
+    support:
+      "Freedom Health сақтандыру бағдарламасы 3 медициналық орталықта офлайн консультациялар және Da Vinci робот-ассистентімен операция ұйымдастырды.",
+    result:
+      "Freedom Health $9 500 көлеміндегі операция құнын жапты. Пациент ағзаның функционалдығын сақтап қалды.",
+  },
+  {
+    person: "Әйел, 44 жас",
+    diagnosis: "Жатыр мойны қатерлі ісігі",
+    before:
+      "Пациент шетелде емделуді жоспарлаған, оған визитті ұзақ ұйымдастыру, диагностика, операция және ұшуға шектеулер кірген.",
+    support:
+      "Freedom Health сақтандыру бағдарламасы жетекші дәрігерлердің бірінде диагностика мен операцияны 3 күн ішінде ұйымдастырды.",
+    result:
+      "Freedom Health $8 000 көлеміндегі емдеу құнын жапты. Пациент сапалы көмек алып, 1 апта ішінде қалыпты өмір салтына оралды.",
+  },
+  {
+    person: "Әйел, 65 жас",
+    diagnosis: "Тромбоздық асқынулары бар жұмсақ тіндер саркомасы",
+    before:
+      "Тромбозға байланысты бастапқы ұсыныстар аяқ-қолды алып тастауға бағытталған.",
+    support:
+      "Freedom Health сақтандыру бағдарламасы мамандандырылған орталық, дәрігер таңдап, реабилитологтарды қосты.",
+    result:
+      "Freedom Health реабилитациямен бірге $8 000 тұратын емдеуді жапты. Ауруды емдеп, аяқ-қолды және оның функционалдығын сақтап қалуға мүмкіндік болды.",
+  },
+];
+
+const healthTariffsKz = {
+  plans: healthTariffs.plans,
+  prices: [
+    {
+      label: "Ай сайын",
+      values: healthTariffs.prices[0].values,
+    },
+    {
+      label: "Тоқсан сайын",
+      values: healthTariffs.prices[1].values,
+    },
+    {
+      label: "Жарты жылда бір рет",
+      values: healthTariffs.prices[2].values,
+    },
+    {
+      label: "Біржолғы",
+      values: healthTariffs.prices[3].values,
+    },
+  ],
+  coverage: [
+    {
+      label: "Сақтандыру жағдайы",
+      values: [
+        "Қатерлі аурулар",
+        "Қатерлі аурулар; хирургия; кардио/нейрохирургия",
+        "Қатерлі аурулар; хирургия; кардио/нейрохирургия; трансплантация",
+        "Қатерлі аурулар; хирургия; кардио/нейрохирургия; трансплантация; 18 жасқа дейінгі балаларға сүйек кемігін трансплантациялау",
+      ],
+    },
+    {
+      label: "Күту кезеңі",
+      values: ["3 ай*", "3 ай*", "3 ай*", "3 ай*"],
+    },
+    {
+      label: "«Трансплантация» тәуекелі бойынша күту кезеңі",
+      values: ["6 ай", "6 ай", "6 ай", "6 ай"],
+    },
+    {
+      label: "Сақтандыру сомасы",
+      values: healthTariffs.coverage[3].values,
+    },
+    {
+      label: "Өмір бойғы лимит",
+      values: healthTariffs.coverage[4].values,
+    },
+    {
+      label: "Емделу аумағы",
+      values: [
+        "Қазақстан, Түркия, Израиль, Оңтүстік Корея, Испания",
+        "Қазақстан, Түркия, Израиль, Оңтүстік Корея, Испания",
+        "Қазақстан, Түркия, Израиль, Оңтүстік Корея, Испания",
+        "Қазақстан, Түркия, Израиль, Оңтүстік Корея, Испания",
+      ],
+    },
+    {
+      label: "Ұшу және тұру",
+      values: ["2 адам", "2 адам", "2 адам", "2 адам"],
+    },
+    {
+      label: "Реабилитация",
+      values: ["-", "-", "Қосылған", "Қосылған"],
+    },
+    {
+      label: "Екінші медициналық пікір",
+      values: ["Қосылған", "Қосылған", "Қосылған", "Қосылған"],
+    },
+  ],
+};
 
 const healthFaq = [
   {
@@ -354,17 +487,17 @@ const healthSteps = {
     {
       "name": "Финансовый риск",
       "eyebrow": "Freedom Health",
-      "title": "Финансовая защита от критической болезни",
+      "title": "Внезапность",
       "text": "Критическая болезнь часто приходит не по расписанию. В этот момент семье нужны не только врачи и время, но и деньги: на лечение, обследования, поездки, восстановление и обычную жизнь рядом с лечением.",
       "cta": "Что происходит дальше?",
-      "image": "./assets/health-hero-financial-protection.webp",
-      "fallback": "./assets/health-hero-financial-protection.png",
+      "image": "./assets/health-hero-financial-protection-thoughtful.webp",
+      "fallback": "./assets/health-hero-financial-protection-thoughtful.png",
       "variant": "hero"
     },
     {
       "name": "Вопрос денег",
       "eyebrow": "Когда расходы растут",
-      "title": "Семье приходится искать деньги быстро",
+      "title": "Семья ищет деньги",
       "text": "Без подготовки большой диагноз часто превращается в кредит, срочную продажу машины, квартиры или бизнеса, сборы в Instagram или просьбы о помощи у родственников. Под угрозой оказывается то, что семья создавала годами.",
       "cta": "Можно ли подготовиться заранее?",
       "image": "./assets/health-risk-money-search-v2.webp",
@@ -374,7 +507,7 @@ const healthSteps = {
     {
       "name": "Решение",
       "eyebrow": "Управление риском",
-      "title": "Freedom Health заранее готовит финансовую защиту",
+      "title": "Финансовая готовность",
       "text": "Исключить риск критической болезни нельзя. Но можно заранее превратить крупный финансовый риск в понятный регулярный взнос и получить поддержку по условиям страховой программы.",
       "cta": "Это действительно работает?",
       "bullets": [
@@ -401,11 +534,11 @@ const healthSteps = {
     {
       "name": "Тарифы",
       "eyebrow": "Что входит",
-      "title": "Выберите уровень защиты и переходите к оформлению",
+      "title": "Выберите защиту",
       "text": "Перед оформлением посмотрите тарифы, покрытие и период ожидания. После 3 месяцев ожидания полис работает в полную силу по условиям договора.",
       "cta": "Оформить",
-      "image": "./assets/health-real-help-family-age10.webp",
-      "fallback": "./assets/health-real-help-family-age10.png",
+      "image": "./assets/health-final-tariff-shield-value.webp",
+      "fallback": "./assets/health-final-tariff-shield-value.png",
       "tariffs": true,
       "final": true,
       "variant": "tariffs"
@@ -418,8 +551,8 @@ const healthSteps = {
       "title": "Критикалық ауру кезіндегі қаржылық қорғаныс",
       "text": "Критикалық ауру көбіне жоспарсыз келеді. Мұндай сәтте отбасыға дәрігер мен уақыт қана емес, емге, тексерулерге, сапарға, қалпына келуге және күнделікті өмірге ақша да қажет болады.",
       "cta": "Одан кейін не болады?",
-      "image": "./assets/health-hero-financial-protection.webp",
-      "fallback": "./assets/health-hero-financial-protection.png",
+      "image": "./assets/health-hero-financial-protection-thoughtful.webp",
+      "fallback": "./assets/health-hero-financial-protection-thoughtful.png",
       "variant": "hero"
     },
     {
@@ -470,8 +603,8 @@ const healthSteps = {
       "title": "Қорғаныс деңгейін таңдап, рәсімдеуге өтіңіз",
       "text": "Рәсімдеу алдында тарифтерді, жабуды және күту кезеңін қарап шығыңыз. 3 айлық күту кезеңінен кейін полис шарт бойынша толық күшіне енеді.",
       "cta": "Рәсімдеу",
-      "image": "./assets/health-real-help-family-age10.webp",
-      "fallback": "./assets/health-real-help-family-age10.png",
+      "image": "./assets/health-final-tariff-shield-value.webp",
+      "fallback": "./assets/health-final-tariff-shield-value.png",
       "tariffs": true,
       "final": true,
       "variant": "tariffs"
@@ -491,6 +624,7 @@ const healthUi = {
     "close": "Закрыть",
     "previousStory": "Предыдущая история",
     "nextStory": "Следующая история",
+    "reviewLabel": "Реальные истории",
     "before": "До обращения",
     "support": "Что сделала программа",
     "result": "Результат",
@@ -513,6 +647,7 @@ const healthUi = {
     "close": "Жабу",
     "previousStory": "Алдыңғы оқиға",
     "nextStory": "Келесі оқиға",
+    "reviewLabel": "Нақты оқиғалар",
     "before": "Жүгінгенге дейін",
     "support": "Бағдарлама не істеді",
     "result": "Нәтиже",
@@ -544,6 +679,34 @@ function getHealthFaqItems() {
   return getCurrentLang() === "kz" ? healthFaqKz : healthFaq;
 }
 
+function getPatientStories() {
+  return getCurrentLang() === "kz" ? patientStoriesKz : patientStories;
+}
+
+function getHealthTariffs() {
+  return getCurrentLang() === "kz" ? healthTariffsKz : healthTariffs;
+}
+
+function getHealthProductHero() {
+  return getCurrentLang() === "kz"
+    ? {
+        title: "Freedom Health",
+        text: "Критикалық ауру кезінде отбасыға емге, уақытқа және шығындарға арналған қаржылық қорғаныс.",
+        cta: "Рәсімдеу",
+        storyCta: "Оқиғаны көру",
+        image: "./assets/health-product-hero-family.webp",
+        fallback: "./assets/health-product-hero-family.png",
+      }
+    : {
+        title: "Freedom Health",
+        text: "Финансовая защита от критической болезни, когда семье нужны лечение, время и деньги.",
+        cta: "Оформить",
+        storyCta: "Посмотреть историю",
+        image: "./assets/health-product-hero-family.webp",
+        fallback: "./assets/health-product-hero-family.png",
+      };
+}
+
 function renderHealthPage() {
   if (!storyRoot) return;
   document.documentElement.lang = getCurrentLang();
@@ -551,6 +714,7 @@ function renderHealthPage() {
   const steps = getHealthSteps();
 
   storyRoot.innerHTML = `
+    ${createHealthProductHero(getHealthProductHero())}
     <div class="health-flow">
       ${steps.map((step, index) => createHealthStep(step, index, steps.length)).join("")}
     </div>
@@ -560,6 +724,40 @@ function renderHealthPage() {
   document.getElementById("tariffDialog")?.remove();
   document.body.insertAdjacentHTML("beforeend", createTariffDialog());
   bindHealthInteractions();
+}
+
+function createHealthProductHero(hero) {
+  return `
+    <section class="health-product-hero" aria-labelledby="health-product-hero-title">
+      <div class="health-product-hero-copy">
+        <h1 id="health-product-hero-title">${hero.title}</h1>
+        <p>${hero.text}</p>
+        <div class="health-product-hero-actions">
+          <a
+            class="health-primary-cta"
+            href="${subscribeUrl}"
+            data-analytics-event="health_apply_click"
+            data-analytics-product="health"
+            data-analytics-location="product_hero"
+          >${hero.cta}</a>
+          <a
+            class="health-secondary-cta"
+            href="#health-step-1"
+            data-analytics-event="health_story_cta_click"
+            data-analytics-product="health"
+            data-analytics-location="product_hero"
+            data-analytics-button-text="${hero.storyCta}"
+          >${hero.storyCta}</a>
+        </div>
+      </div>
+      <div class="health-product-hero-visual" aria-hidden="true">
+        <picture>
+          <source srcset="${hero.image}" type="image/webp" />
+          <img src="${hero.fallback}" alt="" loading="eager" />
+        </picture>
+      </div>
+    </section>
+  `;
 }
 
 function createHealthStep(step, index, total) {
@@ -587,6 +785,11 @@ function createHealthStep(step, index, total) {
           ${visual}
         </div>
         <div class="health-step-copy">
+          <p class="health-step-counter" aria-label="Шаг ${number} из ${total}">
+            <span>Шаг</span>
+            <strong>${number}</strong>
+            <span>из ${total}</span>
+          </p>
           <h1 id="health-step-title-${number}">${step.title}</h1>
           <p class="health-lead">${step.text}</p>
           ${bullets}
@@ -630,18 +833,18 @@ function createTariffPreview() {
       <div><strong>до $150 000</strong><span>${ui.yearCoverage}</span></div>
       <div><strong>$1 000 000</strong><span>${ui.lifetimeLimit}</span></div>
       <div><strong>800</strong><span>${ui.clinics}</span></div>
-      <div><strong>3 месяца*</strong><span>${ui.waiting}</span></div>
     </div>
-    <p class="health-waiting-note">${ui.waitingNote}</p>
   `;
 }
 
 function createReviewCarousel() {
   const ui = getHealthUi();
+  const stories = getPatientStories();
   return `
     <div class="review-carousel" data-review-carousel>
+      <p class="review-label">${ui.reviewLabel}</p>
       <div class="review-track">
-        ${patientStories
+        ${stories
           .map(
             (story, index) => `
               <article class="review-card${index === 0 ? " active" : ""}" data-review-card>
@@ -659,7 +862,7 @@ function createReviewCarousel() {
       </div>
       <div class="review-controls">
         <button class="review-arrow" type="button" data-review-prev aria-label="${ui.previousStory}">←</button>
-        <span class="review-count" data-review-count>1 / ${patientStories.length}</span>
+        <span class="review-count" data-review-count>1 / ${stories.length}</span>
         <button class="review-arrow" type="button" data-review-next aria-label="${ui.nextStory}">→</button>
       </div>
     </div>
@@ -695,6 +898,7 @@ function createFaqSection(title, items) {
 
 function createTariffDialog() {
   const ui = getHealthUi();
+  const tariffs = getHealthTariffs();
   return `
     <div class="tariff-dialog" id="tariffDialog" aria-hidden="true">
       <div class="tariff-panel" role="dialog" aria-modal="true" aria-labelledby="tariffTitle">
@@ -708,12 +912,12 @@ function createTariffDialog() {
         <div class="tariff-panel-body">
           <section>
             <h3>${ui.price}</h3>
-            ${createTariffTable(healthTariffs.prices, ui.plan)}
+            ${createTariffTable(tariffs.prices, tariffs.plans, ui.plan)}
             <p class="tariff-note">${ui.priceNote}</p>
           </section>
           <section>
             <h3>${ui.coverage}</h3>
-            ${createTariffTable(healthTariffs.coverage, ui.plan)}
+            ${createTariffTable(tariffs.coverage, tariffs.plans, ui.plan)}
             <p class="tariff-note">${ui.waitingNote}</p>
             <p class="tariff-note">${ui.coverageNote}</p>
           </section>
@@ -726,11 +930,11 @@ function createTariffDialog() {
   `;
 }
 
-function createTariffTable(rows, planLabel) {
+function createTariffTable(rows, plans, planLabel) {
   return `
     <div class="tariff-table-wrap">
       <table class="tariff-table">
-        <thead><tr><th>${planLabel}</th>${healthTariffs.plans.map((plan) => `<th>${plan}</th>`).join("")}</tr></thead>
+        <thead><tr><th>${planLabel}</th>${plans.map((plan) => `<th>${plan}</th>`).join("")}</tr></thead>
         <tbody>
           ${rows
             .map(

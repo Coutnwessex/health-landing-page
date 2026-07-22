@@ -1,5 +1,14 @@
 const subscribeUrl = "https://ffin.life/ru/individuals/freedom-urban/product?policyType=URS";
 
+const urbanProductHero = {
+  title: "Freedom Urban",
+  text: "Защита для ежедневных поездок на автобусе, метро, трамвае, троллейбусе и такси.",
+  cta: "Оформить",
+  storyCta: "Посмотреть историю",
+  image: "./assets/urban-product-hero-transport.webp",
+  fallback: "./assets/urban-product-hero-transport.png",
+};
+
 const urbanSteps = [
   {
     name: "Обычная поездка",
@@ -13,7 +22,7 @@ const urbanSteps = [
   },
   {
     name: "Расходы после травмы",
-    title: "Расходы, которые никто не планировал",
+    title: "Внезапные расходы",
     text:
       "После несчастного случая могут понадобиться осмотр врача, снимок, лекарства, перевязки, такси до клиники, повторные приемы или госпитализация. Даже если травма кажется небольшой, сумма может оказаться неприятной именно потому, что ее не закладывали в бюджет.",
     cta: "Только ли о себе нужно думать?",
@@ -23,7 +32,7 @@ const urbanSteps = [
   },
   {
     name: "Семейная защита",
-    title: "Защита нужна не только взрослым",
+    title: "Забота о детях",
     text:
       "Ребенок едет в школу, студент - на учебу, родитель - по делам. Вы не можете быть рядом в каждом автобусе и каждом метро, но можете заранее защитить городской маршрут. Freedom Urban помогает семье спокойнее относиться к ежедневным поездкам.",
     cta: "Как работает Freedom Urban?",
@@ -33,7 +42,7 @@ const urbanSteps = [
   },
   {
     name: "Решение Freedom Urban",
-    title: "Freedom Urban защищает поездки на общественном транспорте",
+    title: "Защищает поездки на общественном транспорте",
     text:
       "Freedom Urban - страховая программа на случай несчастного случая во время поездки на общественном транспорте по Казахстану. Полис оформляется онлайн, а при страховом случае помогает получить выплату по условиям выбранного тарифа.",
     cta: "Посмотреть тарифы",
@@ -43,7 +52,7 @@ const urbanSteps = [
   },
   {
     name: "Тарифы",
-    title: "Выберите уровень защиты и оформите онлайн",
+    title: "Выберите защиту",
     text:
       "Freedom Urban от 500 ₸ в месяц: небольшая регулярная сумма, которая помогает заранее подготовиться к расходам, если поездка закончится несчастным случаем.",
     cta: "Оформить",
@@ -114,12 +123,47 @@ const urbanRoot = document.getElementById("urbanRoot");
 function renderUrbanPage() {
   if (!urbanRoot) return;
   urbanRoot.innerHTML = `
+    ${createUrbanProductHero(urbanProductHero)}
     <div class="urban-flow">
       ${urbanSteps.map((step, index) => createUrbanStep(step, index, urbanSteps.length)).join("")}
     </div>
     ${createFaqSection()}
   `;
   bindUrbanInteractions();
+}
+
+function createUrbanProductHero(hero) {
+  return `
+    <section class="urban-product-hero" aria-labelledby="urban-product-hero-title">
+      <div class="urban-product-hero-copy">
+        <h1 id="urban-product-hero-title">${hero.title}</h1>
+        <p>${hero.text}</p>
+        <div class="urban-product-hero-actions">
+          <a
+            class="urban-primary-cta"
+            href="${subscribeUrl}"
+            data-analytics-event="urban_apply_click"
+            data-analytics-product="urban"
+            data-analytics-location="product_hero"
+          >${hero.cta}</a>
+          <a
+            class="urban-secondary-cta"
+            href="#urban-step-1"
+            data-analytics-event="urban_story_cta_click"
+            data-analytics-product="urban"
+            data-analytics-location="product_hero"
+            data-analytics-button-text="${hero.storyCta}"
+          >${hero.storyCta}</a>
+        </div>
+      </div>
+      <div class="urban-product-hero-visual" aria-hidden="true">
+        <picture>
+          <source srcset="${hero.image}" type="image/webp" />
+          <img src="${hero.fallback}" alt="" loading="eager" />
+        </picture>
+      </div>
+    </section>
+  `;
 }
 
 function createUrbanStep(step, index, total) {
@@ -155,6 +199,11 @@ function createUrbanStep(step, index, total) {
           ${visual}
         </div>
         <div class="urban-step-copy">
+          <p class="urban-step-counter" aria-label="Шаг ${number} из ${total}">
+            <span>Шаг</span>
+            <strong>${number}</strong>
+            <span>из ${total}</span>
+          </p>
           <h1 id="urban-step-title-${number}">${step.title}</h1>
           <p class="urban-lead">${step.text}</p>
           ${bullets}
