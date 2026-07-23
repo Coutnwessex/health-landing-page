@@ -586,7 +586,7 @@ function applyLanguage() {
 }
 
 document.addEventListener("click", (event) => {
-  const button = event.target.closest("[data-lang]");
+  const button = event.target.closest(".lang-switch button[data-lang]");
   if (!button) return;
   const currentLang = getLang();
   const nextLang = button.dataset.lang === currentLang ? (currentLang === "ru" ? "kz" : "ru") : button.dataset.lang;
