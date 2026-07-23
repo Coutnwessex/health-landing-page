@@ -1,5 +1,6 @@
 const subscribeUrl =
   "https://ffin.life/ru/individuals/freedom-health/subscribe-health?source=OHPR";
+const healthKidDocumentUrl = "./assets/documents/%D0%9A%D0%98%D0%94_Freedom%20Health%20Online.pdf";
 
 const healthTariffs = {
   plans: ["Standard 2", "Standard 1", "Silver", "Platinum"],
@@ -523,12 +524,9 @@ const healthSteps = {
     {
       "name": "Истории пациентов",
       "eyebrow": "Реальный опыт",
-      "title": "Freedom Health уже помогает людям",
-      "text": "В этих историях страховая программа Freedom Health делает то, что важно при критической болезни: помогает с выбором клиники, диагностикой, консультациями, лечением и восстановлением по условиям программы.",
-      "cta": "Что я получаю?",
+      "title": "Реальные истории",
+      "cta": "Выбрать защиту",
       "reviews": true,
-      "image": "./assets/health-real-help-family-age10.webp",
-      "fallback": "./assets/health-real-help-family-age10.png",
       "variant": "reviews"
     },
     {
@@ -589,12 +587,9 @@ const healthSteps = {
     {
       "name": "Пациент оқиғалары",
       "eyebrow": "Нақты тәжірибе",
-      "title": "Freedom Health адамдарға қазірдің өзінде көмектесіп жүр",
-      "text": "Бұл оқиғаларда Freedom Health бағдарламасы критикалық ауру кезінде маңызды нәрселерге көмектеседі: клиника таңдауға, диагностикаға, консультацияға, емге және қалпына келуге.",
-      "cta": "Мен не аламын?",
+      "title": "Нақты оқиғалар",
+      "cta": "Қорғанысты таңдау",
       "reviews": true,
-      "image": "./assets/health-real-help-family-age10.webp",
-      "fallback": "./assets/health-real-help-family-age10.png",
       "variant": "reviews"
     },
     {
@@ -624,7 +619,6 @@ const healthUi = {
     "close": "Закрыть",
     "previousStory": "Предыдущая история",
     "nextStory": "Следующая история",
-    "reviewLabel": "Реальные истории",
     "before": "До обращения",
     "support": "Что сделала программа",
     "result": "Результат",
@@ -647,7 +641,6 @@ const healthUi = {
     "close": "Жабу",
     "previousStory": "Алдыңғы оқиға",
     "nextStory": "Келесі оқиға",
-    "reviewLabel": "Нақты оқиғалар",
     "before": "Жүгінгенге дейін",
     "support": "Бағдарлама не істеді",
     "result": "Нәтиже",
@@ -763,9 +756,17 @@ function createHealthProductHero(hero) {
 function createHealthStep(step, index, total) {
   const number = index + 1;
   const nextId = number < total ? `health-step-${number + 1}` : "";
-  const visual = step.image
-    ? createImageVisual(step)
-    : createGraphicVisual(step.variant, number);
+  const visual = step.reviews
+    ? ""
+    : step.image
+      ? createImageVisual(step)
+      : createGraphicVisual(step.variant, number);
+  const visualBlock = visual
+    ? `<div class="health-step-visual" aria-hidden="true">
+          ${visual}
+        </div>`
+    : "";
+  const lead = step.text ? `<p class="health-lead">${step.text}</p>` : "";
   const bullets = Array.isArray(step.bullets)
     ? `<ul class="health-bullet-list">${step.bullets.map((item) => `<li>${item}</li>`).join("")}</ul>`
     : "";
@@ -777,13 +778,12 @@ function createHealthStep(step, index, total) {
   const primaryAttrs = step.final
     ? `href="${subscribeUrl}" data-analytics-event="health_apply_click" data-analytics-product="health" data-analytics-location="story_step" data-analytics-step-number="${number}" data-analytics-step-title="${step.name}"`
     : `href="#${nextId}" data-next-step="${nextId}" data-analytics-event="health_story_cta_click" data-analytics-product="health" data-analytics-location="story_step" data-analytics-step-number="${number}" data-analytics-step-title="${step.name}" data-analytics-button-text="${step.cta}"`;
+  const kidDocument = step.final ? createHealthKidDocumentLink() : "";
 
   return `
     <section class="health-story-step health-step-${step.variant}" id="health-step-${number}" data-step-index="${number}" aria-labelledby="health-step-title-${number}">
       <div class="health-step-shell">
-        <div class="health-step-visual" aria-hidden="true">
-          ${visual}
-        </div>
+        ${visualBlock}
         <div class="health-step-copy">
           <p class="health-step-counter" aria-label="Шаг ${number} из ${total}">
             <span>Шаг</span>
@@ -791,7 +791,7 @@ function createHealthStep(step, index, total) {
             <span>из ${total}</span>
           </p>
           <h1 id="health-step-title-${number}">${step.title}</h1>
-          <p class="health-lead">${step.text}</p>
+          ${lead}
           ${bullets}
           ${reviews}
           ${tariffs}
@@ -799,9 +799,21 @@ function createHealthStep(step, index, total) {
             ${secondary}
             <a class="health-primary-cta" ${primaryAttrs}>${step.cta}</a>
           </div>
+          ${kidDocument}
         </div>
       </div>
     </section>
+  `;
+}
+
+function createHealthKidDocumentLink() {
+  const label = getCurrentLang() === "kz" ? "Негізгі ақпараттық құжат" : "Ключевой информационный документ";
+  return `
+    <p class="health-kid-document">
+      <a href="${healthKidDocumentUrl}" target="_blank" rel="noopener" data-analytics-event="health_kid_document_click" data-analytics-product="health" data-analytics-location="story_final">
+        ${label}
+      </a>
+    </p>
   `;
 }
 
@@ -842,7 +854,6 @@ function createReviewCarousel() {
   const stories = getPatientStories();
   return `
     <div class="review-carousel" data-review-carousel>
-      <p class="review-label">${ui.reviewLabel}</p>
       <div class="review-track">
         ${stories
           .map(
@@ -882,7 +893,6 @@ function createFaqSection(title, items) {
               <article class="faq-item">
                 <button class="faq-question" type="button" aria-expanded="false">
                   <span>${item.question}</span>
-                  <span class="faq-icon" aria-hidden="true"></span>
                 </button>
                 <div class="faq-answer">
                   ${item.answer}
@@ -952,7 +962,63 @@ function createTariffTable(rows, plans, planLabel) {
   `;
 }
 
+function bindHealthFaqInteractions() {
+  if (window.__healthFaqInteractionsBound) return;
+  window.__healthFaqInteractionsBound = true;
+
+  document.addEventListener(
+    "click",
+    (event) => {
+      const question = event.target.closest(".health-faq-section .faq-question");
+      if (!question) return;
+
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      const item = question.closest(".faq-item");
+      if (!item) return;
+      const isOpen = item.classList.toggle("open");
+      question.setAttribute("aria-expanded", String(isOpen));
+      if (isOpen) {
+        window.dataLayer?.push({
+          event: "faq_open",
+          product: document.body.dataset.product || "health",
+          question: question.textContent.trim(),
+          language: getCurrentLang(),
+        });
+      }
+    },
+    true,
+  );
+
+  document.addEventListener(
+    "keydown",
+    (event) => {
+      const question = event.target.closest(".health-faq-section .faq-question");
+      if (!question) return;
+      if (event.key !== "Enter" && event.key !== " ") return;
+
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      const item = question.closest(".faq-item");
+      if (!item) return;
+      const isOpen = item.classList.toggle("open");
+      question.setAttribute("aria-expanded", String(isOpen));
+      if (isOpen) {
+        window.dataLayer?.push({
+          event: "faq_open",
+          product: document.body.dataset.product || "health",
+          question: question.textContent.trim(),
+          language: getCurrentLang(),
+        });
+      }
+    },
+    true,
+  );
+}
+
 function bindHealthInteractions() {
+  bindHealthFaqInteractions();
+
   document.querySelectorAll("[data-next-step]").forEach((link) => {
     link.addEventListener("click", (event) => {
       const target = document.getElementById(link.dataset.nextStep);
@@ -1028,13 +1094,6 @@ function bindHealthInteractions() {
     if (event.target === event.currentTarget) closeTariffDialog();
   });
 
-  document.querySelectorAll(".faq-question").forEach((button) => {
-    button.addEventListener("click", () => {
-      const item = button.closest(".faq-item");
-      const isOpen = item.classList.toggle("open");
-      button.setAttribute("aria-expanded", String(isOpen));
-    });
-  });
 }
 
 function openTariffDialog() {

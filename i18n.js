@@ -3,12 +3,16 @@ const originalTextNodes = new WeakMap();
 const originalDocumentTitle = document.title;
 
 const kzMap = {
+  "Главная": "Басты бет",
+  "О нас": "Біз туралы",
   "Продукты": "Өнімдер",
   "Почему мы": "Неге біз",
   "Как оформить": "Қалай рәсімдеу",
   "Новости": "Жаңалықтар",
   "Документы": "Құжаттар",
   "Контакты": "Байланыс",
+  "Пользовательское соглашение": "Пайдаланушы келісімі",
+  "Политика конфиденциальности": "Құпиялылық саясаты",
   "Страховой случай": "Сақтандыру жағдайы",
   "Выбрать продукт": "Өнімді таңдау",
   "Оформить": "Рәсімдеу",
@@ -506,6 +510,10 @@ const homeKzMap = {
     "Saqta Market өнімді түсінуге және рәсімдеуге өтуге көмектеседі. Шарттар, лимиттер, ерекшеліктер және төлем тәртібі сақтандыру шартында айқындалады.",
   "Контакт-центр Freedom Life": "Freedom Life байланыс орталығы",
   "С любого номера в Казахстане бесплатно.": "Қазақстандағы кез келген нөмірден қоңырау шалу тегін.",
+  "Ключевой информационный документ Freedom Health": "Freedom Health негізгі ақпараттық құжаты",
+  "Краткая информация о продукте Freedom Health.": "Freedom Health өнімі туралы қысқаша ақпарат.",
+  "Ключевой информационный документ Freedom Urban": "Freedom Urban негізгі ақпараттық құжаты",
+  "Краткая информация о продукте Freedom Urban.": "Freedom Urban өнімі туралы қысқаша ақпарат.",
 };
 
 function normalizeText(value) {
@@ -519,7 +527,9 @@ function getLang() {
 function setLang(lang) {
   localStorage.setItem(LANG_KEY, lang);
   applyLanguage();
-  document.dispatchEvent(new CustomEvent("saqta:languagechange", { detail: { lang } }));
+  const eventOptions = { detail: { lang } };
+  document.dispatchEvent(new CustomEvent("saqta:languagechange", eventOptions));
+  window.dispatchEvent(new CustomEvent("saqta:languagechange", eventOptions));
 }
 
 function translateText(text, lang) {
@@ -578,7 +588,9 @@ function applyLanguage() {
 document.addEventListener("click", (event) => {
   const button = event.target.closest("[data-lang]");
   if (!button) return;
-  setLang(button.dataset.lang);
+  const currentLang = getLang();
+  const nextLang = button.dataset.lang === currentLang ? (currentLang === "ru" ? "kz" : "ru") : button.dataset.lang;
+  setLang(nextLang);
 });
 
 let i18nTimer = null;
