@@ -732,6 +732,7 @@ function createHealthProductHero(hero) {
             data-analytics-event="health_apply_click"
             data-analytics-product="health"
             data-analytics-location="product_hero"
+            data-analytics-button-text="${hero.cta}"
           >${hero.cta}</a>
           <a
             class="health-secondary-cta"

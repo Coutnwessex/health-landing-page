@@ -305,6 +305,7 @@ function createUrbanProductHero(hero) {
             data-analytics-event="urban_apply_click"
             data-analytics-product="urban"
             data-analytics-location="product_hero"
+            data-analytics-button-text="${hero.cta}"
           >${hero.cta}</a>
           <a
             class="urban-secondary-cta"
