@@ -806,6 +806,8 @@ function createHealthProductHero(hero) {
             data-analytics-event="health_story_cta_click"
             data-analytics-product="health"
             data-analytics-location="product_hero"
+            data-analytics-step-number="1"
+            data-analytics-step-title="${hero.storyCta}"
             data-analytics-button-text="${hero.storyCta}"
           >${hero.storyCta}</a>
         </div>
@@ -844,12 +846,12 @@ function createHealthStep(step, index, total) {
   const reviews = step.reviews ? createReviewCarousel() : "";
   const tariffs = step.tariffs ? createTariffPreview() : "";
   const secondary = step.tariffs
-    ? `<button class="health-secondary-cta" type="button" data-tariffs-open data-analytics-event="health_tariffs_button_click" data-analytics-product="health" data-analytics-location="story_step" data-analytics-step-number="${number}" data-analytics-step-title="${step.name}">${getHealthUi().compareTariffs}</button>`
+    ? `<button class="health-secondary-cta" type="button" data-tariffs-open data-analytics-event="health_tariffs_button_click" data-analytics-product="health" data-analytics-location="story_step" data-analytics-step-number="${number}" data-analytics-step-title="${step.name}" data-analytics-button-text="${getHealthUi().compareTariffs}">${getHealthUi().compareTariffs}</button>`
     : "";
   const primaryAttrs = step.final
-    ? `href="${subscribeUrl}" data-analytics-event="health_apply_click" data-analytics-product="health" data-analytics-location="story_step" data-analytics-step-number="${number}" data-analytics-step-title="${step.name}"`
+    ? `href="${subscribeUrl}" data-analytics-event="health_apply_click" data-analytics-product="health" data-analytics-location="story_step" data-analytics-step-number="${number}" data-analytics-step-title="${step.name}" data-analytics-button-text="${step.cta}"`
     : `href="#${nextId}" data-next-step="${nextId}" data-analytics-event="health_story_cta_click" data-analytics-product="health" data-analytics-location="story_step" data-analytics-step-number="${number}" data-analytics-step-title="${step.name}" data-analytics-button-text="${step.cta}"`;
-  const kidDocument = step.final ? createHealthKidDocumentLink() : "";
+  const kidDocument = step.final ? createHealthKidDocumentLink(number, step.name) : "";
 
   const noVisualClass = step.noVisual ? " health-step-no-visual" : "";
 
@@ -879,11 +881,11 @@ function createHealthStep(step, index, total) {
   `;
 }
 
-function createHealthKidDocumentLink() {
+function createHealthKidDocumentLink(stepNumber, stepTitle) {
   const label = getCurrentLang() === "kz" ? "Негізгі ақпараттық құжат" : "Ключевой информационный документ";
   return `
     <p class="health-kid-document">
-      <a href="${healthKidDocumentUrl}" target="_blank" rel="noopener" data-analytics-event="health_kid_document_click" data-analytics-product="health" data-analytics-location="story_final">
+      <a href="${healthKidDocumentUrl}" target="_blank" rel="noopener" data-analytics-event="health_kid_document_click" data-analytics-product="health" data-analytics-location="story_final" data-analytics-step-number="${stepNumber}" data-analytics-step-title="${stepTitle}" data-analytics-button-text="${label}">
         ${label}
       </a>
     </p>
@@ -1006,7 +1008,7 @@ function createTariffDialog() {
           </section>
         </div>
         <div class="tariff-panel-footer">
-          <a class="primary-button tariff-submit" href="${subscribeUrl}" data-analytics-event="health_apply_click" data-analytics-product="health" data-analytics-location="tariff_dialog">${ui.apply}</a>
+          <a class="primary-button tariff-submit" href="${subscribeUrl}" data-analytics-event="health_apply_click" data-analytics-product="health" data-analytics-location="tariff_dialog" data-analytics-button-text="${ui.apply}">${ui.apply}</a>
         </div>
       </div>
     </div>
