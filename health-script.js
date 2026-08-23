@@ -95,7 +95,7 @@ const patientStories = [
   },
   {
     person: "Женщина, 42 года",
-    diagnosis: "Рак молочной железы 1-й стадии",
+    diagnosis: "Рак молочной железы 2-й стадии",
     before:
       "Пациентке рекомендовали мастэктомию без возможности одномоментной реконструкции.",
     support:
@@ -158,7 +158,7 @@ const patientStoriesKz = [
   },
   {
     person: "Әйел, 42 жас",
-    diagnosis: "Сүт безінің 1-сатыдағы қатерлі ісігі",
+    diagnosis: "Сүт безінің 2-сатыдағы қатерлі ісігі",
     before:
       "Пациентке бір уақытта реконструкция жасау мүмкіндігінсіз мастэктомия ұсынылған.",
     support:
@@ -811,6 +811,7 @@ function createHealthProductHero(hero) {
             data-analytics-button-text="${hero.storyCta}"
           >${hero.storyCta}</a>
         </div>
+        ${createHealthExternalApplyNote()}
       </div>
       <div class="health-product-hero-visual" aria-hidden="true">
         <picture>
@@ -851,6 +852,7 @@ function createHealthStep(step, index, total) {
   const primaryAttrs = step.final
     ? `href="${subscribeUrl}" data-analytics-event="health_apply_click" data-analytics-product="health" data-analytics-location="story_step" data-analytics-step-number="${number}" data-analytics-step-title="${step.name}" data-analytics-button-text="${step.cta}"`
     : `href="#${nextId}" data-next-step="${nextId}" data-analytics-event="health_story_cta_click" data-analytics-product="health" data-analytics-location="story_step" data-analytics-step-number="${number}" data-analytics-step-title="${step.name}" data-analytics-button-text="${step.cta}"`;
+  const externalApplyNote = step.final ? createHealthExternalApplyNote() : "";
   const kidDocument = step.final ? createHealthKidDocumentLink(number, step.name) : "";
 
   const noVisualClass = step.noVisual ? " health-step-no-visual" : "";
@@ -874,10 +876,24 @@ function createHealthStep(step, index, total) {
             ${secondary}
             <a class="health-primary-cta" ${primaryAttrs}>${step.cta}</a>
           </div>
+          ${externalApplyNote}
           ${kidDocument}
         </div>
       </div>
     </section>
+  `;
+}
+
+function createHealthExternalApplyNote() {
+  const label =
+    getCurrentLang() === "kz"
+      ? "Сіз Freedom Life-тың қорғалған рәсімдеу бетіне өтесіз"
+      : "Вы перейдете на защищенную страницу оформления Freedom Life";
+  return `
+    <p class="health-external-apply-note">
+      <span aria-hidden="true">↗</span>
+      ${label}
+    </p>
   `;
 }
 
@@ -1008,6 +1024,7 @@ function createTariffDialog() {
           </section>
         </div>
         <div class="tariff-panel-footer">
+          ${createHealthExternalApplyNote()}
           <a class="primary-button tariff-submit" href="${subscribeUrl}" data-analytics-event="health_apply_click" data-analytics-product="health" data-analytics-location="tariff_dialog" data-analytics-button-text="${ui.apply}">${ui.apply}</a>
         </div>
       </div>
